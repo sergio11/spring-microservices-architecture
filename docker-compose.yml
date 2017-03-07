@@ -1,0 +1,12 @@
+config-service:
+  image: sergio11/config-service
+  restart: always
+  ports:
+   - 8888:8888
+eureka-service:
+  image: sergio11/eureka-service
+  restart: always
+  ports:
+    - 8761:8761
+  links:
+    - config-service

@@ -32,7 +32,10 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+    
+    
     <build>
+    	<!-- shared plugins -->
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -43,4 +46,45 @@
             </plugin>
         </plugins>
     </build>
+    
+    <profiles>
+		<profile>
+			<id>docker</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.spotify</groupId>
+						<artifactId>docker-maven-plugin</artifactId>
+						<version>${docker.plugin.version}</version>
+						<executions>
+							<execution>
+								<phase>install</phase>
+								<goals>
+									<goal>build</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+							<dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
+							<resources>
+								<resource>
+									<targetPath>/</targetPath>
+									<directory>${project.build.directory}</directory>
+									<include>${project.build.finalName}.jar</include>
+								</resource>
+							</resources>
+							<!-- optionally overwrite tags every time image is built with docker:build -->
+							<forceTags>true</forceTags>
+							<imageTags>
+								<imageTag>${project.version}</imageTag>
+								<imageTag>latest</imageTag>
+							</imageTags>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+    
 </project>

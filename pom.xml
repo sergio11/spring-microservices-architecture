@@ -13,7 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
         <docker.image.prefix>sergio11</docker.image.prefix>
-        <docker.plugin.version>0.3.258</docker.plugin.version>
+        <docker.plugin.version>0.4.13</docker.plugin.version>
     </properties>
 
     <parent>
@@ -25,9 +25,9 @@
     </parent>
 
     <modules>
-        <module>api-gateway</module>
-        <module>config-service</module>
+    	<module>config-service</module>
         <module>eureka-service</module>
+        <module>api-gateway</module>
         <module>auth-service</module>
     </modules>
 
