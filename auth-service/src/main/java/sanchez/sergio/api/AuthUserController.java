@@ -1,4 +1,4 @@
-package com.microservice.api;
+package sanchez.sergio.api;
 
 import java.security.Principal;
 import org.springframework.web.bind.annotation.RequestMapping;
