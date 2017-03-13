@@ -69,12 +69,11 @@ public abstract class Aggregate<E extends Event, ID extends Serializable> extend
      * @throws IllegalArgumentException if the application context is unavailable or the provider does not exist
      */
     @JsonIgnore
-    public <T extends Module<A>, A extends Aggregate<E, ID>> T getModule(Class<T> providerType) throws
-            IllegalArgumentException {
+    public <T extends Module<A>, A extends Aggregate<E, ID>> T getModule(Class<T> providerType) throws IllegalArgumentException {
         Assert.notNull(applicationContext, "The application context is unavailable");
         T provider = applicationContext.getBean(providerType);
         Assert.notNull(provider, "The requested provider is not registered in the application context");
-        return (T) provider;
+        return provider;
     }
 
     @JsonIgnore

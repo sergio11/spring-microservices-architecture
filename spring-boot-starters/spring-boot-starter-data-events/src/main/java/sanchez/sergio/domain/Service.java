@@ -12,6 +12,7 @@ import java.io.Serializable;
  */
 @org.springframework.stereotype.Service
 public abstract class Service<T extends Aggregate, ID extends Serializable> implements ApplicationContextAware {
+    
     private ApplicationContext applicationContext;
 
     @Override

@@ -19,7 +19,7 @@ import sanchez.sergio.domain.Aggregate;
  * @see org.springframework.stereotype.Repository
  * @see ResourceSupport
  */
-public abstract class Event<T extends Aggregate, E, ID extends Serializable> extends ResourceSupport {
+public abstract class Event<T extends Aggregate, E, ID extends Serializable> extends ResourceSupport implements Serializable {
 
     public Event() {}
 
