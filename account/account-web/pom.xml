@@ -8,10 +8,10 @@
     <name>account/account-web</name>
     <description>web application that produces a REST API that can be used by consumers to interact with and manage domain objects in the Account context</description>
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.2.RELEASE</version>
-        <relativePath/>
+        <groupId>org.sanchez.sergio</groupId>
+        <artifactId>account</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../</relativePath>
         <!-- lookup parent from repository -->
     </parent>
     <properties>

@@ -29,8 +29,9 @@
         <module>eureka-service</module>
         <module>api-gateway</module>
         <module>auth-service</module>
+        <module>account</module>
+        <module>spring-boot-starters</module>
     </modules>
-
 
     <dependencies>
         <dependency>
