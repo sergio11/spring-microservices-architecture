@@ -18,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -46,7 +47,7 @@ public class AccountController {
         this.eventService = eventService;
     }
     
-    @RequestMapping(path = "/accounts")
+    @GetMapping(path = "/accounts")
     @ApiOperation(value = "getAccounts", nickname = "getAccounts", notes="Get accounts resources", response = ResponseEntity.class)
     public ResponseEntity getAccounts(@ApiParam(value = "pageRequest", required = false) @RequestBody(required = false) PageRequest pageRequest) {
         return new ResponseEntity<>(getAccountsResource(pageRequest), HttpStatus.OK);
@@ -70,7 +71,7 @@ public class AccountController {
                 .orElseThrow(() -> new RuntimeException("Account update failed"));
     }
     
-    @RequestMapping(path = "/accounts/{id}")
+    @GetMapping(path = "/accounts/{id}")
     @ApiOperation(value = "getAccount", nickname = "getAccount", notes="Get a account", response = ResponseEntity.class)
     public ResponseEntity getAccount(@ApiParam(value = "id", required = true) @PathVariable Long id) {
         return Optional.ofNullable(accountService.get(id))
@@ -87,7 +88,7 @@ public class AccountController {
                 .orElseThrow(() -> new RuntimeException("Account deletion failed"));
     }
     
-    @RequestMapping(path = "/accounts/{id}/events")
+    @GetMapping(path = "/accounts/{id}/events")
     @ApiOperation(value = "getAccountEvents", nickname = "getAccountEvents", notes="Get account's events", response = ResponseEntity.class)
     public ResponseEntity getAccountEvents(@ApiParam(value = "id", required = true) @PathVariable Long id) {
         return Optional.of(eventService.find(id))
@@ -95,7 +96,7 @@ public class AccountController {
                 .orElseThrow(() -> new RuntimeException("Could not get account events"));
     }
 
-    @RequestMapping(path = "/accounts/{id}/events/{eventId}")
+    @GetMapping(path = "/accounts/{id}/events/{eventId}")
     @ApiOperation(value = "getAccountEvent", nickname = "getAccountEvent", notes="Get a event for any account", response = ResponseEntity.class)
     public ResponseEntity getAccountEvent(
             @ApiParam(value = "id", required = true) @PathVariable Long id, 
@@ -115,7 +116,7 @@ public class AccountController {
                 .orElseThrow(() -> new RuntimeException("Append account event failed"));
     }
     
-    @RequestMapping(path = "/accounts/{id}/commands")
+    @GetMapping(path = "/accounts/{id}/commands")
     @ApiOperation(value = "getCommands", nickname = "getCommands", notes="Get account's commands", response = ResponseEntity.class)
     public ResponseEntity getCommands(@ApiParam(value = "id", required = true) @PathVariable Long id) {
         return Optional.ofNullable(getCommandsResource(id))
@@ -123,7 +124,7 @@ public class AccountController {
                 .orElseThrow(() -> new RuntimeException("The account could not be found"));
     }
 
-    @RequestMapping(path = "/accounts/{id}/commands/confirm")
+    @PutMapping(path = "/accounts/{id}/commands/confirm")
     @ApiOperation(value = "confirm", nickname = "confirm", notes="Confirm account", response = ResponseEntity.class)
     public ResponseEntity confirm(@ApiParam(value = "id", required = true) @PathVariable Long id) {
         return Optional.ofNullable(accountService.get(id))
@@ -133,7 +134,7 @@ public class AccountController {
                 .orElseThrow(() -> new RuntimeException("The command could not be applied"));
     }
 
-    @RequestMapping(path = "/accounts/{id}/commands/activate")
+    @PutMapping(path = "/accounts/{id}/commands/activate")
     @ApiOperation(value = "activate", nickname = "activate", notes="Activate account", response = ResponseEntity.class)
     public ResponseEntity activate(@ApiParam(value = "id", required = true) @PathVariable Long id) {
         return Optional.ofNullable(accountService.get(id))
@@ -143,7 +144,7 @@ public class AccountController {
                 .orElseThrow(() -> new RuntimeException("The command could not be applied"));
     }
 
-    @RequestMapping(path = "/accounts/{id}/commands/suspend")
+    @PutMapping(path = "/accounts/{id}/commands/suspend")
     @ApiOperation(value = "suspend", nickname = "suspend", notes="Suspend account", response = ResponseEntity.class)
     public ResponseEntity suspend(@ApiParam(value = "id", required = true) @PathVariable Long id) {
         return Optional.ofNullable(accountService.get(id))
@@ -153,7 +154,7 @@ public class AccountController {
                 .orElseThrow(() -> new RuntimeException("The command could not be applied"));
     }
 
-    @RequestMapping(path = "/accounts/{id}/commands/archive")
+    @PutMapping(path = "/accounts/{id}/commands/archive")
     @ApiOperation(value = "archive", nickname = "archive", notes="Archive account", response = ResponseEntity.class)
     public ResponseEntity archive(@ApiParam(value = "id", required = true) @PathVariable Long id) {
         return Optional.ofNullable(accountService.get(id))
