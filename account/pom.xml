@@ -16,5 +16,6 @@
     
     <modules>
         <module>account-web</module>
+        <module>account-worker</module>
     </modules>
 </project>
