@@ -18,6 +18,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <springfox.version>2.4.0</springfox.version>
     </properties>
     <dependencies>
         <dependency>
@@ -40,7 +41,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-  
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
@@ -56,6 +56,17 @@
             <artifactId>spring-boot-starter-data-events</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <!-- Hemos utilizado las librerías de Springfox ya que integra muy bien Swagger con Spring MVC -->
+        <dependency>  
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${springfox.version}</version>
+        </dependency>  
+        <dependency>  
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${springfox.version}</version>
+        </dependency>  
     </dependencies>
     <dependencyManagement>
         <dependencies>

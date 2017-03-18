@@ -1,0 +1,62 @@
+2017-03-18 15:52:48.358  INFO 10496 --- [main] sanchez.sergio.Application               : No active profile set, falling back to default profiles: default
+2017-03-18 15:52:48.658  INFO 10496 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@339bf286: startup date [Sat Mar 18 15:52:48 CET 2017]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@26275bef
+2017-03-18 15:52:56.250  INFO 10496 --- [main] o.s.i.config.IntegrationRegistrar        : No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+2017-03-18 15:52:56.843  INFO 10496 --- [main] o.s.b.f.s.DefaultListableBeanFactory     : Overriding bean definition for bean 'managementServletContext' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.actuate.autoconfigure.EndpointWebMvcHypermediaManagementContextConfiguration; factoryMethodName=managementServletContext; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/actuate/autoconfigure/EndpointWebMvcHypermediaManagementContextConfiguration.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.actuate.autoconfigure.EndpointWebMvcAutoConfiguration; factoryMethodName=managementServletContext; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/actuate/autoconfigure/EndpointWebMvcAutoConfiguration.class]]
+2017-03-18 15:52:58.954  WARN 10496 --- [main] o.s.c.a.ConfigurationClassPostProcessor  : Cannot enhance @Configuration bean definition 'refreshScope' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2017-03-18 15:53:00.875  INFO 10496 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=6cb6c859-9ece-39b8-9f59-b2681160b355
+2017-03-18 15:53:01.012  INFO 10496 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+2017-03-18 15:53:01.049  INFO 10496 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'taskScheduler' has been explicitly defined. Therefore, a default ThreadPoolTaskScheduler will be created.
+2017-03-18 15:53:01.293  INFO 10496 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-03-18 15:53:02.085  INFO 10496 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$268da855] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-03-18 15:53:02.566  INFO 10496 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'integrationGlobalProperties' of type [org.springframework.beans.factory.config.PropertiesFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-03-18 15:53:02.569  INFO 10496 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'integrationGlobalProperties' of type [java.util.Properties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-03-18 15:53:02.896  INFO 10496 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$42a7ab52] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-03-18 15:53:02.954  INFO 10496 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-03-18 15:53:04.087  INFO 10496 --- [main] org.xnio                                 : XNIO version 3.3.6.Final
+2017-03-18 15:53:04.143  INFO 10496 --- [main] org.xnio.nio                             : XNIO NIO Implementation Version 3.3.6.Final
+2017-03-18 15:53:04.372  WARN 10496 --- [main] io.undertow.websockets.jsr               : UT026009: XNIO worker was not set on WebSocketDeploymentInfo, the default worker will be used
+2017-03-18 15:53:04.373  WARN 10496 --- [main] io.undertow.websockets.jsr               : UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2017-03-18 15:53:04.458  INFO 10496 --- [main] io.undertow.servlet                      : Initializing Spring embedded WebApplicationContext
+2017-03-18 15:53:04.459  INFO 10496 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 15802 ms
+2017-03-18 15:53:05.723  INFO 10496 --- [main] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-03-18 15:53:05.747  INFO 10496 --- [main] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'metricsFilter' to: [/*]
+2017-03-18 15:53:05.752  INFO 10496 --- [main] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-03-18 15:53:05.756  INFO 10496 --- [main] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-03-18 15:53:05.760  INFO 10496 --- [main] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-03-18 15:53:05.761  INFO 10496 --- [main] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-03-18 15:53:05.774  INFO 10496 --- [main] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webRequestLoggingFilter' to: [/*]
+2017-03-18 15:53:05.775  INFO 10496 --- [main] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'applicationContextIdFilter' to: [/*]
+2017-03-18 15:53:14.164  INFO 10496 --- [main] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2017-03-18 15:53:14.516  INFO 10496 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2017-03-18 15:53:15.906  INFO 10496 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.0.12.Final}
+2017-03-18 15:53:15.917  INFO 10496 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2017-03-18 15:53:15.925  INFO 10496 --- [main] org.hibernate.cfg.Environment            : HHH000021: Bytecode provider name : javassist
+2017-03-18 15:53:16.413  INFO 10496 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2017-03-18 15:53:17.778  INFO 10496 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2017-03-18 15:53:22.736  INFO 10496 --- [main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000227: Running hbm2ddl schema export
+2017-03-18 15:53:22.881  INFO 10496 --- [main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000230: Schema export complete
+2017-03-18 15:53:23.251  INFO 10496 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2017-03-18 15:53:27.036  WARN 10496 --- [main] ationConfigEmbeddedWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'accountController' defined in file [C:\Users\sergio\Documents\NetBeansProjects\spring-microservices-architecture\account\account-web\target\classes\sanchez\sergio\controller\AccountController.class]: Unsatisfied dependency expressed through constructor parameter 1; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'sanchez.sergio.event.EventService<sanchez.sergio.events.AccountEvent, java.lang.Long>' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2017-03-18 15:53:27.050  INFO 10496 --- [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2017-03-18 15:53:27.060  INFO 10496 --- [main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000227: Running hbm2ddl schema export
+2017-03-18 15:53:27.092  INFO 10496 --- [main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000230: Schema export complete
+2017-03-18 15:53:27.160  INFO 10496 --- [main] utoConfigurationReportLoggingInitializer : 
+
+Error starting ApplicationContext. To display the auto-configuration report re-run your application with 'debug' enabled.
+2017-03-18 15:53:28.251 ERROR 10496 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 1 of constructor in sanchez.sergio.controller.AccountController required a bean of type 'sanchez.sergio.event.EventService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'sanchez.sergio.event.EventService' in your configuration.
+

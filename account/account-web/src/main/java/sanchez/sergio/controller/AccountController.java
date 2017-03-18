@@ -1,5 +1,8 @@
 package sanchez.sergio.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import java.lang.reflect.Method;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
@@ -28,9 +31,9 @@ import sanchez.sergio.events.AccountEvent;
 import sanchez.sergio.service.AccountService;
 
 /**
- *
  * @author sergio
  */
+@Api
 @RestController
 @RequestMapping("/v1")
 public class AccountController {
@@ -44,26 +47,32 @@ public class AccountController {
     }
     
     @RequestMapping(path = "/accounts")
-    public ResponseEntity getAccounts(@RequestBody(required = false) PageRequest pageRequest) {
+    @ApiOperation(value = "getAccounts", nickname = "getAccounts", notes="Get accounts resources", response = ResponseEntity.class)
+    public ResponseEntity getAccounts(@ApiParam(value = "pageRequest", required = false) @RequestBody(required = false) PageRequest pageRequest) {
         return new ResponseEntity<>(getAccountsResource(pageRequest), HttpStatus.OK);
     }
     
     @PostMapping(path = "/accounts")
-    public ResponseEntity createAccount(@RequestBody Account account) {
+    @ApiOperation(value = "createAccount", nickname = "createAccount", notes="Create a new account", response = ResponseEntity.class)
+    public ResponseEntity createAccount(@ApiParam(value = "account", required = true) @RequestBody Account account) {
         return Optional.ofNullable(createAccountResource(account))
                 .map(e -> new ResponseEntity<>(e, HttpStatus.CREATED))
                 .orElseThrow(() -> new RuntimeException("Account creation failed"));
     }
 
     @PutMapping(path = "/accounts/{id}")
-    public ResponseEntity updateAccount(@RequestBody Account account, @PathVariable Long id) {
+    @ApiOperation(value = "updateAccount", nickname = "updateAccount", notes="Update account", response = ResponseEntity.class)
+    public ResponseEntity updateAccount(
+            @ApiParam(value = "id", required = true) @PathVariable Long id,
+            @ApiParam(value = "account", required = true) @RequestBody Account account) {
         return Optional.ofNullable(updateAccountResource(id, account))
                 .map(e -> new ResponseEntity<>(e, HttpStatus.OK))
                 .orElseThrow(() -> new RuntimeException("Account update failed"));
     }
     
     @RequestMapping(path = "/accounts/{id}")
-    public ResponseEntity getAccount(@PathVariable Long id) {
+    @ApiOperation(value = "getAccount", nickname = "getAccount", notes="Get a account", response = ResponseEntity.class)
+    public ResponseEntity getAccount(@ApiParam(value = "id", required = true) @PathVariable Long id) {
         return Optional.ofNullable(accountService.get(id))
                 .map(this::getAccountResource)
                 .map(e -> new ResponseEntity<>(e, HttpStatus.OK))
@@ -71,42 +80,52 @@ public class AccountController {
     }
 
     @DeleteMapping(path = "/accounts/{id}")
-    public ResponseEntity deleteAccount(@PathVariable Long id) {
+    @ApiOperation(value = "deleteAccount", nickname = "deleteAccount", notes="Delete a account", response = ResponseEntity.class)
+    public ResponseEntity deleteAccount(@ApiParam(value = "id", required = true) @PathVariable Long id) {
         return Optional.ofNullable(accountService.delete(id))
                 .map(e -> new ResponseEntity<>(HttpStatus.NO_CONTENT))
                 .orElseThrow(() -> new RuntimeException("Account deletion failed"));
     }
     
     @RequestMapping(path = "/accounts/{id}/events")
-    public ResponseEntity getAccountEvents(@PathVariable Long id) {
+    @ApiOperation(value = "getAccountEvents", nickname = "getAccountEvents", notes="Get account's events", response = ResponseEntity.class)
+    public ResponseEntity getAccountEvents(@ApiParam(value = "id", required = true) @PathVariable Long id) {
         return Optional.of(eventService.find(id))
                 .map(e -> new ResponseEntity<>(e, HttpStatus.OK))
                 .orElseThrow(() -> new RuntimeException("Could not get account events"));
     }
 
     @RequestMapping(path = "/accounts/{id}/events/{eventId}")
-    public ResponseEntity getAccountEvent(@PathVariable Long id, @PathVariable Long eventId) {
+    @ApiOperation(value = "getAccountEvent", nickname = "getAccountEvent", notes="Get a event for any account", response = ResponseEntity.class)
+    public ResponseEntity getAccountEvent(
+            @ApiParam(value = "id", required = true) @PathVariable Long id, 
+            @ApiParam(value = "eventId", required = true) @PathVariable Long eventId) {
         return Optional.of(eventService.findOne(eventId))
                 .map(e -> new ResponseEntity<>(e, HttpStatus.OK))
                 .orElseThrow(() -> new RuntimeException("Could not get order events"));
     }
 
     @PostMapping(path = "/accounts/{id}/events")
-    public ResponseEntity appendAccountEvent(@PathVariable Long id, @RequestBody AccountEvent event) {
+    @ApiOperation(value = "appendAccountEvent", nickname = "appendAccountEvent", notes="Append account event", response = ResponseEntity.class)
+    public ResponseEntity appendAccountEvent(
+            @ApiParam(value = "id", required = true) @PathVariable Long id, 
+            @ApiParam(value = "event", required = true) @RequestBody AccountEvent event) {
         return Optional.ofNullable(appendEventResource(id, event))
                 .map(e -> new ResponseEntity<>(e, HttpStatus.CREATED))
                 .orElseThrow(() -> new RuntimeException("Append account event failed"));
     }
     
     @RequestMapping(path = "/accounts/{id}/commands")
-    public ResponseEntity getCommands(@PathVariable Long id) {
+    @ApiOperation(value = "getCommands", nickname = "getCommands", notes="Get account's commands", response = ResponseEntity.class)
+    public ResponseEntity getCommands(@ApiParam(value = "id", required = true) @PathVariable Long id) {
         return Optional.ofNullable(getCommandsResource(id))
                 .map(e -> new ResponseEntity<>(e, HttpStatus.OK))
                 .orElseThrow(() -> new RuntimeException("The account could not be found"));
     }
 
     @RequestMapping(path = "/accounts/{id}/commands/confirm")
-    public ResponseEntity confirm(@PathVariable Long id) {
+    @ApiOperation(value = "confirm", nickname = "confirm", notes="Confirm account", response = ResponseEntity.class)
+    public ResponseEntity confirm(@ApiParam(value = "id", required = true) @PathVariable Long id) {
         return Optional.ofNullable(accountService.get(id))
                 .map(Account::confirm)
                 .map(this::getAccountResource)
@@ -115,7 +134,8 @@ public class AccountController {
     }
 
     @RequestMapping(path = "/accounts/{id}/commands/activate")
-    public ResponseEntity activate(@PathVariable Long id) {
+    @ApiOperation(value = "activate", nickname = "activate", notes="Activate account", response = ResponseEntity.class)
+    public ResponseEntity activate(@ApiParam(value = "id", required = true) @PathVariable Long id) {
         return Optional.ofNullable(accountService.get(id))
                 .map(Account::activate)
                 .map(this::getAccountResource)
@@ -124,7 +144,8 @@ public class AccountController {
     }
 
     @RequestMapping(path = "/accounts/{id}/commands/suspend")
-    public ResponseEntity suspend(@PathVariable Long id) {
+    @ApiOperation(value = "suspend", nickname = "suspend", notes="Suspend account", response = ResponseEntity.class)
+    public ResponseEntity suspend(@ApiParam(value = "id", required = true) @PathVariable Long id) {
         return Optional.ofNullable(accountService.get(id))
                 .map(Account::suspend)
                 .map(this::getAccountResource)
@@ -133,7 +154,8 @@ public class AccountController {
     }
 
     @RequestMapping(path = "/accounts/{id}/commands/archive")
-    public ResponseEntity archive(@PathVariable Long id) {
+    @ApiOperation(value = "archive", nickname = "archive", notes="Archive account", response = ResponseEntity.class)
+    public ResponseEntity archive(@ApiParam(value = "id", required = true) @PathVariable Long id) {
         return Optional.ofNullable(accountService.get(id))
                 .map(Account::archive)
                 .map(this::getAccountResource)
