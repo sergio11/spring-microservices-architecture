@@ -1710,3 +1710,768 @@ Caused by: org.I0Itec.zkclient.exception.ZkTimeoutException: Unable to connect t
 2017-03-18 20:36:50.632  INFO 10668 --- [XNIO-2 task-1] io.undertow.servlet                      : Initializing Spring FrameworkServlet 'dispatcherServlet'
 2017-03-18 20:36:50.636  INFO 10668 --- [XNIO-2 task-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
 2017-03-18 20:36:50.722  INFO 10668 --- [XNIO-2 task-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 85 ms
+2017-03-18 20:46:36.448  INFO 10668 --- [XNIO-2 task-10] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2017-03-18 20:46:39.550 ERROR 10668 --- [XNIO-2 task-10] sanchez.sergio.service.AccountService    : Account registration failed
+
+org.springframework.messaging.MessageHandlingException: error occurred in message handler [org.springframework.integration.amqp.outbound.AmqpOutboundEndpoint@2dd7f724]; nested exception is org.springframework.amqp.AmqpConnectException: java.net.ConnectException: Connection refused: connect
+	at org.springframework.integration.handler.AbstractMessageHandler.handleMessage(AbstractMessageHandler.java:139) ~[spring-integration-core-4.3.8.RELEASE.jar:4.3.8.RELEASE]
+	at org.springframework.cloud.stream.binder.AbstractMessageChannelBinder$SendingHandler.handleMessageInternal(AbstractMessageChannelBinder.java:335) ~[spring-cloud-stream-1.1.2.RELEASE.jar:1.1.2.RELEASE]
+	at org.springframework.integration.handler.AbstractMessageHandler.handleMessage(AbstractMessageHandler.java:127) ~[spring-integration-core-4.3.8.RELEASE.jar:4.3.8.RELEASE]
+	at org.springframework.integration.dispatcher.AbstractDispatcher.tryOptimizedDispatch(AbstractDispatcher.java:116) ~[spring-integration-core-4.3.8.RELEASE.jar:4.3.8.RELEASE]
+	at org.springframework.integration.dispatcher.UnicastingDispatcher.doDispatch(UnicastingDispatcher.java:148) ~[spring-integration-core-4.3.8.RELEASE.jar:4.3.8.RELEASE]
+	at org.springframework.integration.dispatcher.UnicastingDispatcher.dispatch(UnicastingDispatcher.java:121) ~[spring-integration-core-4.3.8.RELEASE.jar:4.3.8.RELEASE]
+	at org.springframework.integration.channel.AbstractSubscribableChannel.doSend(AbstractSubscribableChannel.java:89) ~[spring-integration-core-4.3.8.RELEASE.jar:4.3.8.RELEASE]
+	at org.springframework.integration.channel.AbstractMessageChannel.send(AbstractMessageChannel.java:423) ~[spring-integration-core-4.3.8.RELEASE.jar:4.3.8.RELEASE]
+	at org.springframework.integration.channel.AbstractMessageChannel.send(AbstractMessageChannel.java:373) ~[spring-integration-core-4.3.8.RELEASE.jar:4.3.8.RELEASE]
+	at sanchez.sergio.event.BasicEventService.sendAsync(BasicEventService.java:72) ~[classes/:na]
+	at sanchez.sergio.domain.Aggregate.sendAsyncEvent(Aggregate.java:101) ~[classes/:na]
+	at sanchez.sergio.service.AccountService.registerAccount(AccountService.java:39) ~[classes/:na]
+	at sanchez.sergio.controller.AccountController.createAccountResource(AccountController.java:235) [classes/:na]
+	at sanchez.sergio.controller.AccountController.createAccount(AccountController.java:59) [classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_40]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_40]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_40]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[na:1.8.0_40]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) [spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:133) [spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:116) [spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:827) [spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:738) [spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85) [spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963) [spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:897) [spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970) [spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872) [spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:648) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846) [spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729) [tomcat-embed-core-8.5.11.jar:8.5.11]
+	at io.undertow.servlet.handlers.ServletHandler.handleRequest(ServletHandler.java:85) [undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.FilterHandler$FilterChainImpl.doFilter(FilterHandler.java:129) [undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at org.springframework.boot.web.filter.ApplicationContextHeaderFilter.doFilterInternal(ApplicationContextHeaderFilter.java:55) [spring-boot-1.5.2.RELEASE.jar:1.5.2.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at io.undertow.servlet.core.ManagedFilter.doFilter(ManagedFilter.java:61) [undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.FilterHandler$FilterChainImpl.doFilter(FilterHandler.java:131) [undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at org.springframework.boot.actuate.trace.WebRequestTraceFilter.doFilterInternal(WebRequestTraceFilter.java:108) [spring-boot-actuator-1.5.2.RELEASE.jar:1.5.2.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at io.undertow.servlet.core.ManagedFilter.doFilter(ManagedFilter.java:61) [undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.FilterHandler$FilterChainImpl.doFilter(FilterHandler.java:131) [undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197) [spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at io.undertow.servlet.core.ManagedFilter.doFilter(ManagedFilter.java:61) [undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.FilterHandler$FilterChainImpl.doFilter(FilterHandler.java:131) [undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at org.springframework.boot.actuate.autoconfigure.MetricsFilter.doFilterInternal(MetricsFilter.java:106) [spring-boot-actuator-1.5.2.RELEASE.jar:1.5.2.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at io.undertow.servlet.core.ManagedFilter.doFilter(ManagedFilter.java:61) [undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.FilterHandler$FilterChainImpl.doFilter(FilterHandler.java:131) [undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.FilterHandler.handleRequest(FilterHandler.java:84) [undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.security.ServletSecurityRoleHandler.handleRequest(ServletSecurityRoleHandler.java:62) [undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.ServletDispatchingHandler.handleRequest(ServletDispatchingHandler.java:36) [undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.security.SSLInformationAssociationHandler.handleRequest(SSLInformationAssociationHandler.java:131) [undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.security.ServletAuthenticationCallHandler.handleRequest(ServletAuthenticationCallHandler.java:57) [undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43) [undertow-core-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.security.handlers.AbstractConfidentialityHandler.handleRequest(AbstractConfidentialityHandler.java:46) [undertow-core-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.security.ServletConfidentialityConstraintHandler.handleRequest(ServletConfidentialityConstraintHandler.java:64) [undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.security.handlers.AuthenticationMechanismsHandler.handleRequest(AuthenticationMechanismsHandler.java:60) [undertow-core-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.security.CachedAuthenticatedSessionHandler.handleRequest(CachedAuthenticatedSessionHandler.java:77) [undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.security.handlers.AbstractSecurityContextAssociationHandler.handleRequest(AbstractSecurityContextAssociationHandler.java:43) [undertow-core-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43) [undertow-core-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43) [undertow-core-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.ServletInitialHandler.handleFirstRequest(ServletInitialHandler.java:292) [undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.ServletInitialHandler.access$100(ServletInitialHandler.java:81) [undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.ServletInitialHandler$2.call(ServletInitialHandler.java:138) [undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.ServletInitialHandler$2.call(ServletInitialHandler.java:135) [undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.core.ServletRequestContextThreadSetupAction$1.call(ServletRequestContextThreadSetupAction.java:48) [undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.core.ContextClassLoaderSetupAction$1.call(ContextClassLoaderSetupAction.java:43) [undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.ServletInitialHandler.dispatchRequest(ServletInitialHandler.java:272) [undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.ServletInitialHandler.access$000(ServletInitialHandler.java:81) [undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.ServletInitialHandler$1.handleRequest(ServletInitialHandler.java:104) [undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.server.Connectors.executeRootHandler(Connectors.java:211) [undertow-core-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.server.HttpServerExchange$1.run(HttpServerExchange.java:809) [undertow-core-1.4.11.Final.jar:1.4.11.Final]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_40]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_40]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_40]
+Caused by: org.springframework.amqp.AmqpConnectException: java.net.ConnectException: Connection refused: connect
+	at org.springframework.amqp.rabbit.support.RabbitExceptionTranslator.convertRabbitAccessException(RabbitExceptionTranslator.java:62) ~[spring-rabbit-1.7.1.RELEASE.jar:na]
+	at org.springframework.amqp.rabbit.connection.AbstractConnectionFactory.createBareConnection(AbstractConnectionFactory.java:367) ~[spring-rabbit-1.7.1.RELEASE.jar:na]
+	at org.springframework.amqp.rabbit.connection.CachingConnectionFactory.createConnection(CachingConnectionFactory.java:565) ~[spring-rabbit-1.7.1.RELEASE.jar:na]
+	at org.springframework.amqp.rabbit.core.RabbitTemplate.doExecute(RabbitTemplate.java:1430) ~[spring-rabbit-1.7.1.RELEASE.jar:na]
+	at org.springframework.amqp.rabbit.core.RabbitTemplate.execute(RabbitTemplate.java:1411) ~[spring-rabbit-1.7.1.RELEASE.jar:na]
+	at org.springframework.amqp.rabbit.core.RabbitTemplate.send(RabbitTemplate.java:712) ~[spring-rabbit-1.7.1.RELEASE.jar:na]
+	at org.springframework.integration.amqp.outbound.AmqpOutboundEndpoint.send(AmqpOutboundEndpoint.java:134) ~[spring-integration-amqp-4.3.8.RELEASE.jar:4.3.8.RELEASE]
+	at org.springframework.integration.amqp.outbound.AmqpOutboundEndpoint.handleRequestMessage(AmqpOutboundEndpoint.java:122) ~[spring-integration-amqp-4.3.8.RELEASE.jar:4.3.8.RELEASE]
+	at org.springframework.integration.handler.AbstractReplyProducingMessageHandler.handleMessageInternal(AbstractReplyProducingMessageHandler.java:109) ~[spring-integration-core-4.3.8.RELEASE.jar:4.3.8.RELEASE]
+	at org.springframework.integration.handler.AbstractMessageHandler.handleMessage(AbstractMessageHandler.java:127) ~[spring-integration-core-4.3.8.RELEASE.jar:4.3.8.RELEASE]
+	... 75 common frames omitted
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method) ~[na:1.8.0_40]
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85) ~[na:1.8.0_40]
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:345) ~[na:1.8.0_40]
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206) ~[na:1.8.0_40]
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188) ~[na:1.8.0_40]
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172) ~[na:1.8.0_40]
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392) ~[na:1.8.0_40]
+	at java.net.Socket.connect(Socket.java:589) ~[na:1.8.0_40]
+	at com.rabbitmq.client.impl.SocketFrameHandlerFactory.create(SocketFrameHandlerFactory.java:50) ~[amqp-client-4.0.2.jar:4.0.2]
+	at com.rabbitmq.client.ConnectionFactory.newConnection(ConnectionFactory.java:907) ~[amqp-client-4.0.2.jar:4.0.2]
+	at com.rabbitmq.client.ConnectionFactory.newConnection(ConnectionFactory.java:859) ~[amqp-client-4.0.2.jar:4.0.2]
+	at com.rabbitmq.client.ConnectionFactory.newConnection(ConnectionFactory.java:799) ~[amqp-client-4.0.2.jar:4.0.2]
+	at org.springframework.amqp.rabbit.connection.AbstractConnectionFactory.createBareConnection(AbstractConnectionFactory.java:351) ~[spring-rabbit-1.7.1.RELEASE.jar:na]
+	... 83 common frames omitted
+
+2017-03-18 20:46:39.642 ERROR 10668 --- [XNIO-2 task-10] io.undertow.request                      : UT005023: Exception handling request to /v1/accounts
+
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.springframework.messaging.MessageHandlingException: error occurred in message handler [org.springframework.integration.amqp.outbound.AmqpOutboundEndpoint@2dd7f724]; nested exception is org.springframework.amqp.AmqpConnectException: java.net.ConnectException: Connection refused: connect, failedMessage=GenericMessage [payload=byte[224], headers={id=43032b7c-1184-4118-1fb4-9291111897f9, contentType=text/plain, originalContentType=application/json;charset=UTF-8, timestamp=1489866397496}]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:982) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:648) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at io.undertow.servlet.handlers.ServletHandler.handleRequest(ServletHandler.java:85) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.FilterHandler$FilterChainImpl.doFilter(FilterHandler.java:129) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at org.springframework.boot.web.filter.ApplicationContextHeaderFilter.doFilterInternal(ApplicationContextHeaderFilter.java:55) ~[spring-boot-1.5.2.RELEASE.jar:1.5.2.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at io.undertow.servlet.core.ManagedFilter.doFilter(ManagedFilter.java:61) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.FilterHandler$FilterChainImpl.doFilter(FilterHandler.java:131) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at org.springframework.boot.actuate.trace.WebRequestTraceFilter.doFilterInternal(WebRequestTraceFilter.java:108) ~[spring-boot-actuator-1.5.2.RELEASE.jar:1.5.2.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at io.undertow.servlet.core.ManagedFilter.doFilter(ManagedFilter.java:61) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.FilterHandler$FilterChainImpl.doFilter(FilterHandler.java:131) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at io.undertow.servlet.core.ManagedFilter.doFilter(ManagedFilter.java:61) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.FilterHandler$FilterChainImpl.doFilter(FilterHandler.java:131) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at org.springframework.boot.actuate.autoconfigure.MetricsFilter.doFilterInternal(MetricsFilter.java:106) ~[spring-boot-actuator-1.5.2.RELEASE.jar:1.5.2.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at io.undertow.servlet.core.ManagedFilter.doFilter(ManagedFilter.java:61) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.FilterHandler$FilterChainImpl.doFilter(FilterHandler.java:131) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.FilterHandler.handleRequest(FilterHandler.java:84) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.security.ServletSecurityRoleHandler.handleRequest(ServletSecurityRoleHandler.java:62) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.ServletDispatchingHandler.handleRequest(ServletDispatchingHandler.java:36) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.security.SSLInformationAssociationHandler.handleRequest(SSLInformationAssociationHandler.java:131) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.security.ServletAuthenticationCallHandler.handleRequest(ServletAuthenticationCallHandler.java:57) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43) ~[undertow-core-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.security.handlers.AbstractConfidentialityHandler.handleRequest(AbstractConfidentialityHandler.java:46) ~[undertow-core-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.security.ServletConfidentialityConstraintHandler.handleRequest(ServletConfidentialityConstraintHandler.java:64) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.security.handlers.AuthenticationMechanismsHandler.handleRequest(AuthenticationMechanismsHandler.java:60) ~[undertow-core-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.security.CachedAuthenticatedSessionHandler.handleRequest(CachedAuthenticatedSessionHandler.java:77) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.security.handlers.AbstractSecurityContextAssociationHandler.handleRequest(AbstractSecurityContextAssociationHandler.java:43) ~[undertow-core-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43) ~[undertow-core-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43) ~[undertow-core-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.ServletInitialHandler.handleFirstRequest(ServletInitialHandler.java:292) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.ServletInitialHandler.access$100(ServletInitialHandler.java:81) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.ServletInitialHandler$2.call(ServletInitialHandler.java:138) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.ServletInitialHandler$2.call(ServletInitialHandler.java:135) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.core.ServletRequestContextThreadSetupAction$1.call(ServletRequestContextThreadSetupAction.java:48) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.core.ContextClassLoaderSetupAction$1.call(ContextClassLoaderSetupAction.java:43) [undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.ServletInitialHandler.dispatchRequest(ServletInitialHandler.java:272) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.ServletInitialHandler.access$000(ServletInitialHandler.java:81) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.ServletInitialHandler$1.handleRequest(ServletInitialHandler.java:104) [undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.server.Connectors.executeRootHandler(Connectors.java:211) [undertow-core-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.server.HttpServerExchange$1.run(HttpServerExchange.java:809) [undertow-core-1.4.11.Final.jar:1.4.11.Final]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_40]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_40]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_40]
+Caused by: org.springframework.messaging.MessageHandlingException: error occurred in message handler [org.springframework.integration.amqp.outbound.AmqpOutboundEndpoint@2dd7f724]; nested exception is org.springframework.amqp.AmqpConnectException: java.net.ConnectException: Connection refused: connect
+	at org.springframework.integration.handler.AbstractMessageHandler.handleMessage(AbstractMessageHandler.java:139) ~[spring-integration-core-4.3.8.RELEASE.jar:4.3.8.RELEASE]
+	at org.springframework.cloud.stream.binder.AbstractMessageChannelBinder$SendingHandler.handleMessageInternal(AbstractMessageChannelBinder.java:335) ~[spring-cloud-stream-1.1.2.RELEASE.jar:1.1.2.RELEASE]
+	at org.springframework.integration.handler.AbstractMessageHandler.handleMessage(AbstractMessageHandler.java:127) ~[spring-integration-core-4.3.8.RELEASE.jar:4.3.8.RELEASE]
+	at org.springframework.integration.dispatcher.AbstractDispatcher.tryOptimizedDispatch(AbstractDispatcher.java:116) ~[spring-integration-core-4.3.8.RELEASE.jar:4.3.8.RELEASE]
+	at org.springframework.integration.dispatcher.UnicastingDispatcher.doDispatch(UnicastingDispatcher.java:148) ~[spring-integration-core-4.3.8.RELEASE.jar:4.3.8.RELEASE]
+	at org.springframework.integration.dispatcher.UnicastingDispatcher.dispatch(UnicastingDispatcher.java:121) ~[spring-integration-core-4.3.8.RELEASE.jar:4.3.8.RELEASE]
+	at org.springframework.integration.channel.AbstractSubscribableChannel.doSend(AbstractSubscribableChannel.java:89) ~[spring-integration-core-4.3.8.RELEASE.jar:4.3.8.RELEASE]
+	at org.springframework.integration.channel.AbstractMessageChannel.send(AbstractMessageChannel.java:423) ~[spring-integration-core-4.3.8.RELEASE.jar:4.3.8.RELEASE]
+	at org.springframework.integration.channel.AbstractMessageChannel.send(AbstractMessageChannel.java:373) ~[spring-integration-core-4.3.8.RELEASE.jar:4.3.8.RELEASE]
+	at sanchez.sergio.event.BasicEventService.sendAsync(BasicEventService.java:72) ~[classes/:na]
+	at sanchez.sergio.domain.Aggregate.sendAsyncEvent(Aggregate.java:101) ~[classes/:na]
+	at sanchez.sergio.service.AccountService.registerAccount(AccountService.java:39) ~[classes/:na]
+	at sanchez.sergio.controller.AccountController.createAccountResource(AccountController.java:235) ~[classes/:na]
+	at sanchez.sergio.controller.AccountController.createAccount(AccountController.java:59) ~[classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_40]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_40]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_40]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[na:1.8.0_40]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:133) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:116) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:827) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:738) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:897) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	... 49 common frames omitted
+Caused by: org.springframework.amqp.AmqpConnectException: java.net.ConnectException: Connection refused: connect
+	at org.springframework.amqp.rabbit.support.RabbitExceptionTranslator.convertRabbitAccessException(RabbitExceptionTranslator.java:62) ~[spring-rabbit-1.7.1.RELEASE.jar:na]
+	at org.springframework.amqp.rabbit.connection.AbstractConnectionFactory.createBareConnection(AbstractConnectionFactory.java:367) ~[spring-rabbit-1.7.1.RELEASE.jar:na]
+	at org.springframework.amqp.rabbit.connection.CachingConnectionFactory.createConnection(CachingConnectionFactory.java:565) ~[spring-rabbit-1.7.1.RELEASE.jar:na]
+	at org.springframework.amqp.rabbit.core.RabbitTemplate.doExecute(RabbitTemplate.java:1430) ~[spring-rabbit-1.7.1.RELEASE.jar:na]
+	at org.springframework.amqp.rabbit.core.RabbitTemplate.execute(RabbitTemplate.java:1411) ~[spring-rabbit-1.7.1.RELEASE.jar:na]
+	at org.springframework.amqp.rabbit.core.RabbitTemplate.send(RabbitTemplate.java:712) ~[spring-rabbit-1.7.1.RELEASE.jar:na]
+	at org.springframework.integration.amqp.outbound.AmqpOutboundEndpoint.send(AmqpOutboundEndpoint.java:134) ~[spring-integration-amqp-4.3.8.RELEASE.jar:4.3.8.RELEASE]
+	at org.springframework.integration.amqp.outbound.AmqpOutboundEndpoint.handleRequestMessage(AmqpOutboundEndpoint.java:122) ~[spring-integration-amqp-4.3.8.RELEASE.jar:4.3.8.RELEASE]
+	at org.springframework.integration.handler.AbstractReplyProducingMessageHandler.handleMessageInternal(AbstractReplyProducingMessageHandler.java:109) ~[spring-integration-core-4.3.8.RELEASE.jar:4.3.8.RELEASE]
+	at org.springframework.integration.handler.AbstractMessageHandler.handleMessage(AbstractMessageHandler.java:127) ~[spring-integration-core-4.3.8.RELEASE.jar:4.3.8.RELEASE]
+	... 75 common frames omitted
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method) ~[na:1.8.0_40]
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85) ~[na:1.8.0_40]
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:345) ~[na:1.8.0_40]
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206) ~[na:1.8.0_40]
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188) ~[na:1.8.0_40]
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172) ~[na:1.8.0_40]
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392) ~[na:1.8.0_40]
+	at java.net.Socket.connect(Socket.java:589) ~[na:1.8.0_40]
+	at com.rabbitmq.client.impl.SocketFrameHandlerFactory.create(SocketFrameHandlerFactory.java:50) ~[amqp-client-4.0.2.jar:4.0.2]
+	at com.rabbitmq.client.ConnectionFactory.newConnection(ConnectionFactory.java:907) ~[amqp-client-4.0.2.jar:4.0.2]
+	at com.rabbitmq.client.ConnectionFactory.newConnection(ConnectionFactory.java:859) ~[amqp-client-4.0.2.jar:4.0.2]
+	at com.rabbitmq.client.ConnectionFactory.newConnection(ConnectionFactory.java:799) ~[amqp-client-4.0.2.jar:4.0.2]
+	at org.springframework.amqp.rabbit.connection.AbstractConnectionFactory.createBareConnection(AbstractConnectionFactory.java:351) ~[spring-rabbit-1.7.1.RELEASE.jar:na]
+	... 83 common frames omitted
+
+2017-03-20 23:55:07.966  INFO 5668 --- [main] sanchez.sergio.Application               : No active profile set, falling back to default profiles: default
+2017-03-20 23:55:08.103  INFO 5668 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2bd2b28e: startup date [Mon Mar 20 23:55:08 CET 2017]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@175b9425
+2017-03-20 23:55:14.013  INFO 5668 --- [main] o.s.i.config.IntegrationRegistrar        : No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+2017-03-20 23:55:15.190  INFO 5668 --- [main] o.s.b.f.s.DefaultListableBeanFactory     : Overriding bean definition for bean 'managementServletContext' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.actuate.autoconfigure.EndpointWebMvcHypermediaManagementContextConfiguration; factoryMethodName=managementServletContext; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/actuate/autoconfigure/EndpointWebMvcHypermediaManagementContextConfiguration.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.actuate.autoconfigure.EndpointWebMvcAutoConfiguration; factoryMethodName=managementServletContext; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/actuate/autoconfigure/EndpointWebMvcAutoConfiguration.class]]
+2017-03-20 23:55:16.355  WARN 5668 --- [main] o.s.c.a.ConfigurationClassPostProcessor  : Cannot enhance @Configuration bean definition 'refreshScope' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2017-03-20 23:55:17.378  INFO 5668 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=7ba85408-2343-309d-92ae-39d29038e5bf
+2017-03-20 23:55:17.490  INFO 5668 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+2017-03-20 23:55:17.504  INFO 5668 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'taskScheduler' has been explicitly defined. Therefore, a default ThreadPoolTaskScheduler will be created.
+2017-03-20 23:55:17.628  INFO 5668 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-03-20 23:55:18.080  INFO 5668 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.amqp.rabbit.annotation.RabbitBootstrapConfiguration' of type [org.springframework.amqp.rabbit.annotation.RabbitBootstrapConfiguration$$EnhancerBySpringCGLIB$$76d136d3] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-03-20 23:55:18.727  INFO 5668 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$b06578a5] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-03-20 23:55:19.300  INFO 5668 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.stream.config.BindingServiceConfiguration$PostProcessorConfiguration' of type [org.springframework.cloud.stream.config.BindingServiceConfiguration$PostProcessorConfiguration$$EnhancerBySpringCGLIB$$722d16aa] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-03-20 23:55:19.755  INFO 5668 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'integrationGlobalProperties' of type [org.springframework.beans.factory.config.PropertiesFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-03-20 23:55:19.767  INFO 5668 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'integrationGlobalProperties' of type [java.util.Properties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-03-20 23:55:19.973  INFO 5668 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.netflix.metrics.MetricsInterceptorConfiguration$MetricsRestTemplateConfiguration' of type [org.springframework.cloud.netflix.metrics.MetricsInterceptorConfiguration$MetricsRestTemplateConfiguration$$EnhancerBySpringCGLIB$$e2921ee6] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-03-20 23:55:20.067  INFO 5668 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$cc7f7ba2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-03-20 23:55:20.126  INFO 5668 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-03-20 23:55:21.916  INFO 5668 --- [main] org.xnio                                 : XNIO version 3.3.6.Final
+2017-03-20 23:55:22.020  INFO 5668 --- [main] org.xnio.nio                             : XNIO NIO Implementation Version 3.3.6.Final
+2017-03-20 23:55:22.214  WARN 5668 --- [main] io.undertow.websockets.jsr               : UT026009: XNIO worker was not set on WebSocketDeploymentInfo, the default worker will be used
+2017-03-20 23:55:22.220  WARN 5668 --- [main] io.undertow.websockets.jsr               : UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2017-03-20 23:55:22.365  INFO 5668 --- [main] io.undertow.servlet                      : Initializing Spring embedded WebApplicationContext
+2017-03-20 23:55:22.367  INFO 5668 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 14265 ms
+2017-03-20 23:55:23.778  INFO 5668 --- [main] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-03-20 23:55:23.801  INFO 5668 --- [main] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'metricsFilter' to: [/*]
+2017-03-20 23:55:23.806  INFO 5668 --- [main] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-03-20 23:55:23.811  INFO 5668 --- [main] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webRequestLoggingFilter' to: [/*]
+2017-03-20 23:55:23.812  INFO 5668 --- [main] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'applicationContextIdFilter' to: [/*]
+2017-03-20 23:55:27.028  INFO 5668 --- [main] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2017-03-20 23:55:27.079  INFO 5668 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2017-03-20 23:55:27.451  INFO 5668 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.0.12.Final}
+2017-03-20 23:55:27.459  INFO 5668 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2017-03-20 23:55:27.465  INFO 5668 --- [main] org.hibernate.cfg.Environment            : HHH000021: Bytecode provider name : javassist
+2017-03-20 23:55:27.744  INFO 5668 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2017-03-20 23:55:28.593  INFO 5668 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2017-03-20 23:55:31.384  INFO 5668 --- [main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000227: Running hbm2ddl schema export
+2017-03-20 23:55:31.502  INFO 5668 --- [main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000230: Schema export complete
+2017-03-20 23:55:31.690  INFO 5668 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2017-03-20 23:55:38.942  INFO 5668 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts/{id}/commands/suspend],methods=[PUT]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.suspend(java.lang.Long)
+2017-03-20 23:55:38.947  INFO 5668 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts/{id}],methods=[PUT]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.updateAccount(java.lang.Long,sanchez.sergio.domain.Account)
+2017-03-20 23:55:38.951  INFO 5668 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts],methods=[POST]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.createAccount(sanchez.sergio.domain.Account)
+2017-03-20 23:55:38.953  INFO 5668 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts/{id}],methods=[GET]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.getAccount(java.lang.Long)
+2017-03-20 23:55:38.956  INFO 5668 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts/{id}],methods=[DELETE]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.deleteAccount(java.lang.Long)
+2017-03-20 23:55:38.958  INFO 5668 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts/{id}/events],methods=[GET]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.getAccountEvents(java.lang.Long)
+2017-03-20 23:55:38.961  INFO 5668 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts/{id}/events/{eventId}],methods=[GET]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.getAccountEvent(java.lang.Long,java.lang.Long)
+2017-03-20 23:55:38.963  INFO 5668 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts],methods=[GET]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.getAccounts(org.springframework.data.domain.PageRequest)
+2017-03-20 23:55:38.965  INFO 5668 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts/{id}/commands/archive],methods=[PUT]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.archive(java.lang.Long)
+2017-03-20 23:55:38.970  INFO 5668 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts/{id}/commands/activate],methods=[PUT]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.activate(java.lang.Long)
+2017-03-20 23:55:38.972  INFO 5668 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts/{id}/commands],methods=[GET]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.getCommands(java.lang.Long)
+2017-03-20 23:55:38.974  INFO 5668 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts/{id}/commands/confirm],methods=[PUT]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.confirm(java.lang.Long)
+2017-03-20 23:55:38.975  INFO 5668 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts/{id}/events],methods=[POST]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.appendAccountEvent(java.lang.Long,sanchez.sergio.events.AccountEvent)
+2017-03-20 23:55:38.982  INFO 5668 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v2/api-docs],methods=[GET],produces=[application/json || application/hal+json]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)
+2017-03-20 23:55:38.997  INFO 5668 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/configuration/ui]}" onto org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.UiConfiguration> springfox.documentation.swagger.web.ApiResourceController.uiConfiguration()
+2017-03-20 23:55:39.002  INFO 5668 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/swagger-resources]}" onto org.springframework.http.ResponseEntity<java.util.List<springfox.documentation.swagger.web.SwaggerResource>> springfox.documentation.swagger.web.ApiResourceController.swaggerResources()
+2017-03-20 23:55:39.006  INFO 5668 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/configuration/security]}" onto org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.SecurityConfiguration> springfox.documentation.swagger.web.ApiResourceController.securityConfiguration()
+2017-03-20 23:55:39.031  INFO 5668 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-03-20 23:55:39.033  INFO 5668 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-03-20 23:55:41.412  INFO 5668 --- [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2017-03-20 23:55:45.700  INFO 5668 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/health || /health.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.HealthMvcEndpoint.invoke(javax.servlet.http.HttpServletRequest,java.security.Principal)
+2017-03-20 23:55:45.704  INFO 5668 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/restart || /restart.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.context.restart.RestartMvcEndpoint.invoke()
+2017-03-20 23:55:45.708  INFO 5668 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/auditevents || /auditevents.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public org.springframework.http.ResponseEntity<?> org.springframework.boot.actuate.endpoint.mvc.AuditEventsMvcEndpoint.findByPrincipalAndAfterAndType(java.lang.String,java.util.Date,java.lang.String)
+2017-03-20 23:55:45.712  INFO 5668 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/refresh || /refresh.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+2017-03-20 23:55:45.718  INFO 5668 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/dump || /dump.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-20 23:55:45.721  INFO 5668 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.context.environment.EnvironmentManagerMvcEndpoint.value(java.util.Map<java.lang.String, java.lang.String>)
+2017-03-20 23:55:45.723  INFO 5668 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env/reset],methods=[POST]}" onto public java.util.Map<java.lang.String, java.lang.Object> org.springframework.cloud.context.environment.EnvironmentManagerMvcEndpoint.reset()
+2017-03-20 23:55:45.725  INFO 5668 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/info || /info.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-20 23:55:45.733  INFO 5668 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/loggers/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.get(java.lang.String)
+2017-03-20 23:55:45.735  INFO 5668 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/loggers/{name:.*}],methods=[POST],consumes=[application/vnd.spring-boot.actuator.v1+json || application/json],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.set(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2017-03-20 23:55:45.736  INFO 5668 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/loggers || /loggers.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-20 23:55:45.738  INFO 5668 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/channels || /channels.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-20 23:55:45.743  INFO 5668 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/logfile || /logfile.json],methods=[GET || HEAD]}" onto public void org.springframework.boot.actuate.endpoint.mvc.LogFileMvcEndpoint.invoke(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws javax.servlet.ServletException,java.io.IOException
+2017-03-20 23:55:45.751  INFO 5668 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/trace || /trace.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-20 23:55:45.756  INFO 5668 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/beans || /beans.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-20 23:55:45.762  INFO 5668 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EnvironmentMvcEndpoint.value(java.lang.String)
+2017-03-20 23:55:45.764  INFO 5668 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env || /env.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-20 23:55:45.768  INFO 5668 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/resume || /resume.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+2017-03-20 23:55:45.772  INFO 5668 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/mappings || /mappings.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-20 23:55:45.776  INFO 5668 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/heapdump || /heapdump.json],methods=[GET],produces=[application/octet-stream]}" onto public void org.springframework.boot.actuate.endpoint.mvc.HeapdumpMvcEndpoint.invoke(boolean,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException,javax.servlet.ServletException
+2017-03-20 23:55:45.781  INFO 5668 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/actuator || /actuator.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public org.springframework.hateoas.ResourceSupport org.springframework.boot.actuate.endpoint.mvc.HalJsonMvcEndpoint.links()
+2017-03-20 23:55:45.784  INFO 5668 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/archaius || /archaius.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-20 23:55:45.786  INFO 5668 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/autoconfig || /autoconfig.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-20 23:55:45.789  INFO 5668 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/configprops || /configprops.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-20 23:55:45.791  INFO 5668 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/features || /features.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-20 23:55:45.796  INFO 5668 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/metrics/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.MetricsMvcEndpoint.value(java.lang.String)
+2017-03-20 23:55:45.799  INFO 5668 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/metrics || /metrics.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-20 23:55:45.801  INFO 5668 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/pause || /pause.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+2017-03-20 23:55:46.915  INFO 5668 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/documentation/v2/api-docs] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-03-20 23:55:46.917  INFO 5668 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/documentation/swagger-resources/configuration/ui] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-03-20 23:55:46.920  INFO 5668 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/documentation/swagger-resources/configuration/security] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-03-20 23:55:46.920  INFO 5668 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/documentation/swagger-resources] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-03-20 23:55:46.921  INFO 5668 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/documentation/configuration/ui] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-03-20 23:55:46.921  INFO 5668 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/documentation/configuration/security] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-03-20 23:55:47.076  INFO 5668 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/documentation/swagger-ui.html**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-03-20 23:55:47.078  INFO 5668 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/documentation/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-03-20 23:55:47.737  INFO 5668 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2bd2b28e: startup date [Mon Mar 20 23:55:08 CET 2017]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@175b9425
+2017-03-20 23:55:47.808  INFO 5668 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Detected ResponseBodyAdvice bean in org.springframework.boot.actuate.autoconfigure.EndpointWebMvcHypermediaManagementContextConfiguration$ActuatorEndpointLinksAdvice
+2017-03-20 23:55:48.141  INFO 5668 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : Detected ResponseBodyAdvice implementation in org.springframework.boot.actuate.autoconfigure.EndpointWebMvcHypermediaManagementContextConfiguration$ActuatorEndpointLinksAdvice
+2017-03-20 23:55:49.260  INFO 5668 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService  'taskScheduler'
+2017-03-20 23:55:53.685  WARN 5668 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2017-03-20 23:55:53.686  INFO 5668 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2017-03-20 23:55:53.703  WARN 5668 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2017-03-20 23:55:53.704  INFO 5668 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2017-03-20 23:55:54.266  INFO 5668 --- [main] o.s.i.codec.kryo.CompositeKryoRegistrar  : configured Kryo registration [40, java.io.File] with serializer org.springframework.integration.codec.kryo.FileSerializer
+2017-03-20 23:55:54.300  INFO 5668 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-03-20 23:55:55.178  INFO 5668 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-03-20 23:55:55.246  INFO 5668 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'refreshScope' has been autodetected for JMX exposure
+2017-03-20 23:55:55.252  INFO 5668 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'environmentManager' has been autodetected for JMX exposure
+2017-03-20 23:55:55.256  INFO 5668 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'rabbitConnectionFactory' has been autodetected for JMX exposure
+2017-03-20 23:55:55.264  INFO 5668 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'integrationMbeanExporter' has been autodetected for JMX exposure
+2017-03-20 23:55:55.277  INFO 5668 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'configurationPropertiesRebinder' has been autodetected for JMX exposure
+2017-03-20 23:55:55.281  INFO 5668 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'refreshEndpoint' has been autodetected for JMX exposure
+2017-03-20 23:55:55.285  INFO 5668 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'restartEndpoint' has been autodetected for JMX exposure
+2017-03-20 23:55:55.311  INFO 5668 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'environmentManager': registering with JMX server as MBean [org.springframework.cloud.context.environment:name=environmentManager,type=EnvironmentManager]
+2017-03-20 23:55:55.373  INFO 5668 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'restartEndpoint': registering with JMX server as MBean [org.springframework.cloud.context.restart:name=restartEndpoint,type=RestartEndpoint]
+2017-03-20 23:55:55.481  INFO 5668 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'refreshScope': registering with JMX server as MBean [org.springframework.cloud.context.scope.refresh:name=refreshScope,type=RefreshScope]
+2017-03-20 23:55:55.558  INFO 5668 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'integrationMbeanExporter': registering with JMX server as MBean [org.springframework.integration.monitor:name=integrationMbeanExporter,type=IntegrationMBeanExporter]
+2017-03-20 23:55:55.656  INFO 5668 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'configurationPropertiesRebinder': registering with JMX server as MBean [org.springframework.cloud.context.properties:name=configurationPropertiesRebinder,context=2bd2b28e,type=ConfigurationPropertiesRebinder]
+2017-03-20 23:55:55.678  INFO 5668 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'rabbitConnectionFactory': registering with JMX server as MBean [org.springframework.amqp.rabbit.connection:name=rabbitConnectionFactory,type=CachingConnectionFactory]
+2017-03-20 23:55:55.724  INFO 5668 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'refreshEndpoint': registering with JMX server as MBean [org.springframework.cloud.endpoint:name=refreshEndpoint,type=RefreshEndpoint]
+2017-03-20 23:55:55.772  INFO 5668 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Registering beans for JMX exposure on startup
+2017-03-20 23:55:55.774  INFO 5668 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Registering MessageChannel output
+2017-03-20 23:55:55.794  INFO 5668 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Located managed bean 'org.springframework.integration:type=MessageChannel,name=output': registering with JMX server as MBean [org.springframework.integration:type=MessageChannel,name=output]
+2017-03-20 23:55:56.041  INFO 5668 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Registering MessageChannel nullChannel
+2017-03-20 23:55:56.051  INFO 5668 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Located managed bean 'org.springframework.integration:type=MessageChannel,name=nullChannel': registering with JMX server as MBean [org.springframework.integration:type=MessageChannel,name=nullChannel]
+2017-03-20 23:55:56.194  INFO 5668 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Registering MessageChannel errorChannel
+2017-03-20 23:55:56.205  INFO 5668 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Located managed bean 'org.springframework.integration:type=MessageChannel,name=errorChannel': registering with JMX server as MBean [org.springframework.integration:type=MessageChannel,name=errorChannel]
+2017-03-20 23:55:56.414  INFO 5668 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Registering MessageHandler errorLogger
+2017-03-20 23:55:56.425  INFO 5668 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Located managed bean 'org.springframework.integration:type=MessageHandler,name=errorLogger,bean=internal': registering with JMX server as MBean [org.springframework.integration:type=MessageHandler,name=errorLogger,bean=internal]
+2017-03-20 23:55:58.330  INFO 5668 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase -2147482648
+2017-03-20 23:56:00.489  INFO 5668 --- [main] sanchez.sergio.Application               : No active profile set, falling back to default profiles: default
+2017-03-20 23:56:00.511  INFO 5668 --- [main] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@72e4ffa2: startup date [Mon Mar 20 23:56:00 CET 2017]; parent: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2bd2b28e
+2017-03-20 23:56:00.733  INFO 5668 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-03-20 23:56:01.041  INFO 5668 --- [main] o.s.c.support.GenericApplicationContext  : Refreshing org.springframework.context.support.GenericApplicationContext@702ab027: startup date [Mon Mar 20 23:56:01 CET 2017]; root of context hierarchy
+2017-03-20 23:56:01.365  INFO 5668 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2017-03-20 23:56:01.457  INFO 5668 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2017-03-20 23:56:01.515  INFO 5668 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2017-03-20 23:56:02.928  INFO 5668 --- [main] sanchez.sergio.Application               : Started Application in 4.51 seconds (JVM running for 73.318)
+2017-03-20 23:56:06.531  WARN 5668 --- [AMQP Connection 192.168.0.31:5672] c.r.c.impl.ForgivingExceptionHandler     : An unexpected connection driver error occured (Exception message: Connection reset)
+2017-03-20 23:56:06.563  WARN 5668 --- [main] o.s.amqp.rabbit.core.RabbitAdmin         : Failed to declare exchange: Exchange [name=account, type=topic, durable=true, autoDelete=false, internal=false, arguments={}], continuing... org.springframework.amqp.AmqpIOException: java.io.IOException
+2017-03-20 23:56:06.610  INFO 5668 --- [main] o.s.integration.channel.DirectChannel    : Channel 'account-web-service:8763.output' has 1 subscriber(s).
+2017-03-20 23:56:06.618  INFO 5668 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 0
+2017-03-20 23:56:06.657  INFO 5668 --- [main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2017-03-20 23:56:11.190  INFO 5668 --- [main] c.n.e.EurekaDiscoveryClientConfiguration : Registering application account-web-service with eureka with status UP
+2017-03-20 23:56:11.588  INFO 5668 --- [main] o.s.i.endpoint.EventDrivenConsumer       : Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2017-03-20 23:56:11.590  INFO 5668 --- [main] o.s.i.channel.PublishSubscribeChannel    : Channel 'account-web-service:8763.errorChannel' has 1 subscriber(s).
+2017-03-20 23:56:11.592  INFO 5668 --- [main] o.s.i.endpoint.EventDrivenConsumer       : started _org.springframework.integration.errorLogger
+2017-03-20 23:56:11.592  INFO 5668 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147482647
+2017-03-20 23:56:11.594  INFO 5668 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
+2017-03-20 23:56:12.034  INFO 5668 --- [main] b.c.e.u.UndertowEmbeddedServletContainer : Undertow started on port(s) 8763 (http)
+2017-03-20 23:56:12.040  INFO 5668 --- [main] c.n.e.EurekaDiscoveryClientConfiguration : Updating port to 8763
+2017-03-20 23:56:12.056  INFO 5668 --- [main] sanchez.sergio.Application               : Started Application in 79.424 seconds (JVM running for 82.446)
+2017-03-20 23:58:41.013  INFO 7864 --- [main] sanchez.sergio.Application               : No active profile set, falling back to default profiles: default
+2017-03-20 23:58:41.142  INFO 7864 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2bd2b28e: startup date [Mon Mar 20 23:58:41 CET 2017]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@175b9425
+2017-03-20 23:58:47.657  INFO 7864 --- [main] o.s.i.config.IntegrationRegistrar        : No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+2017-03-20 23:58:49.085  INFO 7864 --- [main] o.s.b.f.s.DefaultListableBeanFactory     : Overriding bean definition for bean 'managementServletContext' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.actuate.autoconfigure.EndpointWebMvcHypermediaManagementContextConfiguration; factoryMethodName=managementServletContext; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/actuate/autoconfigure/EndpointWebMvcHypermediaManagementContextConfiguration.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.actuate.autoconfigure.EndpointWebMvcAutoConfiguration; factoryMethodName=managementServletContext; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/actuate/autoconfigure/EndpointWebMvcAutoConfiguration.class]]
+2017-03-20 23:58:50.201  WARN 7864 --- [main] o.s.c.a.ConfigurationClassPostProcessor  : Cannot enhance @Configuration bean definition 'refreshScope' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2017-03-20 23:58:51.368  INFO 7864 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=7ba85408-2343-309d-92ae-39d29038e5bf
+2017-03-20 23:58:51.480  INFO 7864 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+2017-03-20 23:58:51.492  INFO 7864 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'taskScheduler' has been explicitly defined. Therefore, a default ThreadPoolTaskScheduler will be created.
+2017-03-20 23:58:51.575  INFO 7864 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-03-20 23:58:52.053  INFO 7864 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.amqp.rabbit.annotation.RabbitBootstrapConfiguration' of type [org.springframework.amqp.rabbit.annotation.RabbitBootstrapConfiguration$$EnhancerBySpringCGLIB$$76d136d3] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-03-20 23:58:52.693  INFO 7864 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$b06578a5] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-03-20 23:58:53.143  INFO 7864 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.stream.config.BindingServiceConfiguration$PostProcessorConfiguration' of type [org.springframework.cloud.stream.config.BindingServiceConfiguration$PostProcessorConfiguration$$EnhancerBySpringCGLIB$$722d16aa] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-03-20 23:58:53.606  INFO 7864 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'integrationGlobalProperties' of type [org.springframework.beans.factory.config.PropertiesFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-03-20 23:58:53.625  INFO 7864 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'integrationGlobalProperties' of type [java.util.Properties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-03-20 23:58:53.764  INFO 7864 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.netflix.metrics.MetricsInterceptorConfiguration$MetricsRestTemplateConfiguration' of type [org.springframework.cloud.netflix.metrics.MetricsInterceptorConfiguration$MetricsRestTemplateConfiguration$$EnhancerBySpringCGLIB$$e2921ee6] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-03-20 23:58:53.810  INFO 7864 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$cc7f7ba2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-03-20 23:58:53.891  INFO 7864 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-03-20 23:58:55.180  INFO 7864 --- [main] org.xnio                                 : XNIO version 3.3.6.Final
+2017-03-20 23:58:55.256  INFO 7864 --- [main] org.xnio.nio                             : XNIO NIO Implementation Version 3.3.6.Final
+2017-03-20 23:58:55.398  WARN 7864 --- [main] io.undertow.websockets.jsr               : UT026009: XNIO worker was not set on WebSocketDeploymentInfo, the default worker will be used
+2017-03-20 23:58:55.401  WARN 7864 --- [main] io.undertow.websockets.jsr               : UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2017-03-20 23:58:55.565  INFO 7864 --- [main] io.undertow.servlet                      : Initializing Spring embedded WebApplicationContext
+2017-03-20 23:58:55.566  INFO 7864 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 14424 ms
+2017-03-20 23:58:56.679  INFO 7864 --- [main] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-03-20 23:58:56.695  INFO 7864 --- [main] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'metricsFilter' to: [/*]
+2017-03-20 23:58:56.703  INFO 7864 --- [main] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-03-20 23:58:56.704  INFO 7864 --- [main] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webRequestLoggingFilter' to: [/*]
+2017-03-20 23:58:56.705  INFO 7864 --- [main] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'applicationContextIdFilter' to: [/*]
+2017-03-20 23:58:59.284  INFO 7864 --- [main] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2017-03-20 23:58:59.335  INFO 7864 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2017-03-20 23:58:59.719  INFO 7864 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.0.12.Final}
+2017-03-20 23:58:59.737  INFO 7864 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2017-03-20 23:58:59.744  INFO 7864 --- [main] org.hibernate.cfg.Environment            : HHH000021: Bytecode provider name : javassist
+2017-03-20 23:59:00.014  INFO 7864 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2017-03-20 23:59:00.677  INFO 7864 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2017-03-20 23:59:03.470  INFO 7864 --- [main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000227: Running hbm2ddl schema export
+2017-03-20 23:59:03.787  INFO 7864 --- [main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000230: Schema export complete
+2017-03-20 23:59:04.352  INFO 7864 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2017-03-20 23:59:12.196  INFO 7864 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts/{id}/commands/suspend],methods=[PUT]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.suspend(java.lang.Long)
+2017-03-20 23:59:12.203  INFO 7864 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts/{id}/events],methods=[POST]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.appendAccountEvent(java.lang.Long,sanchez.sergio.events.AccountEvent)
+2017-03-20 23:59:12.205  INFO 7864 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts/{id}/commands/confirm],methods=[PUT]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.confirm(java.lang.Long)
+2017-03-20 23:59:12.207  INFO 7864 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts/{id}/events],methods=[GET]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.getAccountEvents(java.lang.Long)
+2017-03-20 23:59:12.209  INFO 7864 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts],methods=[GET]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.getAccounts(org.springframework.data.domain.PageRequest)
+2017-03-20 23:59:12.213  INFO 7864 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts/{id}/commands/activate],methods=[PUT]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.activate(java.lang.Long)
+2017-03-20 23:59:12.216  INFO 7864 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts/{id}],methods=[GET]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.getAccount(java.lang.Long)
+2017-03-20 23:59:12.219  INFO 7864 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts/{id}],methods=[DELETE]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.deleteAccount(java.lang.Long)
+2017-03-20 23:59:12.223  INFO 7864 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts/{id}],methods=[PUT]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.updateAccount(java.lang.Long,sanchez.sergio.domain.Account)
+2017-03-20 23:59:12.225  INFO 7864 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts/{id}/commands/archive],methods=[PUT]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.archive(java.lang.Long)
+2017-03-20 23:59:12.229  INFO 7864 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts/{id}/events/{eventId}],methods=[GET]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.getAccountEvent(java.lang.Long,java.lang.Long)
+2017-03-20 23:59:12.234  INFO 7864 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts],methods=[POST]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.createAccount(sanchez.sergio.domain.Account)
+2017-03-20 23:59:12.242  INFO 7864 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts/{id}/commands],methods=[GET]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.getCommands(java.lang.Long)
+2017-03-20 23:59:12.249  INFO 7864 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v2/api-docs],methods=[GET],produces=[application/json || application/hal+json]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)
+2017-03-20 23:59:12.261  INFO 7864 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/swagger-resources]}" onto org.springframework.http.ResponseEntity<java.util.List<springfox.documentation.swagger.web.SwaggerResource>> springfox.documentation.swagger.web.ApiResourceController.swaggerResources()
+2017-03-20 23:59:12.265  INFO 7864 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/configuration/ui]}" onto org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.UiConfiguration> springfox.documentation.swagger.web.ApiResourceController.uiConfiguration()
+2017-03-20 23:59:12.270  INFO 7864 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/configuration/security]}" onto org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.SecurityConfiguration> springfox.documentation.swagger.web.ApiResourceController.securityConfiguration()
+2017-03-20 23:59:12.286  INFO 7864 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-03-20 23:59:12.287  INFO 7864 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-03-20 23:59:14.960  INFO 7864 --- [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2017-03-20 23:59:19.677  INFO 7864 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/refresh || /refresh.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+2017-03-20 23:59:19.681  INFO 7864 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/auditevents || /auditevents.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public org.springframework.http.ResponseEntity<?> org.springframework.boot.actuate.endpoint.mvc.AuditEventsMvcEndpoint.findByPrincipalAndAfterAndType(java.lang.String,java.util.Date,java.lang.String)
+2017-03-20 23:59:19.685  INFO 7864 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/trace || /trace.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-20 23:59:19.691  INFO 7864 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/beans || /beans.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-20 23:59:19.695  INFO 7864 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/features || /features.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-20 23:59:19.698  INFO 7864 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/logfile || /logfile.json],methods=[GET || HEAD]}" onto public void org.springframework.boot.actuate.endpoint.mvc.LogFileMvcEndpoint.invoke(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws javax.servlet.ServletException,java.io.IOException
+2017-03-20 23:59:19.701  INFO 7864 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.context.environment.EnvironmentManagerMvcEndpoint.value(java.util.Map<java.lang.String, java.lang.String>)
+2017-03-20 23:59:19.702  INFO 7864 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env/reset],methods=[POST]}" onto public java.util.Map<java.lang.String, java.lang.Object> org.springframework.cloud.context.environment.EnvironmentManagerMvcEndpoint.reset()
+2017-03-20 23:59:19.704  INFO 7864 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/info || /info.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-20 23:59:19.711  INFO 7864 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/health || /health.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.HealthMvcEndpoint.invoke(javax.servlet.http.HttpServletRequest,java.security.Principal)
+2017-03-20 23:59:19.714  INFO 7864 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/mappings || /mappings.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-20 23:59:19.717  INFO 7864 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/pause || /pause.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+2017-03-20 23:59:19.727  INFO 7864 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/channels || /channels.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-20 23:59:19.742  INFO 7864 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/heapdump || /heapdump.json],methods=[GET],produces=[application/octet-stream]}" onto public void org.springframework.boot.actuate.endpoint.mvc.HeapdumpMvcEndpoint.invoke(boolean,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException,javax.servlet.ServletException
+2017-03-20 23:59:19.751  INFO 7864 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/restart || /restart.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.context.restart.RestartMvcEndpoint.invoke()
+2017-03-20 23:59:19.761  INFO 7864 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/metrics/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.MetricsMvcEndpoint.value(java.lang.String)
+2017-03-20 23:59:19.762  INFO 7864 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/metrics || /metrics.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-20 23:59:19.767  INFO 7864 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/actuator || /actuator.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public org.springframework.hateoas.ResourceSupport org.springframework.boot.actuate.endpoint.mvc.HalJsonMvcEndpoint.links()
+2017-03-20 23:59:19.777  INFO 7864 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/configprops || /configprops.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-20 23:59:19.780  INFO 7864 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/archaius || /archaius.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-20 23:59:19.783  INFO 7864 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/resume || /resume.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+2017-03-20 23:59:19.785  INFO 7864 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/dump || /dump.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-20 23:59:19.789  INFO 7864 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/autoconfig || /autoconfig.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-20 23:59:19.798  INFO 7864 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/loggers/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.get(java.lang.String)
+2017-03-20 23:59:19.801  INFO 7864 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/loggers/{name:.*}],methods=[POST],consumes=[application/vnd.spring-boot.actuator.v1+json || application/json],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.set(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2017-03-20 23:59:19.802  INFO 7864 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/loggers || /loggers.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-20 23:59:19.809  INFO 7864 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EnvironmentMvcEndpoint.value(java.lang.String)
+2017-03-20 23:59:19.810  INFO 7864 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env || /env.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-20 23:59:20.807  INFO 7864 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/documentation/v2/api-docs] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-03-20 23:59:20.810  INFO 7864 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/documentation/swagger-resources/configuration/ui] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-03-20 23:59:20.814  INFO 7864 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/documentation/swagger-resources/configuration/security] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-03-20 23:59:20.815  INFO 7864 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/documentation/swagger-resources] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-03-20 23:59:20.815  INFO 7864 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/documentation/configuration/ui] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-03-20 23:59:20.816  INFO 7864 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/documentation/configuration/security] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-03-20 23:59:20.930  INFO 7864 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/documentation/swagger-ui.html**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-03-20 23:59:20.930  INFO 7864 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/documentation/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-03-20 23:59:21.584  INFO 7864 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2bd2b28e: startup date [Mon Mar 20 23:58:41 CET 2017]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@175b9425
+2017-03-20 23:59:21.659  INFO 7864 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Detected ResponseBodyAdvice bean in org.springframework.boot.actuate.autoconfigure.EndpointWebMvcHypermediaManagementContextConfiguration$ActuatorEndpointLinksAdvice
+2017-03-20 23:59:22.009  INFO 7864 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : Detected ResponseBodyAdvice implementation in org.springframework.boot.actuate.autoconfigure.EndpointWebMvcHypermediaManagementContextConfiguration$ActuatorEndpointLinksAdvice
+2017-03-20 23:59:23.199  INFO 7864 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService  'taskScheduler'
+2017-03-20 23:59:27.835  WARN 7864 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2017-03-20 23:59:27.836  INFO 7864 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2017-03-20 23:59:27.854  WARN 7864 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2017-03-20 23:59:27.856  INFO 7864 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2017-03-20 23:59:28.428  INFO 7864 --- [main] o.s.i.codec.kryo.CompositeKryoRegistrar  : configured Kryo registration [40, java.io.File] with serializer org.springframework.integration.codec.kryo.FileSerializer
+2017-03-20 23:59:28.485  INFO 7864 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-03-20 23:59:29.591  INFO 7864 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-03-20 23:59:29.656  INFO 7864 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'refreshScope' has been autodetected for JMX exposure
+2017-03-20 23:59:29.659  INFO 7864 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'environmentManager' has been autodetected for JMX exposure
+2017-03-20 23:59:29.669  INFO 7864 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'rabbitConnectionFactory' has been autodetected for JMX exposure
+2017-03-20 23:59:29.676  INFO 7864 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'integrationMbeanExporter' has been autodetected for JMX exposure
+2017-03-20 23:59:29.687  INFO 7864 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'configurationPropertiesRebinder' has been autodetected for JMX exposure
+2017-03-20 23:59:29.690  INFO 7864 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'refreshEndpoint' has been autodetected for JMX exposure
+2017-03-20 23:59:29.693  INFO 7864 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'restartEndpoint' has been autodetected for JMX exposure
+2017-03-20 23:59:29.718  INFO 7864 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'environmentManager': registering with JMX server as MBean [org.springframework.cloud.context.environment:name=environmentManager,type=EnvironmentManager]
+2017-03-20 23:59:29.784  INFO 7864 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'restartEndpoint': registering with JMX server as MBean [org.springframework.cloud.context.restart:name=restartEndpoint,type=RestartEndpoint]
+2017-03-20 23:59:29.901  INFO 7864 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'refreshScope': registering with JMX server as MBean [org.springframework.cloud.context.scope.refresh:name=refreshScope,type=RefreshScope]
+2017-03-20 23:59:30.035  INFO 7864 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'integrationMbeanExporter': registering with JMX server as MBean [org.springframework.integration.monitor:name=integrationMbeanExporter,type=IntegrationMBeanExporter]
+2017-03-20 23:59:30.204  INFO 7864 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'configurationPropertiesRebinder': registering with JMX server as MBean [org.springframework.cloud.context.properties:name=configurationPropertiesRebinder,context=2bd2b28e,type=ConfigurationPropertiesRebinder]
+2017-03-20 23:59:30.232  INFO 7864 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'rabbitConnectionFactory': registering with JMX server as MBean [org.springframework.amqp.rabbit.connection:name=rabbitConnectionFactory,type=CachingConnectionFactory]
+2017-03-20 23:59:30.273  INFO 7864 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'refreshEndpoint': registering with JMX server as MBean [org.springframework.cloud.endpoint:name=refreshEndpoint,type=RefreshEndpoint]
+2017-03-20 23:59:30.348  INFO 7864 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Registering beans for JMX exposure on startup
+2017-03-20 23:59:30.354  INFO 7864 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Registering MessageChannel nullChannel
+2017-03-20 23:59:30.374  INFO 7864 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Located managed bean 'org.springframework.integration:type=MessageChannel,name=nullChannel': registering with JMX server as MBean [org.springframework.integration:type=MessageChannel,name=nullChannel]
+2017-03-20 23:59:30.522  INFO 7864 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Registering MessageChannel output
+2017-03-20 23:59:30.557  INFO 7864 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Located managed bean 'org.springframework.integration:type=MessageChannel,name=output': registering with JMX server as MBean [org.springframework.integration:type=MessageChannel,name=output]
+2017-03-20 23:59:31.111  INFO 7864 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Registering MessageChannel errorChannel
+2017-03-20 23:59:31.133  INFO 7864 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Located managed bean 'org.springframework.integration:type=MessageChannel,name=errorChannel': registering with JMX server as MBean [org.springframework.integration:type=MessageChannel,name=errorChannel]
+2017-03-20 23:59:31.295  INFO 7864 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Registering MessageHandler errorLogger
+2017-03-20 23:59:31.307  INFO 7864 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Located managed bean 'org.springframework.integration:type=MessageHandler,name=errorLogger,bean=internal': registering with JMX server as MBean [org.springframework.integration:type=MessageHandler,name=errorLogger,bean=internal]
+2017-03-20 23:59:33.116  INFO 7864 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase -2147482648
+2017-03-20 23:59:35.595  INFO 7864 --- [main] sanchez.sergio.Application               : No active profile set, falling back to default profiles: default
+2017-03-20 23:59:35.624  INFO 7864 --- [main] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@34dda1b4: startup date [Mon Mar 20 23:59:35 CET 2017]; parent: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2bd2b28e
+2017-03-20 23:59:35.842  INFO 7864 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-03-20 23:59:36.133  INFO 7864 --- [main] o.s.c.support.GenericApplicationContext  : Refreshing org.springframework.context.support.GenericApplicationContext@62d5617: startup date [Mon Mar 20 23:59:36 CET 2017]; root of context hierarchy
+2017-03-20 23:59:36.321  INFO 7864 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2017-03-20 23:59:36.430  INFO 7864 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2017-03-20 23:59:36.486  INFO 7864 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2017-03-20 23:59:37.677  INFO 7864 --- [main] sanchez.sergio.Application               : Started Application in 4.452 seconds (JVM running for 72.106)
+2017-03-20 23:59:38.132  INFO 7864 --- [main] o.s.a.r.c.CachingConnectionFactory       : Created new connection: SimpleConnection@65130cf2 [delegate=amqp://sergio11@192.168.0.31:5672/, localPort= 51401]
+2017-03-20 23:59:38.643  INFO 7864 --- [main] o.s.integration.channel.DirectChannel    : Channel 'account-web-service:8763.output' has 1 subscriber(s).
+2017-03-20 23:59:38.651  INFO 7864 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 0
+2017-03-20 23:59:38.691  INFO 7864 --- [main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2017-03-20 23:59:43.278  INFO 7864 --- [main] c.n.e.EurekaDiscoveryClientConfiguration : Registering application account-web-service with eureka with status UP
+2017-03-20 23:59:43.827  INFO 7864 --- [main] o.s.i.endpoint.EventDrivenConsumer       : Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2017-03-20 23:59:43.829  INFO 7864 --- [main] o.s.i.channel.PublishSubscribeChannel    : Channel 'account-web-service:8763.errorChannel' has 1 subscriber(s).
+2017-03-20 23:59:43.831  INFO 7864 --- [main] o.s.i.endpoint.EventDrivenConsumer       : started _org.springframework.integration.errorLogger
+2017-03-20 23:59:43.832  INFO 7864 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147482647
+2017-03-20 23:59:43.836  INFO 7864 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
+2017-03-20 23:59:44.129  INFO 7864 --- [main] b.c.e.u.UndertowEmbeddedServletContainer : Undertow started on port(s) 8763 (http)
+2017-03-20 23:59:44.134  INFO 7864 --- [main] c.n.e.EurekaDiscoveryClientConfiguration : Updating port to 8763
+2017-03-20 23:59:44.150  INFO 7864 --- [main] sanchez.sergio.Application               : Started Application in 76.998 seconds (JVM running for 78.579)
+2017-03-21 00:05:24.793  INFO 7864 --- [XNIO-2 task-1] io.undertow.servlet                      : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2017-03-21 00:05:24.796  INFO 7864 --- [XNIO-2 task-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2017-03-21 00:05:24.907  INFO 7864 --- [XNIO-2 task-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 110 ms
+2017-03-21 00:05:24.993  WARN 7864 --- [XNIO-2 task-1] o.s.web.servlet.PageNotFound             : No mapping found for HTTP request with URI [/] in DispatcherServlet with name 'dispatcherServlet'
+2017-03-21 00:05:25.908  WARN 7864 --- [XNIO-2 task-2] o.s.web.servlet.PageNotFound             : No mapping found for HTTP request with URI [/favicon.ico] in DispatcherServlet with name 'dispatcherServlet'
+2017-03-21 00:05:26.159  WARN 7864 --- [XNIO-2 task-3] o.s.web.servlet.PageNotFound             : No mapping found for HTTP request with URI [/favicon.ico] in DispatcherServlet with name 'dispatcherServlet'
+2017-03-21 00:05:42.483  WARN 7864 --- [XNIO-2 task-4] o.s.web.servlet.PageNotFound             : No mapping found for HTTP request with URI [/swagger-ui.html] in DispatcherServlet with name 'dispatcherServlet'
+2017-03-21 00:06:22.818  WARN 7864 --- [XNIO-2 task-23] o.s.web.servlet.PageNotFound             : No mapping found for HTTP request with URI [/documentation/images/favicon-16x16.png] in DispatcherServlet with name 'dispatcherServlet'
+2017-03-21 00:16:51.346  INFO 7864 --- [XNIO-2 task-4] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2017-03-21 00:16:53.191 ERROR 7864 --- [XNIO-2 task-4] io.undertow.request                      : UT005023: Exception handling request to /v1/accounts
+
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is java.lang.RuntimeException: java.lang.NoSuchMethodException: sanchez.sergio.controller.AccountController.getAccountOrders(java.lang.Long)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:982) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:648) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729) ~[tomcat-embed-core-8.5.11.jar:8.5.11]
+	at io.undertow.servlet.handlers.ServletHandler.handleRequest(ServletHandler.java:85) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.FilterHandler$FilterChainImpl.doFilter(FilterHandler.java:129) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at org.springframework.boot.web.filter.ApplicationContextHeaderFilter.doFilterInternal(ApplicationContextHeaderFilter.java:55) ~[spring-boot-1.5.2.RELEASE.jar:1.5.2.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at io.undertow.servlet.core.ManagedFilter.doFilter(ManagedFilter.java:61) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.FilterHandler$FilterChainImpl.doFilter(FilterHandler.java:131) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at org.springframework.boot.actuate.trace.WebRequestTraceFilter.doFilterInternal(WebRequestTraceFilter.java:108) ~[spring-boot-actuator-1.5.2.RELEASE.jar:1.5.2.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at io.undertow.servlet.core.ManagedFilter.doFilter(ManagedFilter.java:61) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.FilterHandler$FilterChainImpl.doFilter(FilterHandler.java:131) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at io.undertow.servlet.core.ManagedFilter.doFilter(ManagedFilter.java:61) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.FilterHandler$FilterChainImpl.doFilter(FilterHandler.java:131) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at org.springframework.boot.actuate.autoconfigure.MetricsFilter.doFilterInternal(MetricsFilter.java:106) ~[spring-boot-actuator-1.5.2.RELEASE.jar:1.5.2.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at io.undertow.servlet.core.ManagedFilter.doFilter(ManagedFilter.java:61) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.FilterHandler$FilterChainImpl.doFilter(FilterHandler.java:131) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.FilterHandler.handleRequest(FilterHandler.java:84) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.security.ServletSecurityRoleHandler.handleRequest(ServletSecurityRoleHandler.java:62) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.ServletDispatchingHandler.handleRequest(ServletDispatchingHandler.java:36) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.security.SSLInformationAssociationHandler.handleRequest(SSLInformationAssociationHandler.java:131) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.security.ServletAuthenticationCallHandler.handleRequest(ServletAuthenticationCallHandler.java:57) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43) ~[undertow-core-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.security.handlers.AbstractConfidentialityHandler.handleRequest(AbstractConfidentialityHandler.java:46) ~[undertow-core-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.security.ServletConfidentialityConstraintHandler.handleRequest(ServletConfidentialityConstraintHandler.java:64) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.security.handlers.AuthenticationMechanismsHandler.handleRequest(AuthenticationMechanismsHandler.java:60) ~[undertow-core-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.security.CachedAuthenticatedSessionHandler.handleRequest(CachedAuthenticatedSessionHandler.java:77) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.security.handlers.AbstractSecurityContextAssociationHandler.handleRequest(AbstractSecurityContextAssociationHandler.java:43) ~[undertow-core-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43) ~[undertow-core-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43) ~[undertow-core-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.ServletInitialHandler.handleFirstRequest(ServletInitialHandler.java:292) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.ServletInitialHandler.access$100(ServletInitialHandler.java:81) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.ServletInitialHandler$2.call(ServletInitialHandler.java:138) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.ServletInitialHandler$2.call(ServletInitialHandler.java:135) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.core.ServletRequestContextThreadSetupAction$1.call(ServletRequestContextThreadSetupAction.java:48) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.core.ContextClassLoaderSetupAction$1.call(ContextClassLoaderSetupAction.java:43) [undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.ServletInitialHandler.dispatchRequest(ServletInitialHandler.java:272) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.ServletInitialHandler.access$000(ServletInitialHandler.java:81) ~[undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.servlet.handlers.ServletInitialHandler$1.handleRequest(ServletInitialHandler.java:104) [undertow-servlet-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.server.Connectors.executeRootHandler(Connectors.java:211) [undertow-core-1.4.11.Final.jar:1.4.11.Final]
+	at io.undertow.server.HttpServerExchange$1.run(HttpServerExchange.java:809) [undertow-core-1.4.11.Final.jar:1.4.11.Final]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_40]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_40]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_40]
+Caused by: java.lang.RuntimeException: java.lang.NoSuchMethodException: sanchez.sergio.controller.AccountController.getAccountOrders(java.lang.Long)
+	at sanchez.sergio.controller.AccountController.linkBuilder(AccountController.java:205) ~[classes/:na]
+	at sanchez.sergio.controller.AccountController.getAccountResource(AccountController.java:260) ~[classes/:na]
+	at sanchez.sergio.controller.AccountController.createAccountResource(AccountController.java:237) ~[classes/:na]
+	at sanchez.sergio.controller.AccountController.createAccount(AccountController.java:59) ~[classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_40]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_40]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_40]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[na:1.8.0_40]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:133) ~[spring-web-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:116) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:827) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:738) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:897) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970) ~[spring-webmvc-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	... 49 common frames omitted
+Caused by: java.lang.NoSuchMethodException: sanchez.sergio.controller.AccountController.getAccountOrders(java.lang.Long)
+	at java.lang.Class.getMethod(Class.java:1786) ~[na:1.8.0_40]
+	at sanchez.sergio.controller.AccountController.linkBuilder(AccountController.java:203) ~[classes/:na]
+	... 65 common frames omitted
+
+2017-03-21 00:20:04.390  INFO 9920 --- [main] sanchez.sergio.Application               : No active profile set, falling back to default profiles: default
+2017-03-21 00:20:04.544  INFO 9920 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2bd2b28e: startup date [Tue Mar 21 00:20:04 CET 2017]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@175b9425
+2017-03-21 00:20:09.100  INFO 9920 --- [main] o.s.i.config.IntegrationRegistrar        : No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+2017-03-21 00:20:09.836  INFO 9920 --- [main] o.s.b.f.s.DefaultListableBeanFactory     : Overriding bean definition for bean 'managementServletContext' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.actuate.autoconfigure.EndpointWebMvcHypermediaManagementContextConfiguration; factoryMethodName=managementServletContext; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/actuate/autoconfigure/EndpointWebMvcHypermediaManagementContextConfiguration.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.actuate.autoconfigure.EndpointWebMvcAutoConfiguration; factoryMethodName=managementServletContext; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/actuate/autoconfigure/EndpointWebMvcAutoConfiguration.class]]
+2017-03-21 00:20:10.561  WARN 9920 --- [main] o.s.c.a.ConfigurationClassPostProcessor  : Cannot enhance @Configuration bean definition 'refreshScope' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2017-03-21 00:20:11.634  INFO 9920 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=7ba85408-2343-309d-92ae-39d29038e5bf
+2017-03-21 00:20:11.889  INFO 9920 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+2017-03-21 00:20:11.917  INFO 9920 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'taskScheduler' has been explicitly defined. Therefore, a default ThreadPoolTaskScheduler will be created.
+2017-03-21 00:20:12.028  INFO 9920 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-03-21 00:20:12.487  INFO 9920 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.amqp.rabbit.annotation.RabbitBootstrapConfiguration' of type [org.springframework.amqp.rabbit.annotation.RabbitBootstrapConfiguration$$EnhancerBySpringCGLIB$$76d136d3] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-03-21 00:20:13.201  INFO 9920 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$b06578a5] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-03-21 00:20:13.732  INFO 9920 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.stream.config.BindingServiceConfiguration$PostProcessorConfiguration' of type [org.springframework.cloud.stream.config.BindingServiceConfiguration$PostProcessorConfiguration$$EnhancerBySpringCGLIB$$722d16aa] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-03-21 00:20:14.188  INFO 9920 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'integrationGlobalProperties' of type [org.springframework.beans.factory.config.PropertiesFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-03-21 00:20:14.209  INFO 9920 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'integrationGlobalProperties' of type [java.util.Properties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-03-21 00:20:14.379  INFO 9920 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.netflix.metrics.MetricsInterceptorConfiguration$MetricsRestTemplateConfiguration' of type [org.springframework.cloud.netflix.metrics.MetricsInterceptorConfiguration$MetricsRestTemplateConfiguration$$EnhancerBySpringCGLIB$$e2921ee6] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-03-21 00:20:14.460  INFO 9920 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$cc7f7ba2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-03-21 00:20:14.524  INFO 9920 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-03-21 00:20:16.455  INFO 9920 --- [main] org.xnio                                 : XNIO version 3.3.6.Final
+2017-03-21 00:20:16.557  INFO 9920 --- [main] org.xnio.nio                             : XNIO NIO Implementation Version 3.3.6.Final
+2017-03-21 00:20:16.840  WARN 9920 --- [main] io.undertow.websockets.jsr               : UT026009: XNIO worker was not set on WebSocketDeploymentInfo, the default worker will be used
+2017-03-21 00:20:16.843  WARN 9920 --- [main] io.undertow.websockets.jsr               : UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2017-03-21 00:20:17.019  INFO 9920 --- [main] io.undertow.servlet                      : Initializing Spring embedded WebApplicationContext
+2017-03-21 00:20:17.021  INFO 9920 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 12477 ms
+2017-03-21 00:20:18.660  INFO 9920 --- [main] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-03-21 00:20:18.684  INFO 9920 --- [main] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'metricsFilter' to: [/*]
+2017-03-21 00:20:18.690  INFO 9920 --- [main] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-03-21 00:20:18.694  INFO 9920 --- [main] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webRequestLoggingFilter' to: [/*]
+2017-03-21 00:20:18.695  INFO 9920 --- [main] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'applicationContextIdFilter' to: [/*]
+2017-03-21 00:20:21.825  INFO 9920 --- [main] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2017-03-21 00:20:21.878  INFO 9920 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2017-03-21 00:20:22.179  INFO 9920 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.0.12.Final}
+2017-03-21 00:20:22.185  INFO 9920 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2017-03-21 00:20:22.191  INFO 9920 --- [main] org.hibernate.cfg.Environment            : HHH000021: Bytecode provider name : javassist
+2017-03-21 00:20:22.377  INFO 9920 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2017-03-21 00:20:22.863  INFO 9920 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2017-03-21 00:20:25.011  INFO 9920 --- [main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000227: Running hbm2ddl schema export
+2017-03-21 00:20:25.137  INFO 9920 --- [main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000230: Schema export complete
+2017-03-21 00:20:25.316  INFO 9920 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2017-03-21 00:20:33.775  INFO 9920 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts/{id}/commands/suspend],methods=[PUT]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.suspend(java.lang.Long)
+2017-03-21 00:20:33.781  INFO 9920 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts/{id}/commands/confirm],methods=[PUT]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.confirm(java.lang.Long)
+2017-03-21 00:20:33.783  INFO 9920 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts/{id}/events],methods=[POST]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.appendAccountEvent(java.lang.Long,sanchez.sergio.events.AccountEvent)
+2017-03-21 00:20:33.784  INFO 9920 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts/{id}/commands],methods=[GET]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.getCommands(java.lang.Long)
+2017-03-21 00:20:33.786  INFO 9920 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts/{id}],methods=[PUT]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.updateAccount(java.lang.Long,sanchez.sergio.domain.Account)
+2017-03-21 00:20:33.787  INFO 9920 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts],methods=[POST]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.createAccount(sanchez.sergio.domain.Account)
+2017-03-21 00:20:33.789  INFO 9920 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts/{id}/events/{eventId}],methods=[GET]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.getAccountEvent(java.lang.Long,java.lang.Long)
+2017-03-21 00:20:33.791  INFO 9920 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts/{id}],methods=[DELETE]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.deleteAccount(java.lang.Long)
+2017-03-21 00:20:33.792  INFO 9920 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts],methods=[GET]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.getAccounts(org.springframework.data.domain.PageRequest)
+2017-03-21 00:20:33.793  INFO 9920 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts/{id}/commands/activate],methods=[PUT]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.activate(java.lang.Long)
+2017-03-21 00:20:33.795  INFO 9920 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts/{id}],methods=[GET]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.getAccount(java.lang.Long)
+2017-03-21 00:20:33.796  INFO 9920 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts/{id}/commands/archive],methods=[PUT]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.archive(java.lang.Long)
+2017-03-21 00:20:33.798  INFO 9920 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v1/accounts/{id}/events],methods=[GET]}" onto public org.springframework.http.ResponseEntity sanchez.sergio.controller.AccountController.getAccountEvents(java.lang.Long)
+2017-03-21 00:20:33.802  INFO 9920 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/v2/api-docs],methods=[GET],produces=[application/json || application/hal+json]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)
+2017-03-21 00:20:33.816  INFO 9920 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/swagger-resources]}" onto org.springframework.http.ResponseEntity<java.util.List<springfox.documentation.swagger.web.SwaggerResource>> springfox.documentation.swagger.web.ApiResourceController.swaggerResources()
+2017-03-21 00:20:33.820  INFO 9920 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/configuration/ui]}" onto org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.UiConfiguration> springfox.documentation.swagger.web.ApiResourceController.uiConfiguration()
+2017-03-21 00:20:33.823  INFO 9920 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/configuration/security]}" onto org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.SecurityConfiguration> springfox.documentation.swagger.web.ApiResourceController.securityConfiguration()
+2017-03-21 00:20:33.836  INFO 9920 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-03-21 00:20:33.839  INFO 9920 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-03-21 00:20:36.495  INFO 9920 --- [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2017-03-21 00:20:40.452  INFO 9920 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/refresh || /refresh.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+2017-03-21 00:20:40.456  INFO 9920 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/auditevents || /auditevents.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public org.springframework.http.ResponseEntity<?> org.springframework.boot.actuate.endpoint.mvc.AuditEventsMvcEndpoint.findByPrincipalAndAfterAndType(java.lang.String,java.util.Date,java.lang.String)
+2017-03-21 00:20:40.460  INFO 9920 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/trace || /trace.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-21 00:20:40.464  INFO 9920 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/beans || /beans.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-21 00:20:40.467  INFO 9920 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/features || /features.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-21 00:20:40.470  INFO 9920 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/logfile || /logfile.json],methods=[GET || HEAD]}" onto public void org.springframework.boot.actuate.endpoint.mvc.LogFileMvcEndpoint.invoke(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws javax.servlet.ServletException,java.io.IOException
+2017-03-21 00:20:40.473  INFO 9920 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.context.environment.EnvironmentManagerMvcEndpoint.value(java.util.Map<java.lang.String, java.lang.String>)
+2017-03-21 00:20:40.474  INFO 9920 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env/reset],methods=[POST]}" onto public java.util.Map<java.lang.String, java.lang.Object> org.springframework.cloud.context.environment.EnvironmentManagerMvcEndpoint.reset()
+2017-03-21 00:20:40.477  INFO 9920 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/info || /info.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-21 00:20:40.479  INFO 9920 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/health || /health.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.HealthMvcEndpoint.invoke(javax.servlet.http.HttpServletRequest,java.security.Principal)
+2017-03-21 00:20:40.481  INFO 9920 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/mappings || /mappings.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-21 00:20:40.483  INFO 9920 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/pause || /pause.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+2017-03-21 00:20:40.486  INFO 9920 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/channels || /channels.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-21 00:20:40.496  INFO 9920 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/heapdump || /heapdump.json],methods=[GET],produces=[application/octet-stream]}" onto public void org.springframework.boot.actuate.endpoint.mvc.HeapdumpMvcEndpoint.invoke(boolean,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException,javax.servlet.ServletException
+2017-03-21 00:20:40.500  INFO 9920 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/restart || /restart.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.context.restart.RestartMvcEndpoint.invoke()
+2017-03-21 00:20:40.505  INFO 9920 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/metrics/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.MetricsMvcEndpoint.value(java.lang.String)
+2017-03-21 00:20:40.506  INFO 9920 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/metrics || /metrics.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-21 00:20:40.511  INFO 9920 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/actuator || /actuator.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public org.springframework.hateoas.ResourceSupport org.springframework.boot.actuate.endpoint.mvc.HalJsonMvcEndpoint.links()
+2017-03-21 00:20:40.515  INFO 9920 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/configprops || /configprops.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-21 00:20:40.517  INFO 9920 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/archaius || /archaius.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-21 00:20:40.519  INFO 9920 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/resume || /resume.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+2017-03-21 00:20:40.525  INFO 9920 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/dump || /dump.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-21 00:20:40.530  INFO 9920 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/autoconfig || /autoconfig.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-21 00:20:40.538  INFO 9920 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/loggers/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.get(java.lang.String)
+2017-03-21 00:20:40.540  INFO 9920 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/loggers/{name:.*}],methods=[POST],consumes=[application/vnd.spring-boot.actuator.v1+json || application/json],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.set(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2017-03-21 00:20:40.540  INFO 9920 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/loggers || /loggers.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-21 00:20:40.544  INFO 9920 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EnvironmentMvcEndpoint.value(java.lang.String)
+2017-03-21 00:20:40.545  INFO 9920 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env || /env.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-21 00:20:41.326  INFO 9920 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/documentation/v2/api-docs] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-03-21 00:20:41.327  INFO 9920 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/documentation/swagger-resources/configuration/ui] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-03-21 00:20:41.329  INFO 9920 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/documentation/swagger-resources/configuration/security] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-03-21 00:20:41.329  INFO 9920 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/documentation/swagger-resources] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-03-21 00:20:41.329  INFO 9920 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/documentation/configuration/ui] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-03-21 00:20:41.330  INFO 9920 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/documentation/configuration/security] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-03-21 00:20:41.423  INFO 9920 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/documentation/swagger-ui.html**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-03-21 00:20:41.424  INFO 9920 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/documentation/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-03-21 00:20:42.114  INFO 9920 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2bd2b28e: startup date [Tue Mar 21 00:20:04 CET 2017]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@175b9425
+2017-03-21 00:20:42.181  INFO 9920 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Detected ResponseBodyAdvice bean in org.springframework.boot.actuate.autoconfigure.EndpointWebMvcHypermediaManagementContextConfiguration$ActuatorEndpointLinksAdvice
+2017-03-21 00:20:42.456  INFO 9920 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : Detected ResponseBodyAdvice implementation in org.springframework.boot.actuate.autoconfigure.EndpointWebMvcHypermediaManagementContextConfiguration$ActuatorEndpointLinksAdvice
+2017-03-21 00:20:43.443  INFO 9920 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService  'taskScheduler'
+2017-03-21 00:20:47.274  WARN 9920 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2017-03-21 00:20:47.275  INFO 9920 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2017-03-21 00:20:47.290  WARN 9920 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2017-03-21 00:20:47.290  INFO 9920 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2017-03-21 00:20:47.660  INFO 9920 --- [main] o.s.i.codec.kryo.CompositeKryoRegistrar  : configured Kryo registration [40, java.io.File] with serializer org.springframework.integration.codec.kryo.FileSerializer
+2017-03-21 00:20:47.703  INFO 9920 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-03-21 00:20:48.530  INFO 9920 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-03-21 00:20:48.577  INFO 9920 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'refreshScope' has been autodetected for JMX exposure
+2017-03-21 00:20:48.581  INFO 9920 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'environmentManager' has been autodetected for JMX exposure
+2017-03-21 00:20:48.586  INFO 9920 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'rabbitConnectionFactory' has been autodetected for JMX exposure
+2017-03-21 00:20:48.592  INFO 9920 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'integrationMbeanExporter' has been autodetected for JMX exposure
+2017-03-21 00:20:48.602  INFO 9920 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'configurationPropertiesRebinder' has been autodetected for JMX exposure
+2017-03-21 00:20:48.604  INFO 9920 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'refreshEndpoint' has been autodetected for JMX exposure
+2017-03-21 00:20:48.607  INFO 9920 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'restartEndpoint' has been autodetected for JMX exposure
+2017-03-21 00:20:48.627  INFO 9920 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'environmentManager': registering with JMX server as MBean [org.springframework.cloud.context.environment:name=environmentManager,type=EnvironmentManager]
+2017-03-21 00:20:48.681  INFO 9920 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'restartEndpoint': registering with JMX server as MBean [org.springframework.cloud.context.restart:name=restartEndpoint,type=RestartEndpoint]
+2017-03-21 00:20:48.724  INFO 9920 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'refreshScope': registering with JMX server as MBean [org.springframework.cloud.context.scope.refresh:name=refreshScope,type=RefreshScope]
+2017-03-21 00:20:48.800  INFO 9920 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'integrationMbeanExporter': registering with JMX server as MBean [org.springframework.integration.monitor:name=integrationMbeanExporter,type=IntegrationMBeanExporter]
+2017-03-21 00:20:48.904  INFO 9920 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'configurationPropertiesRebinder': registering with JMX server as MBean [org.springframework.cloud.context.properties:name=configurationPropertiesRebinder,context=2bd2b28e,type=ConfigurationPropertiesRebinder]
+2017-03-21 00:20:48.919  INFO 9920 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'rabbitConnectionFactory': registering with JMX server as MBean [org.springframework.amqp.rabbit.connection:name=rabbitConnectionFactory,type=CachingConnectionFactory]
+2017-03-21 00:20:48.950  INFO 9920 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'refreshEndpoint': registering with JMX server as MBean [org.springframework.cloud.endpoint:name=refreshEndpoint,type=RefreshEndpoint]
+2017-03-21 00:20:48.986  INFO 9920 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Registering beans for JMX exposure on startup
+2017-03-21 00:20:48.989  INFO 9920 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Registering MessageChannel nullChannel
+2017-03-21 00:20:49.005  INFO 9920 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Located managed bean 'org.springframework.integration:type=MessageChannel,name=nullChannel': registering with JMX server as MBean [org.springframework.integration:type=MessageChannel,name=nullChannel]
+2017-03-21 00:20:49.091  INFO 9920 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Registering MessageChannel output
+2017-03-21 00:20:49.104  INFO 9920 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Located managed bean 'org.springframework.integration:type=MessageChannel,name=output': registering with JMX server as MBean [org.springframework.integration:type=MessageChannel,name=output]
+2017-03-21 00:20:49.252  INFO 9920 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Registering MessageChannel errorChannel
+2017-03-21 00:20:49.264  INFO 9920 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Located managed bean 'org.springframework.integration:type=MessageChannel,name=errorChannel': registering with JMX server as MBean [org.springframework.integration:type=MessageChannel,name=errorChannel]
+2017-03-21 00:20:49.357  INFO 9920 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Registering MessageHandler errorLogger
+2017-03-21 00:20:49.366  INFO 9920 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Located managed bean 'org.springframework.integration:type=MessageHandler,name=errorLogger,bean=internal': registering with JMX server as MBean [org.springframework.integration:type=MessageHandler,name=errorLogger,bean=internal]
+2017-03-21 00:20:50.918  INFO 9920 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase -2147482648
+2017-03-21 00:20:52.836  INFO 9920 --- [main] sanchez.sergio.Application               : No active profile set, falling back to default profiles: default
+2017-03-21 00:20:52.847  INFO 9920 --- [main] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@34dda1b4: startup date [Tue Mar 21 00:20:52 CET 2017]; parent: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2bd2b28e
+2017-03-21 00:20:53.008  INFO 9920 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-03-21 00:20:53.239  INFO 9920 --- [main] o.s.c.support.GenericApplicationContext  : Refreshing org.springframework.context.support.GenericApplicationContext@62d5617: startup date [Tue Mar 21 00:20:53 CET 2017]; root of context hierarchy
+2017-03-21 00:20:53.384  INFO 9920 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2017-03-21 00:20:53.462  INFO 9920 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2017-03-21 00:20:53.528  INFO 9920 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2017-03-21 00:20:54.667  INFO 9920 --- [main] sanchez.sergio.Application               : Started Application in 3.67 seconds (JVM running for 66.71)
+2017-03-21 00:20:55.107  INFO 9920 --- [main] o.s.a.r.c.CachingConnectionFactory       : Created new connection: SimpleConnection@65130cf2 [delegate=amqp://sergio11@192.168.0.31:5672/, localPort= 51864]
+2017-03-21 00:20:55.349  INFO 9920 --- [main] o.s.integration.channel.DirectChannel    : Channel 'account-web-service:8763.output' has 1 subscriber(s).
+2017-03-21 00:20:55.356  INFO 9920 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 0
+2017-03-21 00:20:55.401  INFO 9920 --- [main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2017-03-21 00:20:59.765  INFO 9920 --- [main] c.n.e.EurekaDiscoveryClientConfiguration : Registering application account-web-service with eureka with status UP
+2017-03-21 00:21:00.585  INFO 9920 --- [main] o.s.i.endpoint.EventDrivenConsumer       : Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2017-03-21 00:21:00.586  INFO 9920 --- [main] o.s.i.channel.PublishSubscribeChannel    : Channel 'account-web-service:8763.errorChannel' has 1 subscriber(s).
+2017-03-21 00:21:00.591  INFO 9920 --- [main] o.s.i.endpoint.EventDrivenConsumer       : started _org.springframework.integration.errorLogger
+2017-03-21 00:21:00.592  INFO 9920 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147482647
+2017-03-21 00:21:00.600  INFO 9920 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
+2017-03-21 00:21:01.071  INFO 9920 --- [main] b.c.e.u.UndertowEmbeddedServletContainer : Undertow started on port(s) 8763 (http)
+2017-03-21 00:21:01.077  INFO 9920 --- [main] c.n.e.EurekaDiscoveryClientConfiguration : Updating port to 8763
+2017-03-21 00:21:01.098  INFO 9920 --- [main] sanchez.sergio.Application               : Started Application in 71.645 seconds (JVM running for 73.141)
+2017-03-21 00:22:33.600  INFO 9920 --- [XNIO-2 task-1] io.undertow.servlet                      : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2017-03-21 00:22:33.603  INFO 9920 --- [XNIO-2 task-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2017-03-21 00:22:33.715  INFO 9920 --- [XNIO-2 task-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 111 ms
+2017-03-21 00:22:34.072  INFO 9920 --- [XNIO-2 task-1] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory

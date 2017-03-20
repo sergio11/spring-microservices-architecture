@@ -254,12 +254,7 @@ public class AccountController {
             // Add get events link
             account.add(linkBuilder("getAccountEvents", account.getIdentity()).withRel("events"));
         }
-
-        if (!account.hasLink("orders")) {
-            // Add orders link
-            account.add(linkBuilder("getAccountOrders", account.getIdentity()).withRel("orders"));
-        }
-
+        
         return new Resource<>(account);
     }
     
