@@ -1821,3 +1821,273 @@
 2017-03-25 15:45:01.816  INFO 10640 --- [XNIO-2 task-14] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AUTH-SERVICE/localhost:auth-service:8183 with status UP (replication=true)
 2017-03-25 15:45:57.366  INFO 10640 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 2ms
 2017-03-25 15:46:57.366  INFO 10640 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 19:33:49.040  INFO 896 --- [main] sanchez.sergio.EurekaServiceApplication  : No active profile set, falling back to default profiles: default
+2017-03-25 19:33:49.145  INFO 896 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@192d74fb: startup date [Sat Mar 25 19:33:49 CET 2017]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@62379589
+2017-03-25 19:33:52.640  WARN 896 --- [main] o.s.c.a.ConfigurationClassPostProcessor  : Cannot enhance @Configuration bean definition 'refreshScope' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2017-03-25 19:33:53.294  INFO 896 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=bb042bd6-4576-37b9-9b08-384125978c1a
+2017-03-25 19:33:53.376  INFO 896 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2017-03-25 19:33:53.836  INFO 896 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$bc35318d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-03-25 19:33:54.922  INFO 896 --- [main] org.xnio                                 : XNIO version 3.3.6.Final
+2017-03-25 19:33:54.981  INFO 896 --- [main] org.xnio.nio                             : XNIO NIO Implementation Version 3.3.6.Final
+2017-03-25 19:33:55.113  WARN 896 --- [main] io.undertow.websockets.jsr               : UT026009: XNIO worker was not set on WebSocketDeploymentInfo, the default worker will be used
+2017-03-25 19:33:55.114  WARN 896 --- [main] io.undertow.websockets.jsr               : UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2017-03-25 19:33:55.222  INFO 896 --- [main] io.undertow.servlet                      : Initializing Spring embedded WebApplicationContext
+2017-03-25 19:33:55.223  INFO 896 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 6078 ms
+2017-03-25 19:33:59.035  WARN 896 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2017-03-25 19:33:59.037  INFO 896 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2017-03-25 19:33:59.063  INFO 896 --- [main] c.netflix.config.DynamicPropertyFactory  : DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@1653b84e
+2017-03-25 19:33:59.911  INFO 896 --- [main] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'metricsFilter' to: [/*]
+2017-03-25 19:33:59.916  INFO 896 --- [main] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-03-25 19:33:59.917  INFO 896 --- [main] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-03-25 19:33:59.919  INFO 896 --- [main] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-03-25 19:33:59.920  INFO 896 --- [main] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-03-25 19:33:59.921  INFO 896 --- [main] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webRequestTraceFilter' to: [/*]
+2017-03-25 19:33:59.922  INFO 896 --- [main] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'servletContainer' to urls: [/eureka/*]
+2017-03-25 19:33:59.923  INFO 896 --- [main] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'applicationContextIdFilter' to: [/*]
+2017-03-25 19:33:59.924  INFO 896 --- [main] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-03-25 19:33:59.938  INFO 896 --- [main] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'zuulServlet' to [/zuul/*]
+2017-03-25 19:33:59.953  INFO 896 --- [main] o.s.c.n.zuul.ZuulFilterInitializer       : Starting filter initializer context listener
+2017-03-25 19:34:02.355  INFO 896 --- [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2017-03-25 19:34:02.472  INFO 896 --- [main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2017-03-25 19:34:02.942  INFO 896 --- [main] c.n.eureka.DefaultEurekaServerContext    : Initializing ...
+2017-03-25 19:34:02.949  INFO 896 --- [main] c.n.eureka.cluster.PeerEurekaNodes       : Adding new peer nodes [http://localhost:8761/eureka/]
+2017-03-25 19:34:04.946  INFO 896 --- [main] c.n.eureka.cluster.PeerEurekaNodes       : Replica node URL:  http://localhost:8761/eureka/
+2017-03-25 19:34:04.970  INFO 896 --- [main] c.n.e.registry.AbstractInstanceRegistry  : Finished initializing remote region registries. All known remote regions: []
+2017-03-25 19:34:04.972  INFO 896 --- [main] c.n.eureka.DefaultEurekaServerContext    : Initialized
+2017-03-25 19:34:05.791  INFO 896 --- [main] io.undertow.servlet                      : jolokia: No access restrictor found, access to any MBean is allowed
+2017-03-25 19:34:06.554  INFO 896 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@192d74fb: startup date [Sat Mar 25 19:33:49 CET 2017]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@62379589
+2017-03-25 19:34:06.908  INFO 896 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/eureka-dashboard],methods=[GET]}" onto public java.lang.String org.springframework.cloud.netflix.eureka.server.EurekaController.status(javax.servlet.http.HttpServletRequest,java.util.Map<java.lang.String, java.lang.Object>)
+2017-03-25 19:34:06.913  INFO 896 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/eureka-dashboard/lastn],methods=[GET]}" onto public java.lang.String org.springframework.cloud.netflix.eureka.server.EurekaController.lastn(javax.servlet.http.HttpServletRequest,java.util.Map<java.lang.String, java.lang.Object>)
+2017-03-25 19:34:06.924  INFO 896 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-03-25 19:34:06.926  INFO 896 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-03-25 19:34:06.961  INFO 896 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/applications/{id}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<?> de.codecentric.boot.admin.registry.web.RegistryController.get(java.lang.String)
+2017-03-25 19:34:06.964  INFO 896 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/applications],methods=[POST]}" onto public org.springframework.http.ResponseEntity<de.codecentric.boot.admin.model.Application> de.codecentric.boot.admin.registry.web.RegistryController.register(de.codecentric.boot.admin.model.Application)
+2017-03-25 19:34:06.965  INFO 896 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/applications/{id}],methods=[DELETE]}" onto public org.springframework.http.ResponseEntity<?> de.codecentric.boot.admin.registry.web.RegistryController.unregister(java.lang.String)
+2017-03-25 19:34:06.967  INFO 896 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/applications],methods=[GET]}" onto public java.util.Collection<de.codecentric.boot.admin.model.Application> de.codecentric.boot.admin.registry.web.RegistryController.applications(java.lang.String)
+2017-03-25 19:34:06.979  INFO 896 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/journal],produces=[text/event-stream]}" onto public org.springframework.web.servlet.mvc.method.annotation.SseEmitter de.codecentric.boot.admin.journal.web.JournalController.getJournalEvents()
+2017-03-25 19:34:06.981  INFO 896 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/journal],produces=[application/json]}" onto public java.util.Collection<de.codecentric.boot.admin.event.ClientApplicationEvent> de.codecentric.boot.admin.journal.web.JournalController.getJournal()
+2017-03-25 19:34:07.113  INFO 896 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/spring-boot-admin/] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-03-25 19:34:07.114  INFO 896 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/spring-boot-admin] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-03-25 19:34:07.238  WARN 896 --- [main] o.s.w.s.r.ResourceHttpRequestHandler     : Locations list is empty. No resources will be served unless a custom ResourceResolver is configured as an alternative to PathResourceResolver.
+2017-03-25 19:34:07.241  WARN 896 --- [main] o.s.w.s.r.ResourceHttpRequestHandler     : Locations list is empty. No resources will be served unless a custom ResourceResolver is configured as an alternative to PathResourceResolver.
+2017-03-25 19:34:07.248  INFO 896 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-03-25 19:34:07.249  INFO 896 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-03-25 19:34:07.250  INFO 896 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/spring-boot-admin/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-03-25 19:34:07.250  INFO 896 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/spring-boot-admin/all-modules.css] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-03-25 19:34:07.251  INFO 896 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/spring-boot-admin/all-modules.js] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-03-25 19:34:07.513  INFO 896 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-03-25 19:34:09.888  INFO 896 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/metrics/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.MetricsMvcEndpoint.value(java.lang.String)
+2017-03-25 19:34:09.890  INFO 896 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/metrics || /metrics.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-25 19:34:09.893  INFO 896 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/beans || /beans.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-25 19:34:09.900  INFO 896 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/archaius || /archaius.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-25 19:34:09.904  INFO 896 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EnvironmentMvcEndpoint.value(java.lang.String)
+2017-03-25 19:34:09.905  INFO 896 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env || /env.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-25 19:34:09.909  INFO 896 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/heapdump || /heapdump.json],methods=[GET],produces=[application/octet-stream]}" onto public void org.springframework.boot.actuate.endpoint.mvc.HeapdumpMvcEndpoint.invoke(boolean,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException,javax.servlet.ServletException
+2017-03-25 19:34:09.912  INFO 896 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/health || /health.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.HealthMvcEndpoint.invoke(javax.servlet.http.HttpServletRequest,java.security.Principal)
+2017-03-25 19:34:09.915  INFO 896 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/configprops || /configprops.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-25 19:34:09.919  INFO 896 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/features || /features.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-25 19:34:09.924  INFO 896 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/info || /info.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-25 19:34:09.934  INFO 896 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/loggers/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.get(java.lang.String)
+2017-03-25 19:34:09.936  INFO 896 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/loggers/{name:.*}],methods=[POST],consumes=[application/vnd.spring-boot.actuator.v1+json || application/json],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.set(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2017-03-25 19:34:09.937  INFO 896 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/loggers || /loggers.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-25 19:34:09.941  INFO 896 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/logfile || /logfile.json],methods=[GET || HEAD]}" onto public void org.springframework.boot.actuate.endpoint.mvc.LogFileMvcEndpoint.invoke(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws javax.servlet.ServletException,java.io.IOException
+2017-03-25 19:34:09.946  INFO 896 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/auditevents || /auditevents.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public org.springframework.http.ResponseEntity<?> org.springframework.boot.actuate.endpoint.mvc.AuditEventsMvcEndpoint.findByPrincipalAndAfterAndType(java.lang.String,java.util.Date,java.lang.String)
+2017-03-25 19:34:09.950  INFO 896 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/resume || /resume.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+2017-03-25 19:34:09.959  INFO 896 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/pause || /pause.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+2017-03-25 19:34:09.961  INFO 896 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/routes || /routes.json],methods=[POST]}" onto public java.util.Map<java.lang.String, java.lang.String> org.springframework.cloud.netflix.zuul.RoutesEndpoint.reset()
+2017-03-25 19:34:09.963  INFO 896 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/routes || /routes.json],methods=[GET]}" onto public java.util.Map<java.lang.String, java.lang.String> org.springframework.cloud.netflix.zuul.RoutesEndpoint.getRoutes()
+2017-03-25 19:34:09.968  INFO 896 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/mappings || /mappings.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-25 19:34:09.973  INFO 896 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/jolokia/**]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.actuate.endpoint.mvc.JolokiaMvcEndpoint.handle(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.lang.Exception
+2017-03-25 19:34:09.976  INFO 896 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/autoconfig || /autoconfig.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-25 19:34:09.979  INFO 896 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/refresh || /refresh.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+2017-03-25 19:34:09.982  INFO 896 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.context.environment.EnvironmentManagerMvcEndpoint.value(java.util.Map<java.lang.String, java.lang.String>)
+2017-03-25 19:34:09.986  INFO 896 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env/reset],methods=[POST]}" onto public java.util.Map<java.lang.String, java.lang.Object> org.springframework.cloud.context.environment.EnvironmentManagerMvcEndpoint.reset()
+2017-03-25 19:34:09.989  INFO 896 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/dump || /dump.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-25 19:34:09.992  INFO 896 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/restart || /restart.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.context.restart.RestartMvcEndpoint.invoke()
+2017-03-25 19:34:09.994  INFO 896 --- [main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/trace || /trace.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-03-25 19:34:10.563  INFO 896 --- [main] o.s.ui.freemarker.SpringTemplateLoader   : SpringTemplateLoader for FreeMarker: using resource loader [org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@192d74fb: startup date [Sat Mar 25 19:33:49 CET 2017]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@62379589] and template loader path [classpath:/templates/]
+2017-03-25 19:34:10.565  INFO 896 --- [main] o.s.w.s.v.f.FreeMarkerConfigurer         : ClassTemplateLoader for Spring macros added to FreeMarker configuration
+2017-03-25 19:34:10.971  WARN 896 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2017-03-25 19:34:10.973  INFO 896 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2017-03-25 19:34:11.241  INFO 896 --- [main] d.c.boot.admin.web.PrefixHandlerMapping  : Mapped "{[/spring-boot-admin/api/applications/{id}],methods=[GET]}" onto public org.springframework.http.ResponseEntity<?> de.codecentric.boot.admin.registry.web.RegistryController.get(java.lang.String)
+2017-03-25 19:34:11.242  INFO 896 --- [main] d.c.boot.admin.web.PrefixHandlerMapping  : Mapped "{[/spring-boot-admin/api/applications],methods=[POST]}" onto public org.springframework.http.ResponseEntity<de.codecentric.boot.admin.model.Application> de.codecentric.boot.admin.registry.web.RegistryController.register(de.codecentric.boot.admin.model.Application)
+2017-03-25 19:34:11.243  INFO 896 --- [main] d.c.boot.admin.web.PrefixHandlerMapping  : Mapped "{[/spring-boot-admin/api/applications/{id}],methods=[DELETE]}" onto public org.springframework.http.ResponseEntity<?> de.codecentric.boot.admin.registry.web.RegistryController.unregister(java.lang.String)
+2017-03-25 19:34:11.245  INFO 896 --- [main] d.c.boot.admin.web.PrefixHandlerMapping  : Mapped "{[/spring-boot-admin/api/applications],methods=[GET]}" onto public java.util.Collection<de.codecentric.boot.admin.model.Application> de.codecentric.boot.admin.registry.web.RegistryController.applications(java.lang.String)
+2017-03-25 19:34:11.247  INFO 896 --- [main] d.c.boot.admin.web.PrefixHandlerMapping  : Mapped "{[/spring-boot-admin/api/journal],produces=[text/event-stream]}" onto public org.springframework.web.servlet.mvc.method.annotation.SseEmitter de.codecentric.boot.admin.journal.web.JournalController.getJournalEvents()
+2017-03-25 19:34:11.249  INFO 896 --- [main] d.c.boot.admin.web.PrefixHandlerMapping  : Mapped "{[/spring-boot-admin/api/journal],produces=[application/json]}" onto public java.util.Collection<de.codecentric.boot.admin.event.ClientApplicationEvent> de.codecentric.boot.admin.journal.web.JournalController.getJournal()
+2017-03-25 19:34:11.394  INFO 896 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService  'updateTaskScheduler'
+2017-03-25 19:34:11.942  INFO 896 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-03-25 19:34:11.978  INFO 896 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'refreshScope' has been autodetected for JMX exposure
+2017-03-25 19:34:11.981  INFO 896 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'environmentManager' has been autodetected for JMX exposure
+2017-03-25 19:34:11.992  INFO 896 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'configurationPropertiesRebinder' has been autodetected for JMX exposure
+2017-03-25 19:34:11.995  INFO 896 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'refreshEndpoint' has been autodetected for JMX exposure
+2017-03-25 19:34:11.997  INFO 896 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'restartEndpoint' has been autodetected for JMX exposure
+2017-03-25 19:34:12.002  INFO 896 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'zuulEndpoint' has been autodetected for JMX exposure
+2017-03-25 19:34:12.012  INFO 896 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'environmentManager': registering with JMX server as MBean [org.springframework.cloud.context.environment:name=environmentManager,type=EnvironmentManager]
+2017-03-25 19:34:12.059  INFO 896 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'restartEndpoint': registering with JMX server as MBean [org.springframework.cloud.context.restart:name=restartEndpoint,type=RestartEndpoint]
+2017-03-25 19:34:12.096  INFO 896 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'refreshScope': registering with JMX server as MBean [org.springframework.cloud.context.scope.refresh:name=refreshScope,type=RefreshScope]
+2017-03-25 19:34:12.144  INFO 896 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'zuulEndpoint': registering with JMX server as MBean [org.springframework.cloud.netflix.zuul:name=zuulEndpoint,type=RoutesEndpoint]
+2017-03-25 19:34:12.159  INFO 896 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'configurationPropertiesRebinder': registering with JMX server as MBean [org.springframework.cloud.context.properties:name=configurationPropertiesRebinder,context=192d74fb,type=ConfigurationPropertiesRebinder]
+2017-03-25 19:34:12.188  INFO 896 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'refreshEndpoint': registering with JMX server as MBean [org.springframework.cloud.endpoint:name=refreshEndpoint,type=RefreshEndpoint]
+2017-03-25 19:34:13.521  INFO 896 --- [main] io.undertow.servlet                      : jolokia: No access restrictor found, access to any MBean is allowed
+2017-03-25 19:34:13.540  INFO 896 --- [main] io.undertow.servlet                      : jolokia: jolokia:type=Config is already registered. Adding it with jolokia:type=Config,uuid=b9e546dc-b63a-441e-8742-904770866332, but you should revise your setup in order to either use a qualifier or ensure, that only a single agent gets registered (otherwise history functionality might not work)
+2017-03-25 19:34:13.543  INFO 896 --- [main] io.undertow.servlet                      : jolokia: Cannot register (legacy) MBean handler for config store with name jmx4perl:type=Config since it already exists. This is the case if another agent has been already started within the same JVM. The registration is skipped.
+2017-03-25 19:34:13.544  INFO 896 --- [main] io.undertow.servlet                      : jolokia: Jolokia Discovery MBean registration is skipped because there is already one registered.
+2017-03-25 19:34:13.843  INFO 896 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 0
+2017-03-25 19:34:13.846  INFO 896 --- [main] c.n.e.EurekaDiscoveryClientConfiguration : Registering application eureka-service with eureka with status UP
+2017-03-25 19:34:13.846  INFO 896 --- [Thread-12] o.s.c.n.e.server.EurekaServerBootstrap   : Setting the eureka configuration..
+2017-03-25 19:34:13.851  INFO 896 --- [Thread-12] o.s.c.n.e.server.EurekaServerBootstrap   : Eureka data center value eureka.datacenter is not set, defaulting to default
+2017-03-25 19:34:13.854  INFO 896 --- [Thread-12] o.s.c.n.e.server.EurekaServerBootstrap   : Eureka environment value eureka.environment is not set, defaulting to test
+2017-03-25 19:34:13.907  INFO 896 --- [Thread-12] o.s.c.n.e.server.EurekaServerBootstrap   : isAws returned false
+2017-03-25 19:34:13.909  INFO 896 --- [Thread-12] o.s.c.n.e.server.EurekaServerBootstrap   : Initialized server context
+2017-03-25 19:34:13.910  INFO 896 --- [Thread-12] c.n.e.r.PeerAwareInstanceRegistryImpl    : Got 1 instances from neighboring DS node
+2017-03-25 19:34:13.911  INFO 896 --- [Thread-12] c.n.e.r.PeerAwareInstanceRegistryImpl    : Renew threshold is: 1
+2017-03-25 19:34:13.912  INFO 896 --- [Thread-12] c.n.e.r.PeerAwareInstanceRegistryImpl    : Changing status to UP
+2017-03-25 19:34:13.950  INFO 896 --- [Thread-12] e.s.EurekaServerInitializerConfiguration : Started Eureka Server
+2017-03-25 19:34:14.294  INFO 896 --- [main] b.c.e.u.UndertowEmbeddedServletContainer : Undertow started on port(s) 8761 (http)
+2017-03-25 19:34:14.296  INFO 896 --- [main] c.n.e.EurekaDiscoveryClientConfiguration : Updating port to 8761
+2017-03-25 19:34:14.322  INFO 896 --- [main] sanchez.sergio.EurekaServiceApplication  : Started EurekaServiceApplication in 44.009 seconds (JVM running for 46.893)
+2017-03-25 19:35:13.975  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 19:36:13.975  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 19:36:17.505  INFO 896 --- [XNIO-2 task-1] c.s.j.s.i.a.WebApplicationImpl           : Initiating Jersey application, version 'Jersey: 1.19.1 03/11/2016 02:08 PM'
+2017-03-25 19:36:19.634  INFO 896 --- [XNIO-2 task-2] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AUTH-SERVICE/localhost:auth-service:8183 with status UP (replication=false)
+2017-03-25 19:36:20.603  INFO 896 --- [XNIO-2 task-3] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AUTH-SERVICE/localhost:auth-service:8183 with status UP (replication=true)
+2017-03-25 19:37:13.975  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 19:38:13.975  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 19:39:13.976  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 19:40:14.000  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 24ms
+2017-03-25 19:41:14.000  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 19:42:14.000  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 19:43:14.000  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 19:44:14.000  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 19:44:31.968  INFO 896 --- [XNIO-2 task-12] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AUTH-SERVICE/localhost:auth-service:8183 with status UP (replication=false)
+2017-03-25 19:44:32.493  INFO 896 --- [XNIO-2 task-13] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AUTH-SERVICE/localhost:auth-service:8183 with status UP (replication=true)
+2017-03-25 19:45:14.000  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 19:46:14.001  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 1ms
+2017-03-25 19:47:14.001  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 19:48:14.002  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 19:49:04.970  INFO 896 --- [ReplicaAwareInstanceRegistry - RenewalThresholdUpdater] c.n.e.r.PeerAwareInstanceRegistryImpl    : Current renewal threshold is : 3
+2017-03-25 19:49:14.003  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 19:50:14.003  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 19:51:14.004  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 19:52:14.005  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 19:53:14.005  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 19:54:14.005  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 19:54:38.186  INFO 896 --- [XNIO-2 task-3] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AUTH-SERVICE/localhost:auth-service:8183 with status UP (replication=false)
+2017-03-25 19:54:38.710  INFO 896 --- [XNIO-2 task-2] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AUTH-SERVICE/localhost:auth-service:8183 with status UP (replication=true)
+2017-03-25 19:55:14.006  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 19:56:14.007  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 19:57:14.007  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 19:58:14.007  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 19:59:14.007  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:00:14.007  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:01:14.008  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 1ms
+2017-03-25 20:01:46.337  INFO 896 --- [XNIO-2 task-6] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AUTH-SERVICE/localhost:auth-service:8183 with status UP (replication=false)
+2017-03-25 20:01:46.858  INFO 896 --- [XNIO-2 task-7] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AUTH-SERVICE/localhost:auth-service:8183 with status UP (replication=true)
+2017-03-25 20:02:14.008  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:03:14.008  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:04:04.970  INFO 896 --- [ReplicaAwareInstanceRegistry - RenewalThresholdUpdater] c.n.e.r.PeerAwareInstanceRegistryImpl    : Current renewal threshold is : 3
+2017-03-25 20:04:14.008  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:05:14.008  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:06:14.008  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:07:14.008  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:08:14.008  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:09:14.008  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:10:14.008  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:11:14.008  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:12:14.009  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:13:14.009  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:14:14.010  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:15:14.013  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 2ms
+2017-03-25 20:16:14.012  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:17:14.012  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:18:14.012  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:19:04.970  INFO 896 --- [ReplicaAwareInstanceRegistry - RenewalThresholdUpdater] c.n.e.r.PeerAwareInstanceRegistryImpl    : Current renewal threshold is : 3
+2017-03-25 20:19:14.012  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:20:14.012  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:21:14.012  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:22:14.012  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:23:14.012  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:24:14.012  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:24:47.913  INFO 896 --- [XNIO-2 task-11] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AUTH-SERVICE/localhost:auth-service:8183 with status UP (replication=false)
+2017-03-25 20:24:48.451  INFO 896 --- [XNIO-2 task-10] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AUTH-SERVICE/localhost:auth-service:8183 with status UP (replication=true)
+2017-03-25 20:25:14.013  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:26:14.013  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:27:14.016  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:28:14.014  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:28:26.553  INFO 896 --- [XNIO-2 task-25] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AUTH-SERVICE/localhost:auth-service:8183 with status UP (replication=false)
+2017-03-25 20:28:27.077  INFO 896 --- [XNIO-2 task-28] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AUTH-SERVICE/localhost:auth-service:8183 with status UP (replication=true)
+2017-03-25 20:29:14.015  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 1ms
+2017-03-25 20:30:14.016  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:31:14.016  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:32:14.016  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:32:39.581  INFO 896 --- [XNIO-2 task-7] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AUTH-SERVICE/localhost:auth-service:8183 with status UP (replication=false)
+2017-03-25 20:32:40.106  INFO 896 --- [XNIO-2 task-9] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AUTH-SERVICE/localhost:auth-service:8183 with status UP (replication=true)
+2017-03-25 20:33:14.023  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 7ms
+2017-03-25 20:34:04.971  INFO 896 --- [ReplicaAwareInstanceRegistry - RenewalThresholdUpdater] c.n.e.r.PeerAwareInstanceRegistryImpl    : Current renewal threshold is : 3
+2017-03-25 20:34:14.024  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:34:19.019  INFO 896 --- [XNIO-2 task-21] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AUTH-SERVICE/localhost:auth-service:8183 with status UP (replication=false)
+2017-03-25 20:34:19.552  INFO 896 --- [XNIO-2 task-24] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AUTH-SERVICE/localhost:auth-service:8183 with status UP (replication=true)
+2017-03-25 20:34:20.141  INFO 896 --- [XNIO-2 task-20] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AUTH-SERVICE/localhost:auth-service:8183 with status DOWN (replication=false)
+2017-03-25 20:34:20.173  INFO 896 --- [XNIO-2 task-22] c.n.e.registry.AbstractInstanceRegistry  : Cancelled instance AUTH-SERVICE/localhost:auth-service:8183 (replication=false)
+2017-03-25 20:34:20.659  INFO 896 --- [XNIO-2 task-23] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AUTH-SERVICE/localhost:auth-service:8183 with status DOWN (replication=true)
+2017-03-25 20:34:20.662  INFO 896 --- [XNIO-2 task-23] c.n.e.registry.AbstractInstanceRegistry  : Cancelled instance AUTH-SERVICE/localhost:auth-service:8183 (replication=true)
+2017-03-25 20:34:39.511  WARN 896 --- [XNIO-2 task-25] c.n.e.registry.AbstractInstanceRegistry  : DS: Registry: lease doesn't exist, registering resource: AUTH-SERVICE - localhost:auth-service:8183
+2017-03-25 20:34:39.513  WARN 896 --- [XNIO-2 task-25] c.n.eureka.resources.InstanceResource    : Not Found (Renew): AUTH-SERVICE - localhost:auth-service:8183
+2017-03-25 20:34:39.537  INFO 896 --- [XNIO-2 task-27] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AUTH-SERVICE/localhost:auth-service:8183 with status UP (replication=false)
+2017-03-25 20:34:40.051  INFO 896 --- [XNIO-2 task-26] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AUTH-SERVICE/localhost:auth-service:8183 with status UP (replication=true)
+2017-03-25 20:35:14.024  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:36:14.024  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:37:14.024  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:38:14.024  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:39:14.025  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:40:14.025  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:41:14.026  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:42:14.026  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:43:01.830  INFO 896 --- [XNIO-2 task-3] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AUTH-SERVICE/localhost:auth-service:8183 with status UP (replication=false)
+2017-03-25 20:43:02.347  INFO 896 --- [XNIO-2 task-6] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AUTH-SERVICE/localhost:auth-service:8183 with status UP (replication=true)
+2017-03-25 20:43:14.026  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:44:14.026  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:45:14.027  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:45:16.283  INFO 896 --- [XNIO-2 task-10] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AUTH-SERVICE/localhost:auth-service:8183 with status UP (replication=false)
+2017-03-25 20:45:16.798  INFO 896 --- [XNIO-2 task-13] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AUTH-SERVICE/localhost:auth-service:8183 with status UP (replication=true)
+2017-03-25 20:46:14.027  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:47:14.027  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:48:14.027  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:49:04.971  INFO 896 --- [ReplicaAwareInstanceRegistry - RenewalThresholdUpdater] c.n.e.r.PeerAwareInstanceRegistryImpl    : Current renewal threshold is : 3
+2017-03-25 20:49:14.027  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:50:14.027  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:51:14.027  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:52:14.027  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:53:14.028  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:54:14.029  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 1ms
+2017-03-25 20:55:14.029  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:56:13.419  INFO 896 --- [XNIO-2 task-12] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AUTH-SERVICE/localhost:auth-service:8183 with status UP (replication=false)
+2017-03-25 20:56:13.947  INFO 896 --- [XNIO-2 task-14] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AUTH-SERVICE/localhost:auth-service:8183 with status UP (replication=true)
+2017-03-25 20:56:14.030  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:56:14.606  INFO 896 --- [XNIO-2 task-15] c.n.e.registry.AbstractInstanceRegistry  : Cancelled instance AUTH-SERVICE/localhost:auth-service:8183 (replication=false)
+2017-03-25 20:56:15.113  WARN 896 --- [XNIO-2 task-16] c.n.e.registry.AbstractInstanceRegistry  : DS: Registry: cancel failed because Lease is not registered for: AUTH-SERVICE/localhost:auth-service:8183
+2017-03-25 20:56:15.115  INFO 896 --- [XNIO-2 task-16] c.n.eureka.resources.InstanceResource    : Not Found (Cancel): AUTH-SERVICE - localhost:auth-service:8183
+2017-03-25 20:56:15.119  WARN 896 --- [TaskBatchingWorker-target_localhost-18] c.n.eureka.cluster.ReplicationTask       : The replication of task AUTH-SERVICE/localhost:auth-service:8183:Cancel@localhost failed with response code 404
+2017-03-25 20:56:15.121  WARN 896 --- [TaskBatchingWorker-target_localhost-18] c.netflix.eureka.cluster.PeerEurekaNode  : AUTH-SERVICE/localhost:auth-service:8183:Cancel@localhost: missing entry.
+2017-03-25 20:56:16.406  WARN 896 --- [XNIO-2 task-18] c.n.e.registry.AbstractInstanceRegistry  : DS: Registry: lease doesn't exist, registering resource: AUTH-SERVICE - localhost:auth-service:8183
+2017-03-25 20:56:16.410  WARN 896 --- [XNIO-2 task-18] c.n.eureka.resources.InstanceResource    : Not Found (Renew): AUTH-SERVICE - localhost:auth-service:8183
+2017-03-25 20:56:16.427  INFO 896 --- [XNIO-2 task-19] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AUTH-SERVICE/localhost:auth-service:8183 with status UP (replication=false)
+2017-03-25 20:56:16.935  INFO 896 --- [XNIO-2 task-21] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AUTH-SERVICE/localhost:auth-service:8183 with status UP (replication=true)
+2017-03-25 20:57:14.030  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:58:14.030  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 20:59:14.030  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 21:00:14.031  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 21:01:14.031  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 21:02:14.032  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 1ms
+2017-03-25 21:02:44.100  INFO 896 --- [XNIO-2 task-21] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AUTH-SERVICE/localhost:auth-service:8183 with status UP (replication=false)
+2017-03-25 21:02:44.625  INFO 896 --- [XNIO-2 task-24] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AUTH-SERVICE/localhost:auth-service:8183 with status UP (replication=true)
+2017-03-25 21:03:14.038  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 5ms
+2017-03-25 21:04:04.973  INFO 896 --- [ReplicaAwareInstanceRegistry - RenewalThresholdUpdater] c.n.e.r.PeerAwareInstanceRegistryImpl    : Current renewal threshold is : 3
+2017-03-25 21:04:14.038  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 21:05:14.039  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 1ms
+2017-03-25 21:06:14.039  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 21:07:14.040  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 21:08:14.041  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 21:09:14.041  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2017-03-25 21:10:14.041  INFO 896 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms

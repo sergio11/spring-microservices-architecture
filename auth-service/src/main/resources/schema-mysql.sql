@@ -13,17 +13,12 @@ CREATE TABLE `ClientDetails` (
   PRIMARY KEY (`appId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
-
-
 DROP TABLE IF EXISTS `authorities`;
 CREATE TABLE `authorities` (
   `username` varchar(50) NOT NULL,
   `authority` varchar(50) NOT NULL,
   UNIQUE KEY `ix_auth_username` (`username`,`authority`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
 
 DROP TABLE IF EXISTS `oauth_access_token`;
 CREATE TABLE `oauth_access_token` (
@@ -53,8 +48,6 @@ CREATE TABLE `oauth_client_details` (
   `autoapprove` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`client_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
 
 DROP TABLE IF EXISTS `oauth_code`;
 CREATE TABLE `oauth_code` (

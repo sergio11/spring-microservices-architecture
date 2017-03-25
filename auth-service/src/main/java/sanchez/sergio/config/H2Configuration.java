@@ -22,7 +22,7 @@ public class H2Configuration {
     protected ServletRegistrationBean h2servletRegistration(){
         logger.info("Register Servlet for H2 Console");
         ServletRegistrationBean registrationBean = new ServletRegistrationBean( new WebServlet());
-        registrationBean.addUrlMappings("/console/*");
+        registrationBean.addUrlMappings("/h2-console/*");
         return registrationBean;
     }
 }
