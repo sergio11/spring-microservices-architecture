@@ -80,7 +80,7 @@ public class Authority implements Serializable, GrantedAuthority {
             user.addAuthority(this);
         }
     }
-
+    
     @Override
     public String getAuthority() {
         return type.name();

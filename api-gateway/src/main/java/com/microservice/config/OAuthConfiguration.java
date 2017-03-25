@@ -7,8 +7,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
-import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -19,13 +17,13 @@ import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.WebUtils;
+
+
 /**
  * The Class OAuthConfiguration that sets up the OAuth2 single sign on
  * configuration and the web security associated with it.
  */
 @Configuration
-@EnableZuulProxy
-@EnableOAuth2Sso
 public class OAuthConfiguration extends WebSecurityConfigurerAdapter {
 
     private static final String CSRF_COOKIE_NAME = "XSRF-TOKEN";
@@ -41,12 +39,12 @@ public class OAuthConfiguration extends WebSecurityConfigurerAdapter {
                 //Allow access to all static resources without authentication
                 .antMatchers("/", "/**/*.html").permitAll()
                 .anyRequest().authenticated()
-                .antMatchers(HttpMethod.GET, "/api/user/**").access("#oauth2.hasScope('read')")
-                .antMatchers(HttpMethod.OPTIONS, "/api/user/**").access("#oauth2.hasScope('read')")
-                .antMatchers(HttpMethod.POST, "/api/user/**").access("#oauth2.hasScope('write')")
-                .antMatchers(HttpMethod.PUT, "/api/user/**").access("#oauth2.hasScope('write')")
-                .antMatchers(HttpMethod.PATCH, "/api/user/**").access("#oauth2.hasScope('write')")
-                .antMatchers(HttpMethod.DELETE, "/api/user/**").access("#oauth2.hasScope('write')")
+                .antMatchers(HttpMethod.GET, "/api/accounts/**").access("#oauth2.hasScope('read')")
+                .antMatchers(HttpMethod.OPTIONS, "/api/accounts/**").access("#oauth2.hasScope('read')")
+                .antMatchers(HttpMethod.POST, "/api/accounts/**").access("#oauth2.hasScope('write')")
+                .antMatchers(HttpMethod.PUT, "/api/accounts/**").access("#oauth2.hasScope('write')")
+                .antMatchers(HttpMethod.PATCH, "/api/accounts/**").access("#oauth2.hasScope('write')")
+                .antMatchers(HttpMethod.DELETE, "/api/accounts/**").access("#oauth2.hasScope('write')")
                 .and().csrf().csrfTokenRepository(provideCSRFTokenRepository())
                 .and().addFilterAfter(createCSRFHeaderFilter(), CsrfFilter.class);
     }

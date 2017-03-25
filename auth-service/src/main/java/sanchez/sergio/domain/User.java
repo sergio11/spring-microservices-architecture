@@ -37,7 +37,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Table(name = "USERS")
 @FieldMatch(first = "passwordClear", second = "confirmPassword", message = "{user.pass.not.match}", groups = {UserCreation.class, UserChangePassword.class})
 @FieldNotMatch(first = "currentClearPassword", second = "passwordClear", message = "{user.current.pass.not.match}", groups = {UserChangePassword.class})
-public class User implements Serializable, UserDetails {
+public class User implements Serializable, UserDetails  {
 
     /* Marker interface for grouping validations to be applied at the time of creating a (new) user. */
     public interface UserCreation {
@@ -170,7 +170,7 @@ public class User implements Serializable, UserDetails {
             authority.addUser(this);
         }
     }
-    
+   
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;

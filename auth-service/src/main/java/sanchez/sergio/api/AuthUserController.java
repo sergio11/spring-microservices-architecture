@@ -1,6 +1,7 @@
 package sanchez.sergio.api;
 
 import java.security.Principal;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +20,7 @@ public class AuthUserController {
      * @param user
      * @return
      */
-    @RequestMapping("/me")
+    @GetMapping("/me")
     public Principal getCurrentLoggedInUser(Principal user) {
         return user;
     }
