@@ -1,4 +1,4 @@
-package sanchez.sergio.config.security;
+package sanchez.sergio.security.config;
 
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.code.JdbcAuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
-import sanchez.sergio.services.CustomUserDetailsService;
+import sanchez.sergio.services.DomainUserDetailsService;
 
 /**
  *
@@ -32,7 +32,7 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
     private AuthenticationManager auth;
     
     @Autowired
-    private CustomUserDetailsService userDetailsService;
+    private DomainUserDetailsService userDetailsService;
     
     @Bean
     public PasswordEncoder passwordEncoder() {

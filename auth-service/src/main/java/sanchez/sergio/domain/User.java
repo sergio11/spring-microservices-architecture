@@ -7,7 +7,6 @@ import sanchez.sergio.persistence.constraints.UsernameUnique;
 import sanchez.sergio.domain.User.UserChangePassword;
 import sanchez.sergio.domain.User.UserCreation;
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -26,8 +25,6 @@ import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotBlank;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  *
@@ -37,7 +34,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Table(name = "USERS")
 @FieldMatch(first = "passwordClear", second = "confirmPassword", message = "{user.pass.not.match}", groups = {UserCreation.class, UserChangePassword.class})
 @FieldNotMatch(first = "currentClearPassword", second = "passwordClear", message = "{user.current.pass.not.match}", groups = {UserChangePassword.class})
-public class User implements Serializable, UserDetails  {
+public class User implements Serializable  {
 
     /* Marker interface for grouping validations to be applied at the time of creating a (new) user. */
     public interface UserCreation {
@@ -170,32 +167,11 @@ public class User implements Serializable, UserDetails  {
             authority.addUser(this);
         }
     }
-   
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
+
+    public Set<Authority> getAuthorities() {
         return authorities;
     }
-    
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return enabled;
-    }
-
+   
     @Override
     public String toString() {
         return "User{" + "username=" + username + ", currentClearPassword=" + currentClearPassword + ", passwordClear=" + passwordClear + ", confirmPassword=" + confirmPassword + ", password=" + password + ", lastLoginAccess=" + lastLoginAccess + ", enabled=" + enabled + ", authorities=" + authorities + '}';
