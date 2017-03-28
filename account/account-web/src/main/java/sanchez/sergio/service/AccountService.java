@@ -1,14 +1,18 @@
 package sanchez.sergio.service;
 
+import java.time.ZonedDateTime;
 import org.apache.log4j.Logger;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.util.Assert;
 import sanchez.sergio.domain.Account;
 import sanchez.sergio.domain.Service;
 import sanchez.sergio.events.AccountEvent;
 import sanchez.sergio.events.AccountEventType;
 import sanchez.sergio.repository.AccountRepository;
+import java.util.List;
+import sanchez.sergio.domain.AccountStatus;
 
 @org.springframework.stereotype.Service
 public class AccountService extends Service<Account, Long> {
@@ -109,5 +113,19 @@ public class AccountService extends Service<Account, Long> {
                 "The account with the supplied id does not exist");
         this.accountRepository.delete(id);
         return true;
+    }
+    
+    /**
+     * Not activated users should be automatically deleted after 3 days.
+     * <p> This is scheduled to get fired everyday, at 01:00 (am).</p>
+     */
+    @Scheduled(cron = "0 0 1 * * ?")
+    public void removeNotActivatedUsers() {
+        ZonedDateTime now = ZonedDateTime.now();
+        List<Account> accounts = accountRepository.findAllByStatusAndCreatedAtBefore(AccountStatus.ACCOUNT_PENDING, now.minusDays(3));
+        for (Account account : accounts) {
+            log.debug("Deleting not activated account : " + account.getFirstName());
+            accountRepository.delete(account);
+        }
     }
 }
