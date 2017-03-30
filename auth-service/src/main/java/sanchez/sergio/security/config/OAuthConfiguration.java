@@ -1,9 +1,11 @@
 package sanchez.sergio.security.config;
 
+import java.security.KeyPair;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,8 +16,10 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.code.JdbcAuthorizationCodeServices;
-import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import sanchez.sergio.services.DomainUserDetailsService;
+import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 
 /**
  *
@@ -40,9 +44,28 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
         return encoder;
     }
 
+    /**
+     * Apply the token converter (and enhander) for token store.
+     */
     @Bean
-    public JdbcTokenStore tokenStore() {
-        return new JdbcTokenStore(dataSource);
+    public JwtTokenStore tokenStore() {
+        return new JwtTokenStore(jwtAccessTokenConverter());
+    }
+    
+    /**
+     * This bean generates an token enhancer, which manages the exchange between JWT acces tokens and Authentication
+     * in both directions.
+     *
+     * @return an access token converter configured with the authorization server's public/private keys
+     */
+    @Bean
+    public JwtAccessTokenConverter jwtAccessTokenConverter() {
+        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+        KeyPair keyPair = new KeyStoreKeyFactory(
+             new ClassPathResource("keystore.jks"), "password".toCharArray())
+             .getKeyPair("selfsigned");
+        converter.setKeyPair(keyPair);
+        return converter;
     }
 
     @Bean
@@ -52,8 +75,10 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        security.passwordEncoder(passwordEncoder());
+        security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()").passwordEncoder(passwordEncoder());
     }
+    
+ 
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
