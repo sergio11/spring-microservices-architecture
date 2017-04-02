@@ -12,5 +12,6 @@
     </parent>
     <modules>
         <module>spring-boot-starter-data-events</module>
+        <module>spring-boot-stater-h2-dev</module>
     </modules>
 </project>
