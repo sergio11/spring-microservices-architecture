@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
+import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
 
 /**
  * @author sergio
@@ -22,10 +23,11 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
         
         logger.info("Apply ResourceServer configuration ");
         http
-                .requestMatchers().antMatchers("/me")
-                .and()
                 .authorizeRequests()
-                .antMatchers("/me").access("#oauth2.hasScope('read')");
+                .antMatchers("/me").access("#oauth2.hasScope('read')")
+                .antMatchers("/**").denyAll()
+                .and()
+                .exceptionHandling().authenticationEntryPoint(new Http403ForbiddenEntryPoint());
     }
 
     @Override
