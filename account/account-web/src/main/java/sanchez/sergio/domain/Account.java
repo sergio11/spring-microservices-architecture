@@ -1,11 +1,13 @@
 package sanchez.sergio.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import org.springframework.hateoas.Link;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import sanchez.sergio.action.ActivateAccount;
@@ -20,17 +22,20 @@ import sanchez.sergio.service.AccountModule;
  * @author sergio
  */
 @Entity
+@Table(name = "ACCOUNTS")
 public class Account extends AbstractEntity<AccountEvent, Long> {
 
     @Id
     @GeneratedValue
     private Long id;
-
+    @Column(unique = false, nullable = false, length = 30)
     private String firstName;
+    @Column(unique = false, nullable = false, length = 30)
     private String lastName;
+    @Column(unique = true, nullable = false, length = 90)
     private String email;
-
     @Enumerated(value = EnumType.STRING)
+    @Column(unique = false, nullable = false)
     private AccountStatus status;
 
     public Account() {
