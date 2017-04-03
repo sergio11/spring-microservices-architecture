@@ -1,6 +1,6 @@
 spring:
   application:
-    name: account-web-service
+    name: uaa-web-service
   cloud:
     config:
       uri: http://localhost:8888
