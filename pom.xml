@@ -31,9 +31,8 @@
     	<module>config-service</module>
         <module>eureka-service</module>
         <module>api-gateway</module>
-        <module>auth-service</module>
-        <module>account</module>
         <module>spring-boot-starters</module>
+        <module>uaa</module>
     </modules>
 
     <dependencies>

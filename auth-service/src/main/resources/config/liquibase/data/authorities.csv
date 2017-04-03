@@ -1,4 +1,0 @@
-id;type;description
-1;ROLE_ADMIN;Authority for admin users
-2;ROLE_USER;Authority for normal users
-3;ROLE_ANONYMOUS;Authority for anonymous users

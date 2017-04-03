@@ -1,0 +1,2 @@
+id;username;password;enabled;firstName;lastName;email;status
+1;sergio11;$2a$10$0eCQpFRdw8i6jJzjj/IuNuKpJYnLaO5Yp9xSJ3itcfPmQNXVhmNyu;true;Sergio;Sánchez Sánchez;sss4esob@gmail.com;ACCOUNT_ACTIVE
