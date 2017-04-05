@@ -33,6 +33,8 @@
         <module>api-gateway</module>
         <module>spring-boot-starters</module>
         <module>uaa</module>
+        <module>data-flow-server</module>
+        <module>data-flow-shell</module>
     </modules>
 
     <dependencies>
