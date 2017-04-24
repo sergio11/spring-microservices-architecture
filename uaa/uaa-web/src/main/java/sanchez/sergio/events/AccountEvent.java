@@ -21,7 +21,7 @@ import sanchez.sergio.event.Event;
  */
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-@Table(indexes = { @Index(name = "IDX_ACCOUNT_EVENT", columnList = "entity_id") })
+@Table(indexes = { @Index(name = "IDX_ACCOUNT_EVENT", columnList = "entity_identity") })
 public class AccountEvent extends Event<User, AccountEventType, Long> {
 
     @Id

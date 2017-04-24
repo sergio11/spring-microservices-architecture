@@ -5,8 +5,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 import org.springframework.data.annotation.CreatedDate;
@@ -24,12 +28,16 @@ import sanchez.sergio.event.Event;
 @EntityListeners(AuditingEntityListener.class)
 public abstract class AbstractEntity<E extends Event, T extends Serializable> extends Aggregate<E, T> implements Serializable {
 
-    private T identity;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected T identity;
 
     @CreatedDate
+    @Column(name="createdAt")
     private Long createdAt;
 
     @LastModifiedDate
+    @Column(name="lastModified")
     private Long lastModified;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -64,15 +72,14 @@ public abstract class AbstractEntity<E extends Event, T extends Serializable> ex
         this.events = events;
     }
 
-    @Override
     public T getIdentity() {
         return identity;
     }
 
-    public void setIdentity(T id) {
-        this.identity = id;
+    public void setIdentity(T identity) {
+        this.identity = identity;
     }
-
+    
     @Override
     public String toString() {
         return "BaseEntity{"

@@ -17,7 +17,7 @@
     <changeSet id="00000000000001" author="sergio11">
         <createTable tableName="USERS">
             <!-- Account Id -->
-            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+            <column name="identity" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <!-- User login name -->
@@ -48,6 +48,11 @@
             <column name="status" type="varchar(20)">
                 <constraints unique="false" nullable="false"/>
             </column>
+            <!-- Account createdAt -->
+            <column name="createdAt" type="date" />
+            <!-- Account lastModified -->
+            <column name="lastModified" type="date" />
+            
         </createTable>
         
         <createIndex indexName="idx_user_username"
@@ -104,7 +109,7 @@
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="USER_AUTHORITIES"
                                  constraintName="fk_user_id"
-                                 referencedColumnNames="id"
+                                 referencedColumnNames="identity"
                                  referencedTableName="USERS"/>
         
         

@@ -61,11 +61,7 @@ public class User extends AbstractEntity<AccountEvent, Long> {
     /* Marker interface for grouping validations to be applied at the time of updating a user status by administrator. */
     public interface UserStatusUpdate {
     }
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+   
     @NotBlank(message = "{user.username.notnull}", groups = {UserCreation.class, UserUpdate.class})
     @Size(min = 5, max = 15, message = "{user.username.size}", groups = {UserCreation.class, UserUpdate.class})
     @UsernameUnique(message = "{user.username.unique}", groups = {UserCreation.class, UserUpdate.class})
@@ -98,14 +94,14 @@ public class User extends AbstractEntity<AccountEvent, Long> {
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
     @JoinTable(
             name = "USER_AUTHORITIES",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "ID"),
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "identity"),
             inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "ID")
     )
     private Set<Authority> authorities = new HashSet();
     
-    @Column(unique = false, nullable = false, length = 30)
+    @Column(name="firstName", unique = false, nullable = false, length = 30)
     private String firstName;
-    @Column(unique = false, nullable = false, length = 30)
+    @Column(name="lastName", unique = false, nullable = false, length = 30)
     private String lastName;
     @Column(unique = true, nullable = false, length = 90)
     private String email;
@@ -122,17 +118,6 @@ public class User extends AbstractEntity<AccountEvent, Long> {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-    }
-
-    @JsonProperty("accountId")
-    @Override
-    public Long getIdentity() {
-        return this.id;
-    }
-
-    @Override
-    public void setIdentity(Long id) {
-        this.id = id;
     }
 
     public String getUsername() {
@@ -286,7 +271,7 @@ public class User extends AbstractEntity<AccountEvent, Long> {
     @Override
     public String toString() {
         return "Account{"
-                + "id=" + id
+                + "id=" + identity
                 + ", firstName='" + firstName + '\''
                 + ", lastName='" + lastName + '\''
                 + ", email='" + email + '\''
