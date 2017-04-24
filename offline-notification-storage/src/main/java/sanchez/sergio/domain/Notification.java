@@ -18,7 +18,7 @@ public class Notification implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Long id;
+    private Long id;
     
     @Column(nullable = false, length = 90, unique = false)
     private String payload;

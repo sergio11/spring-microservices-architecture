@@ -14,7 +14,6 @@ public class AlternateDelegate implements INotificationDelegate {
     @Autowired
     private NotificationRepository notificationRepository;
     
-
     @Override
     public void handleMessage(Notification notification) {
         notificationRepository.save(notification);
