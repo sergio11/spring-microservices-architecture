@@ -6,8 +6,8 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <property name="now" value="now()" dbms="h2"/>
-    <property name="now" value="now()" dbms="mysql"/>
+    <property name="now" value="now()" dbms="h2" />
+    <property name="now" value="now()" dbms="mysql" />
     <property name="autoIncrement" value="true"/>
 
     <!--
@@ -24,8 +24,12 @@
             <column name="payload" type="varchar(90)">
                 <constraints unique="false" nullable="false"/>
             </column>
+            <!-- Notification user id -->
+            <column name="user_id" type="bigint">
+                <constraints unique="false" nullable="false"/>
+            </column>
             <!-- Notification timestamp -->
-            <column name="createdAt" type="date" />
+            <column name="create_at" type="date" />
         </createTable>
     </changeSet>
 </databaseChangeLog>

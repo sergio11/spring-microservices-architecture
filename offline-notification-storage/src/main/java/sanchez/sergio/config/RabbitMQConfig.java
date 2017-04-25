@@ -5,19 +5,21 @@ import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.FanoutExchange;
+import org.springframework.amqp.rabbit.annotation.RabbitListenerConfigurer;
+import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
-import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
+import org.springframework.amqp.rabbit.listener.RabbitListenerEndpointRegistrar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.messaging.converter.MappingJackson2MessageConverter;
+import org.springframework.messaging.handler.annotation.support.DefaultMessageHandlerMethodFactory;
 import sanchez.sergio.config.properties.RabbitMQProperties;
-import sanchez.sergio.delegates.INotificationDelegate;
 
 /**
  * RabbitMQ Configuration
@@ -25,7 +27,7 @@ import sanchez.sergio.delegates.INotificationDelegate;
  */
 @Configuration
 @EnableConfigurationProperties(RabbitMQProperties.class)
-public class RabbitMQConfig {
+public class RabbitMQConfig implements RabbitListenerConfigurer {
     
     @Autowired
     private RabbitMQProperties rabbitMQProperties;
@@ -81,50 +83,32 @@ public class RabbitMQConfig {
     public AmqpAdmin amqpAdmin() {
         return new RabbitAdmin(connectionFactory());
     }
+   
 
     @Bean
     public RabbitTemplate rabbitTemplate() {
-        return new RabbitTemplate(connectionFactory());
-    }
-    
-    // Messages Listener Adapter
-    
-    /*
-        Message listener adapter that delegates the handling of messages to target 
-        listener methods via reflection.
-    */
-    
-    @Bean(name="alternateListenerAdapter")
-    MessageListenerAdapter alternateListenerAdapter(@Qualifier("alternateDelegate") INotificationDelegate alternateDelegate) {
-        return new MessageListenerAdapter(alternateDelegate, "receiveMessage");
-    }
-    
-    @Bean(name="deadLettersListenerAdapter")
-    MessageListenerAdapter deadLettersListenerAdapter(@Qualifier("deadLettersDelegate") INotificationDelegate deadLettersDelegate) {
-        return new MessageListenerAdapter(deadLettersDelegate, "receiveMessage");
+        RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory());
+        return rabbitTemplate;
     }
     
     @Bean
-    SimpleMessageListenerContainer alternateListenerContainer(
-            ConnectionFactory connectionFactory,
-            @Qualifier("alternateListenerAdapter") MessageListenerAdapter alternateListenerAdapter,
-            @Qualifier("alternateQueue") Queue alternateQueue) {
-        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
-        container.setConnectionFactory(connectionFactory);
-        container.setQueues(alternateQueue);
-        container.setMessageListener(alternateListenerAdapter);
-        return container;
+    public SimpleRabbitListenerContainerFactory rabbitListenerContainerFactory(ConnectionFactory connectionFactory) {
+        SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
+        factory.setConnectionFactory(connectionFactory);
+        factory.setConcurrentConsumers(3);
+        factory.setMaxConcurrentConsumers(10);
+        return factory;
     }
     
     @Bean
-    SimpleMessageListenerContainer deadLettersListenerContainer(
-            ConnectionFactory connectionFactory,
-            @Qualifier("deadLettersListenerAdapter") MessageListenerAdapter deadLettersListenerAdapter,
-            @Qualifier("deadLettersQueue") Queue deadLettersQueue) {
-        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
-        container.setConnectionFactory(connectionFactory);
-        container.setQueues(deadLettersQueue);
-        container.setMessageListener(deadLettersListenerAdapter);
-        return container;
+    public DefaultMessageHandlerMethodFactory myHandlerMethodFactory() {
+        DefaultMessageHandlerMethodFactory factory = new DefaultMessageHandlerMethodFactory();
+        factory.setMessageConverter(new MappingJackson2MessageConverter());
+        return factory;
+    }
+
+    @Override
+    public void configureRabbitListeners(RabbitListenerEndpointRegistrar rler) {
+        rler.setMessageHandlerMethodFactory(myHandlerMethodFactory());
     }
 }

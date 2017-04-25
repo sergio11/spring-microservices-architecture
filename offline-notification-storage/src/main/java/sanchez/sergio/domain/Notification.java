@@ -23,9 +23,12 @@ public class Notification implements Serializable {
     @Column(nullable = false, length = 90, unique = false)
     private String payload;
     
-    @Column(nullable = true)
+    @Column(name="user_id", nullable = false, unique = false)
+    private Long userId;
+    
+    @Column(name="create_at", nullable = true)
     private Date createAt;
-
+    
     public Long getId() {
         return id;
     }
@@ -40,6 +43,14 @@ public class Notification implements Serializable {
 
     public void setPayload(String payload) {
         this.payload = payload;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public Date getCreateAt() {

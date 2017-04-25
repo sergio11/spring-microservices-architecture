@@ -1,6 +1,8 @@
 package sanchez.sergio.delegates;
 
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 import sanchez.sergio.domain.Notification;
 import sanchez.sergio.persistence.repositories.NotificationRepository;
@@ -14,8 +16,10 @@ public class AlternateDelegate implements INotificationDelegate {
     @Autowired
     private NotificationRepository notificationRepository;
     
+    
     @Override
-    public void handleMessage(Notification notification) {
+    @RabbitListener(queues="users_alt")
+    public void handleMessage(@Payload Notification notification) {
         notificationRepository.save(notification);
     }
     
