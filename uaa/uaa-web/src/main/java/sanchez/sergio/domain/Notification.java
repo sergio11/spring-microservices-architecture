@@ -11,12 +11,16 @@ public class Notification implements Serializable {
     
     private Long id;
     private String payload;
+    private Long userId;
     private Date createAt;
 
-    public Notification(String payload) {
+    public Notification() {}
+    
+    public Notification(String payload, Long userId) {
         this.payload = payload;
+        this.userId = userId;
     }
-   
+    
     public Long getId() {
         return id;
     }
@@ -31,6 +35,14 @@ public class Notification implements Serializable {
 
     public void setPayload(String payload) {
         this.payload = payload;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public Date getCreateAt() {

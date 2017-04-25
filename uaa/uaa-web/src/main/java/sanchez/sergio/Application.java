@@ -11,26 +11,27 @@ import org.springframework.hateoas.config.EnableHypermediaSupport;
 import org.springframework.integration.annotation.InboundChannelAdapter;
 import org.springframework.integration.annotation.Poller;
 import org.springframework.integration.support.MessageBuilder;
-import sanchez.sergio.domain.Notification;
 import org.apache.log4j.Logger;
+import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.integration.core.MessageSource;
 import sanchez.sergio.bindings.UserNotificationBinding;
+import sanchez.sergio.domain.Notification;
 
 @SpringBootApplication
 @EnableJpaAuditing
 @EnableDiscoveryClient
 @EnableHypermediaSupport(type = {EnableHypermediaSupport.HypermediaType.HAL})
-@EnableBinding(UserNotificationBinding.class)
+@EnableBinding({ UserNotificationBinding.class, Source.class })
 public class Application {
     
     private final Logger logger = Logger.getLogger(Application.class);
     
     @Bean
-    @InboundChannelAdapter(value = UserNotificationBinding.OUTPUT, poller = @Poller(fixedDelay = "10000", maxMessagesPerPoll = "1"))
+    @InboundChannelAdapter(value = UserNotificationBinding.CHANNEL_NAME, poller = @Poller(fixedDelay = "10000", maxMessagesPerPoll = "1"))
     public MessageSource<Notification> timeMessageSource() {
         return () -> {
             logger.info("Notification at : " + new Date().getTime());
-            return MessageBuilder.withPayload(new Notification("Notification at : " + new Date().getTime())).build();
+            return MessageBuilder.withPayload(new Notification("Notification at: " + new Date().getTime(), 1111l)).build();
         };
     }
 
