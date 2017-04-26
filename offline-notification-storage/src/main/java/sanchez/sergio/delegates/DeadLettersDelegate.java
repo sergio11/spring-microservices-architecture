@@ -15,7 +15,7 @@ public class DeadLettersDelegate implements INotificationDelegate {
     private NotificationRepository notificationRepository;
 
     @Override
-    public void handleMessage(Notification notification) {
+    public void handleMessage(Notification notification, String receivedRoutingKey) {
         notificationRepository.save(notification);
     }
     

@@ -8,5 +8,5 @@ import sanchez.sergio.domain.Notification;
  * @author sergio
  */
 public interface INotificationDelegate {
-    void handleMessage(Notification payload);
+    void handleMessage(Notification payload, String receivedRoutingKey);
 }

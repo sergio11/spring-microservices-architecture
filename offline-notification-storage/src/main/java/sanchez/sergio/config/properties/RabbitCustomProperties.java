@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @ConfigurationProperties(prefix="rabbitmq")
-public class RabbitMQProperties {
+public class RabbitCustomProperties {
     
     private String host;
     private String username;

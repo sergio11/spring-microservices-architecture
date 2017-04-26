@@ -5,6 +5,7 @@ import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.FanoutExchange;
+import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.amqp.rabbit.annotation.RabbitListenerConfigurer;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
@@ -19,36 +20,36 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.converter.MappingJackson2MessageConverter;
 import org.springframework.messaging.handler.annotation.support.DefaultMessageHandlerMethodFactory;
-import sanchez.sergio.config.properties.RabbitMQProperties;
+import sanchez.sergio.config.properties.RabbitCustomProperties;
 
 /**
  * RabbitMQ Configuration
  * @author sergio
  */
 @Configuration
-@EnableConfigurationProperties(RabbitMQProperties.class)
+@EnableConfigurationProperties(RabbitCustomProperties.class)
+@EnableRabbit
 public class RabbitMQConfig implements RabbitListenerConfigurer {
     
     @Autowired
-    private RabbitMQProperties rabbitMQProperties;
-            
-            
+    private RabbitCustomProperties rabbitCustomProperties;
+
     @Bean
     @Qualifier("alternateQueue")
     Queue alternateQueue() {
-        return new Queue(rabbitMQProperties.getAlternateExchange().getQueue(), true);
+        return new Queue(rabbitCustomProperties.getAlternateExchange().getQueue(), true);
     }
     
     @Bean
     @Qualifier("deadLettersQueue")
     Queue deadLettersQueue() {
-        return new Queue(rabbitMQProperties.getDeadlettersExchange().getQueue(), true);
+        return new Queue(rabbitCustomProperties.getDeadlettersExchange().getQueue(), true);
     }
     
     @Bean
     @Qualifier("alternateExchange")
     FanoutExchange alternateExchange() {
-        FanoutExchange fanoutExchange = new FanoutExchange(rabbitMQProperties.getAlternateExchange().getName());
+        FanoutExchange fanoutExchange = new FanoutExchange(rabbitCustomProperties.getAlternateExchange().getName());
         fanoutExchange.setInternal(true);
         return fanoutExchange;
     }
@@ -56,7 +57,7 @@ public class RabbitMQConfig implements RabbitListenerConfigurer {
     @Bean
     @Qualifier("deadLettersExchange")
     FanoutExchange deadLettersExchange() {
-        FanoutExchange fanoutExchange = new FanoutExchange(rabbitMQProperties.getDeadlettersExchange().getName());
+        FanoutExchange fanoutExchange = new FanoutExchange(rabbitCustomProperties.getDeadlettersExchange().getName());
         fanoutExchange.setInternal(true);
         return fanoutExchange;
     }
@@ -73,9 +74,9 @@ public class RabbitMQConfig implements RabbitListenerConfigurer {
     
     @Bean
     public ConnectionFactory connectionFactory() {
-        CachingConnectionFactory connectionFactory = new CachingConnectionFactory(rabbitMQProperties.getHost());
-        connectionFactory.setUsername(rabbitMQProperties.getUsername());
-        connectionFactory.setPassword(rabbitMQProperties.getPassword());
+        CachingConnectionFactory connectionFactory = new CachingConnectionFactory(rabbitCustomProperties.getHost());
+        connectionFactory.setUsername(rabbitCustomProperties.getUsername());
+        connectionFactory.setPassword(rabbitCustomProperties.getPassword());
         return connectionFactory;
     }
     
@@ -101,14 +102,20 @@ public class RabbitMQConfig implements RabbitListenerConfigurer {
     }
     
     @Bean
+    public MappingJackson2MessageConverter jackson2Converter() {
+        MappingJackson2MessageConverter converter = new MappingJackson2MessageConverter();
+        return converter;
+    }
+
+    @Bean
     public DefaultMessageHandlerMethodFactory myHandlerMethodFactory() {
         DefaultMessageHandlerMethodFactory factory = new DefaultMessageHandlerMethodFactory();
-        factory.setMessageConverter(new MappingJackson2MessageConverter());
+        factory.setMessageConverter(jackson2Converter());
         return factory;
     }
 
     @Override
-    public void configureRabbitListeners(RabbitListenerEndpointRegistrar rler) {
-        rler.setMessageHandlerMethodFactory(myHandlerMethodFactory());
+    public void configureRabbitListeners(RabbitListenerEndpointRegistrar registrar) {
+        registrar.setMessageHandlerMethodFactory(myHandlerMethodFactory());
     }
 }
