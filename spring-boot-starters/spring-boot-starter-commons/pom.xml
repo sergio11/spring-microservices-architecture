@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.sanchez.sergio</groupId>
+    <artifactId>spring-boot-starter-commons</artifactId>
+    <packaging>jar</packaging>
+    <name>spring-boot-starters/spring-boot-starter-commons</name>
+    <description>Project to hold components common to all applications</description>
+    <parent>
+        <groupId>org.sanchez.sergio</groupId>
+        <artifactId>spring-boot-starters</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../</relativePath>
+    </parent>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <springfox.version>2.4.0</springfox.version>
+    </properties>
+    <dependencies>
+        <!-- Hemos utilizado las librerías de Springfox ya que integra muy bien Swagger con Spring MVC -->
+        <dependency>  
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${springfox.version}</version>
+        </dependency>  
+        <dependency>  
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${springfox.version}</version>
+        </dependency>
+    </dependencies>
+</project>
