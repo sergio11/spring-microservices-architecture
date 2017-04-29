@@ -27,7 +27,7 @@ public class Notification implements Serializable {
     private Long userId;
     
     @Column(name="create_at", nullable = true)
-    private Date createAt;
+    private Date createAt = new Date();
     
     public Long getId() {
         return id;

@@ -22,6 +22,7 @@
         <liquibase-hibernate5.version>3.6</liquibase-hibernate5.version>
         <javassist.version>3.21.0-GA</javassist.version>
         <validation-api.version>1.1.0.Final</validation-api.version>
+        <springfox.version>2.4.0</springfox.version>
     </properties>
     <dependencies>
         <dependency>
@@ -70,6 +71,25 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>notifications-core</artifactId>
             <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!-- Hemos utilizado las librerías de Springfox ya que integra muy bien Swagger con Spring MVC -->
+        <dependency>  
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${springfox.version}</version>
+        </dependency>  
+        <dependency>  
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${springfox.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-oauth2</artifactId>
         </dependency>
     </dependencies>
     
