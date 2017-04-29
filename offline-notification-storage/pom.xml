@@ -79,11 +79,6 @@
         <!-- Hemos utilizado las librerías de Springfox ya que integra muy bien Swagger con Spring MVC -->
         <dependency>  
             <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>${springfox.version}</version>
-        </dependency>  
-        <dependency>  
-            <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
             <version>${springfox.version}</version>
         </dependency>
