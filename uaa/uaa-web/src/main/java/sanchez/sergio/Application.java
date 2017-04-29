@@ -31,7 +31,7 @@ public class Application {
     public MessageSource<Notification> timeMessageSource() {
         return () -> {
             logger.info("Notification at : " + new Date().getTime());
-            return MessageBuilder.withPayload(new Notification("Notification at: " + new Date().getTime(), 1111l)).build();
+            return MessageBuilder.withPayload(new Notification(1L, "Notification at: " + new Date().getTime(), 1111l, new Date())).build();
         };
     }
 

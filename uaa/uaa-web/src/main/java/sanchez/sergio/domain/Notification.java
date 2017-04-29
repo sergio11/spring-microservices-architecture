@@ -16,6 +16,13 @@ public class Notification implements Serializable {
 
     public Notification() {}
     
+    public Notification(Long id, String payload, Long userId, Date createAt) {
+        this.id = id;
+        this.payload = payload;
+        this.userId = userId;
+        this.createAt = createAt;
+    }
+    
     public Notification(String payload, Long userId) {
         this.payload = payload;
         this.userId = userId;

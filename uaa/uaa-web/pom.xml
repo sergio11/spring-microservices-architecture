@@ -69,12 +69,6 @@
             <artifactId>spring-boot-starter-data-events</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <!-- Hemos utilizado las librerías de Springfox ya que integra muy bien Swagger con Spring MVC -->
-        <dependency>  
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>${springfox.version}</version>
-        </dependency>  
         <dependency>  
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
@@ -128,6 +122,11 @@
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
             <version>1.9.3</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>spring-boot-starter-commons</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
     <dependencyManagement>
