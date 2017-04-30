@@ -1,4 +1,4 @@
-package sanchez.sergio.delegates;
+package sanchez.sergio.handlers;
 
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.support.AmqpHeaders;
@@ -14,15 +14,14 @@ import org.slf4j.LoggerFactory;
 /**
  * @author sergio
  */
-@Component("alternateDelegate")
-public class AlternateDelegate implements INotificationDelegate {
+@Component("alternateHandler")
+public class AlternateHandler {
     
-    private static Logger logger = LoggerFactory.getLogger(AlternateDelegate.class);
+    private static Logger logger = LoggerFactory.getLogger(AlternateHandler.class);
     
     @Autowired
     private NotificationRepository notificationRepository;
    
-    @Override
     @RabbitListener(queues="#{rabbitCustomProperties.alternateExchange.queue}")
     public void handleMessage(
             @Payload Notification notification, 

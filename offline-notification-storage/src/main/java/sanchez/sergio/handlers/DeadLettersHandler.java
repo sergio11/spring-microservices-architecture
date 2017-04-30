@@ -1,4 +1,4 @@
-package sanchez.sergio.delegates;
+package sanchez.sergio.handlers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -8,13 +8,12 @@ import sanchez.sergio.persistence.repositories.NotificationRepository;
 /**
  * @author sergio
  */
-@Component("deadLettersDelegate")
-public class DeadLettersDelegate implements INotificationDelegate {
+@Component("deadLettersHandler")
+public class DeadLettersHandler {
     
     @Autowired
     private NotificationRepository notificationRepository;
 
-    @Override
     public void handleMessage(Notification notification, String receivedRoutingKey) {
         notificationRepository.save(notification);
     }

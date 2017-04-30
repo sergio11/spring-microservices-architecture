@@ -1,10 +1,13 @@
 package sanchez.sergio.config;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.amqp.core.AmqpAdmin;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.FanoutExchange;
+import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.amqp.rabbit.annotation.RabbitListenerConfigurer;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
@@ -14,7 +17,6 @@ import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.listener.RabbitListenerEndpointRegistrar;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,21 +35,13 @@ public class RabbitMQConfig implements RabbitListenerConfigurer {
     
     @Autowired
     private RabbitCustomProperties rabbitCustomProperties;
-
-    @Bean
-    @Qualifier("alternateQueue")
-    Queue alternateQueue() {
-        return new Queue(rabbitCustomProperties.getAlternateExchange().getQueue(), true);
-    }
+    
+    /**
+     * Exchanges
+     * =====================
+     */
     
     @Bean
-    @Qualifier("deadLettersQueue")
-    Queue deadLettersQueue() {
-        return new Queue(rabbitCustomProperties.getDeadlettersExchange().getQueue(), true);
-    }
-    
-    @Bean
-    @Qualifier("alternateExchange")
     FanoutExchange alternateExchange() {
         FanoutExchange fanoutExchange = new FanoutExchange(rabbitCustomProperties.getAlternateExchange().getName());
         fanoutExchange.setInternal(true);
@@ -55,7 +49,6 @@ public class RabbitMQConfig implements RabbitListenerConfigurer {
     }
     
     @Bean
-    @Qualifier("deadLettersExchange")
     FanoutExchange deadLettersExchange() {
         FanoutExchange fanoutExchange = new FanoutExchange(rabbitCustomProperties.getDeadlettersExchange().getName());
         fanoutExchange.setInternal(true);
@@ -63,13 +56,59 @@ public class RabbitMQConfig implements RabbitListenerConfigurer {
     }
     
     @Bean
-    Binding alternateBinding(@Qualifier("alternateQueue") Queue queue, @Qualifier("alternateExchange") FanoutExchange alternateExchange) {
-        return BindingBuilder.bind(queue).to(alternateExchange);
+    TopicExchange adminExchange() {
+        TopicExchange adminExchange = new TopicExchange(rabbitCustomProperties.getAdminExchange().getName());
+        return adminExchange;
+    }
+    
+    /**
+     * Queues
+     * ========================
+     */
+
+    @Bean
+    Queue alternateQueue() {
+        return new Queue(rabbitCustomProperties.getAlternateExchange().getQueue(), true);
     }
     
     @Bean
-    Binding deadLettersBinding(@Qualifier("deadLettersQueue") Queue queue, @Qualifier("deadLettersExchange") FanoutExchange deadLettersExchange) {
-        return BindingBuilder.bind(queue).to(deadLettersExchange);
+    Queue deadLettersQueue() {
+        return new Queue(rabbitCustomProperties.getDeadlettersExchange().getQueue(), true);
+    }
+    
+    @Bean
+    public List<Queue> adminQueues() {
+        return rabbitCustomProperties.getAdminExchange().getQueues().entrySet().stream()
+                .map(e -> e.getValue())
+                .map(queueAdmin -> new Queue(queueAdmin.getName(), true))
+                .collect(Collectors.toList());
+    }
+    
+    /**
+     * Bindings
+     * ========================
+     */
+    
+    @Bean
+    Binding alternateBinding() {
+        return BindingBuilder.bind(alternateQueue()).to(alternateExchange());
+    }
+    
+    @Bean
+    Binding deadLettersBinding() {
+        return BindingBuilder.bind(deadLettersQueue()).to(deadLettersExchange());
+    }
+    
+    @Bean
+    List<Binding> adminBinding() {
+        return rabbitCustomProperties.getAdminExchange().getQueues().entrySet().stream()
+                .map(e -> e.getValue())
+                .map(queueAdmin -> BindingBuilder
+                .bind(new Queue(queueAdmin.getName(), true))
+                .to(adminExchange())
+                .with(queueAdmin.getRoutingKey())
+                )
+                .collect(Collectors.toList());
     }
     
     @Bean
@@ -85,7 +124,6 @@ public class RabbitMQConfig implements RabbitListenerConfigurer {
         return new RabbitAdmin(connectionFactory());
     }
    
-
     @Bean
     public RabbitTemplate rabbitTemplate() {
         RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory());
