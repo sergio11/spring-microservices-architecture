@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import sanchez.sergio.domain.UserHolder;
 import sanchez.sergio.messages.admin.UsersManadgementMessage;
 import sanchez.sergio.messages.admin.UsersManadgementMessageType.UsersManadgementVisitor;
 
@@ -34,7 +35,9 @@ public class AdminHandler implements UsersManadgementVisitor {
     @Override
     public void visitUserConnected(Long idUser) {
         logger.info("Declare new queue for user: " + idUser );
-        UsersHandler userHandler = appCtx.getBean(UsersHandler.class, idUser);
+        UserHolder.setUser(idUser);
+        UsersHandler userHandler = appCtx.getBean(UsersHandler.class);
+        UserHolder.clearUser();
         handlers.put(idUser, userHandler);
     }
 

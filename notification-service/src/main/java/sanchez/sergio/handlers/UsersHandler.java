@@ -23,24 +23,10 @@ public class UsersHandler {
     
     private static Logger logger = LoggerFactory.getLogger(UsersHandler.class);
     
-    private Long userId;
-
-    public UsersHandler(Long userId) {
-        this.userId = userId;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-    
     @RabbitListener(bindings
             = @QueueBinding(
                     value = @Queue(
-                            value = "#{'queue_'.concat(usersHandler.userId)}",
+                            value = "#{'queue_' + @userHolder.user}",
                             durable = "false",
                             autoDelete = "true",
                             arguments = {
@@ -76,7 +62,7 @@ public class UsersHandler {
                                 )
                             }
                     ),
-                    key = "#{'user_'.concat(usersHandler.userId)}")
+                    key = "#{'user_' + @userHolder.user}")
     )
     public void handleMessage(@Payload Notification notification) {
         logger.info("Notification Received : " + notification);
