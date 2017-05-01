@@ -34,11 +34,13 @@ public class AdminHandler implements UsersManadgementVisitor {
 
     @Override
     public void visitUserConnected(Long idUser) {
-        logger.info("Declare new queue for user: " + idUser );
-        UserHolder.setUser(idUser);
-        UsersHandler userHandler = appCtx.getBean(UsersHandler.class);
-        UserHolder.clearUser();
-        handlers.put(idUser, userHandler);
+        if (!handlers.containsKey(idUser)) {
+            logger.info("Declare new queue for user: " + idUser);
+            UserHolder.setUser(idUser);
+            UsersHandler userHandler = appCtx.getBean(UsersHandler.class);
+            UserHolder.clearUser();
+            handlers.put(idUser, userHandler);
+        }
     }
 
     @Override
