@@ -8,7 +8,7 @@
     <name>microservices-architecture/api-gateway</name>
     <description>The api-gateway application acts the router and authentication and authorization endpoint. </description>
 
-	<parent>
+    <parent>
         <groupId>org.sanchez.sergio</groupId>
         <artifactId>microservices-architecture</artifactId>
         <version>1.0.0-SNAPSHOT</version>

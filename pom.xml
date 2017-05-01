@@ -35,6 +35,7 @@
         <module>uaa</module>
         <module>data-flow-server</module>
         <module>data-flow-shell</module>
+        <module>notification-service</module>
     </modules>
 
     <dependencies>

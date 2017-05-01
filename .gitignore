@@ -12,3 +12,5 @@
 hs_err_pid*
 /spring-boot-starters/spring-boot-stater-h2-dev/target/
 /spring-boot-starters/spring-boot-starter-metrics/target/
+/spring-boot-starters/notifications-core/target/
+/spring-boot-starters/spring-boot-starter-commons/target/
