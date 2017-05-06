@@ -2,7 +2,7 @@ package sanchez.sergio.handlers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import sanchez.sergio.domain.Notification;
+import sanchez.sergio.persistence.entities.Notification;
 import sanchez.sergio.persistence.repositories.NotificationRepository;
 
 /**

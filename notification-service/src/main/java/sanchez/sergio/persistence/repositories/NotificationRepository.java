@@ -2,7 +2,7 @@ package sanchez.sergio.persistence.repositories;
 
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
-import sanchez.sergio.domain.Notification;
+import sanchez.sergio.persistence.entities.Notification;
 
 /**
  * @author sergio

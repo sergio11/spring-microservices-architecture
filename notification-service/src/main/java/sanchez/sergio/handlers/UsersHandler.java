@@ -11,7 +11,7 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.context.annotation.Scope;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
-import sanchez.sergio.domain.Notification;
+import sanchez.sergio.persistence.entities.Notification;
 
 /**
  *

@@ -15,6 +15,7 @@
         The initial schema has the '00000000000001' id, so that it is over-written if we re-generate it.
     -->
     <changeSet id="00000000000001" author="sergio11">
+        
         <createTable tableName="NOTIFICATIONS">
             <!-- Notification Id -->
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
@@ -31,5 +32,83 @@
             <!-- Notification timestamp -->
             <column name="create_at" type="date" />
         </createTable>
+        
+        <createTable tableName="DEVICE_GROUPS">
+            <!-- Device Group Id -->
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <!-- Device Group Name -->
+            <column name="notification_key_name" type="varchar(120)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <!-- Device Group Notification Key -->
+            <column name="notification_key" type="varchar(120)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <!-- Device Group Owner -->
+            <column name="user_id" type="bigint">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <!-- Device Group createAt -->
+            <column name="create_at" type="date" />
+        </createTable>
+        
+        <!-- Device Group Name Idx -->
+        <createIndex indexName="idx_notification_key_name"
+            tableName="DEVICE_GROUPS"
+            unique="true">
+            <column name="notification_key_name" type="varchar(120)"/>
+        </createIndex>
+        
+        <!-- Device Group Notification Key Idx -->
+        <createIndex indexName="idx_notification_key"
+            tableName="DEVICE_GROUPS"
+            unique="true">
+            <column name="notification_key" type="varchar(120)"/>
+        </createIndex>
+        
+        <!-- User Id Idx -->
+        <createIndex indexName="idx_user_id"
+            tableName="DEVICE_GROUPS"
+            unique="true">
+            <column name="user_id" />
+        </createIndex>
+        
+        <createTable tableName="DEVICES">
+            <!-- Device Id -->
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <!-- Registration Token Device -->
+            <column name="registration_token" type="varchar(120)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <!-- Device Type -->
+            <column name="device_type" type="varchar(10)">
+                 <constraints unique="false" nullable="false"/>
+            </column>
+            <!-- Device createAt -->
+            <column name="create_at" type="date" />
+            <!-- Device Group Id -->
+            <column name="device_group_id" type="bigint">
+                <constraints unique="false" nullable="false"/>
+            </column>
+        </createTable>
+        
+        <!-- Registration Token Idx -->
+        <createIndex indexName="idx_registration_token"
+            tableName="DEVICES"
+            unique="true">
+            <column name="registration_token" type="varchar(120)"/>
+        </createIndex>
+        
+        <!-- Device Group Foreign Key -->
+        <addForeignKeyConstraint 
+            baseColumnNames="device_group_id"
+            baseTableName="DEVICES"
+            constraintName="fk_device_group"
+            referencedColumnNames="id"
+            referencedTableName="DEVICE_GROUPS" />
     </changeSet>
 </databaseChangeLog>
