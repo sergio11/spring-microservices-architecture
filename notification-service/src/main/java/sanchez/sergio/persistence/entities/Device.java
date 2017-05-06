@@ -65,8 +65,9 @@ public class Device implements Serializable {
         return deviceGroup;
     }
 
-    public void setDeviceGroup(DeviceGroup deviceGroup) {
+    public Device setDeviceGroup(DeviceGroup deviceGroup) {
         this.deviceGroup = deviceGroup;
+        return this;
     }
 
     public Date getCreateAt() {

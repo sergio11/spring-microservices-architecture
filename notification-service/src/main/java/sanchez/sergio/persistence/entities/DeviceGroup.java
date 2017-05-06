@@ -1,9 +1,10 @@
 package sanchez.sergio.persistence.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -38,8 +39,24 @@ public class DeviceGroup implements Serializable {
     private Date createAt = new Date();
     
     @OneToMany(mappedBy = "deviceGroup", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Device> devices = new ArrayList();
+    private Set<Device> devices = new HashSet();
+    
+    public DeviceGroup(){}
 
+    public DeviceGroup(String notificationKeyName, String notificationKey, Long userId) {
+        this.notificationKeyName = notificationKeyName;
+        this.notificationKey = notificationKey;
+        this.userId = userId;
+    }
+    
+    
+    public DeviceGroup(String notificationKeyName, String notificationKey, Long userId, Set<Device> devices) {
+        this.notificationKeyName = notificationKeyName;
+        this.notificationKey = notificationKey;
+        this.userId = userId;
+        this.setDevices(devices);
+    }
+    
     public Long getId() {
         return id;
     }
@@ -80,12 +97,15 @@ public class DeviceGroup implements Serializable {
         this.createAt = createAt;
     }
 
-    public List<Device> getDevices() {
+    public Set<Device> getDevices() {
         return devices;
     }
 
-    public void setDevices(List<Device> devices) {
-        this.devices = devices;
+    public void setDevices(Set<Device> devices) {
+        this.devices.addAll(devices.stream()
+                .filter(device -> !this.devices.contains(device))
+                .map(device -> device.setDeviceGroup(this))
+                .collect(Collectors.toSet()));
     }
 
     @Override
