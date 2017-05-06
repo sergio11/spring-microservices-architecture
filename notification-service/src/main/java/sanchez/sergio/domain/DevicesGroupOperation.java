@@ -19,13 +19,17 @@ public class DevicesGroupOperation implements Serializable {
     private String groupKey;
     @JsonProperty("registration_ids")
     private List<String> deviceTokens = new ArrayList<String>();
+
+    public DevicesGroupOperation(String groupName) {
+        this.operation = DevicesGroupOperationType.CREATE;
+        this.groupName = groupName;
+    }
     
     public DevicesGroupOperation(String groupName, List<String> deviceTokens) {
         this.operation = DevicesGroupOperationType.CREATE;
-        this.groupName = groupName;
         this.deviceTokens = deviceTokens;
     }
-
+    
     public DevicesGroupOperation(DevicesGroupOperationType operation, String groupName, String groupKey, List<String> deviceTokens) {
         this.operation = operation;
         this.groupName = groupName;

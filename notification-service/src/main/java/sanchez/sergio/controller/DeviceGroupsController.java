@@ -51,4 +51,5 @@ public class DeviceGroupsController {
                             .map(e -> new ResponseEntity<>(e, HttpStatus.OK))
                             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND))).get();
     }
+    
 }
