@@ -1,4 +1,4 @@
-package sanchez.sergio.domain;
+package sanchez.sergio.persistence.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import sanchez.sergio.domain.Aggregate;
 import sanchez.sergio.event.Event;
 
 /**
@@ -33,11 +34,11 @@ public abstract class AbstractEntity<E extends Event, T extends Serializable> ex
     protected T identity;
 
     @CreatedDate
-    @Column(name="createdAt")
+    @Column(name="created_at")
     private Long createdAt;
 
     @LastModifiedDate
-    @Column(name="lastModified")
+    @Column(name="last_modified")
     private Long lastModified;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

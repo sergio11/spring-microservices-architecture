@@ -27,10 +27,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import sanchez.sergio.domain.User;
+import sanchez.sergio.persistence.entities.User;
 import sanchez.sergio.domain.Users;
 import sanchez.sergio.event.EventService;
-import sanchez.sergio.events.AccountEvent;
+import sanchez.sergio.persistence.entities.AccountEvent;
 import sanchez.sergio.service.UserService;
 
 /**
@@ -192,7 +192,7 @@ public class UserController {
                         .slash("accounts")
                         .slash(accountId)
                         .slash("events")
-                        .slash(event.getEventId())
+                        .slash(event.getId())
                         .withSelfRel(),
                 linkTo(UserController.class)
                         .slash("accounts")

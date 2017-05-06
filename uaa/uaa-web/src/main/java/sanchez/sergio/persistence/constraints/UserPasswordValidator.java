@@ -5,7 +5,7 @@
  */
 package sanchez.sergio.persistence.constraints;
 
-import sanchez.sergio.domain.User;
+import sanchez.sergio.persistence.entities.User;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;

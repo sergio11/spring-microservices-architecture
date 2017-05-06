@@ -26,7 +26,7 @@ public class ErrorController {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .headers(textPlainHeaders)
-                .body("Username alredy exists");
+                .body(exception.getUser().getUsername() + " alredy exists");
                 
     }
     
@@ -37,7 +37,7 @@ public class ErrorController {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .headers(textPlainHeaders)
-                .body("email alredy exists");
+                .body("User with email " + exception.getUser().getEmail() + " alredy exists");
                 
     }
     

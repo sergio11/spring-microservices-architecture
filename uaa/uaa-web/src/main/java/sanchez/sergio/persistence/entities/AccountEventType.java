@@ -1,4 +1,4 @@
-package sanchez.sergio.events;
+package sanchez.sergio.persistence.entities;
 
 /**
  * The {@link AccountEventType} represents a collection of possible events that describe

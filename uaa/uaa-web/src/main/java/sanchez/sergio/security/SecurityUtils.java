@@ -4,7 +4,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import sanchez.sergio.domain.AuthorityEnum;
+import sanchez.sergio.persistence.entities.AuthorityEnum;
 
 /**
  * Utility class for Spring Security.

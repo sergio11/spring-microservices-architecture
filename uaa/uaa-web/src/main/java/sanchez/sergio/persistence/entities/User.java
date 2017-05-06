@@ -1,6 +1,6 @@
-package sanchez.sergio.domain;
+package sanchez.sergio.persistence.entities;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import sanchez.sergio.persistence.entities.AbstractEntity;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,9 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -28,9 +25,11 @@ import sanchez.sergio.action.ArchiveAccount;
 import sanchez.sergio.action.ConfirmAccount;
 import sanchez.sergio.action.SuspendAccount;
 import sanchez.sergio.controller.UserController;
-import sanchez.sergio.domain.User.UserChangePassword;
-import sanchez.sergio.domain.User.UserCreation;
-import sanchez.sergio.events.AccountEvent;
+import sanchez.sergio.domain.Aggregate;
+import sanchez.sergio.domain.Command;
+import sanchez.sergio.domain.Module;
+import sanchez.sergio.persistence.entities.User.UserChangePassword;
+import sanchez.sergio.persistence.entities.User.UserCreation;
 import sanchez.sergio.persistence.constraints.FieldMatch;
 import sanchez.sergio.persistence.constraints.FieldNotMatch;
 import sanchez.sergio.persistence.constraints.UserCurrentPassword;
@@ -85,7 +84,7 @@ public class User extends AbstractEntity<AccountEvent, Long> {
     @Column(length = 60)
     private String password;
 
-    @Column(nullable = true)
+    @Column(name="last_login_access", nullable = true)
     private Date lastLoginAccess;
 
     @NotNull(message = "{user.enabled.notnull}", groups = {UserStatusUpdate.class})
@@ -99,9 +98,9 @@ public class User extends AbstractEntity<AccountEvent, Long> {
     )
     private Set<Authority> authorities = new HashSet();
     
-    @Column(name="firstName", unique = false, nullable = false, length = 30)
+    @Column(name="first_name", unique = false, nullable = false, length = 30)
     private String firstName;
-    @Column(name="lastName", unique = false, nullable = false, length = 30)
+    @Column(name="last_name", unique = false, nullable = false, length = 30)
     private String lastName;
     @Column(unique = true, nullable = false, length = 90)
     private String email;
@@ -270,13 +269,6 @@ public class User extends AbstractEntity<AccountEvent, Long> {
 
     @Override
     public String toString() {
-        return "Account{"
-                + "id=" + identity
-                + ", firstName='" + firstName + '\''
-                + ", lastName='" + lastName + '\''
-                + ", email='" + email + '\''
-                + ", status=" + status
-                + "} " + super.toString();
+        return "User{" + "username=" + username + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", status=" + status + '}';
     }
-
 }

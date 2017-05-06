@@ -1,7 +1,7 @@
 package sanchez.sergio.persistence.repositories;
 
-import sanchez.sergio.domain.Authority;
-import sanchez.sergio.domain.AuthorityEnum;
+import sanchez.sergio.persistence.entities.Authority;
+import sanchez.sergio.persistence.entities.AuthorityEnum;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

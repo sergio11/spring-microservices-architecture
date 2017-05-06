@@ -1,4 +1,4 @@
-package sanchez.sergio.events;
+package sanchez.sergio.persistence.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.CreatedDate;
@@ -10,7 +10,7 @@ import javax.persistence.*;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import sanchez.sergio.controller.UserController;
-import sanchez.sergio.domain.User;
+import sanchez.sergio.persistence.entities.User;
 import sanchez.sergio.event.Event;
 
 /**
@@ -21,28 +21,31 @@ import sanchez.sergio.event.Event;
  */
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-@Table(indexes = { @Index(name = "IDX_ACCOUNT_EVENT", columnList = "entity_identity") })
+@Table(name = "USERS_EVENTS")
 public class AccountEvent extends Event<User, AccountEventType, Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="events_id")
     private Long eventId;
-
+   
     @Enumerated(EnumType.STRING)
     private AccountEventType type;
 
     @OneToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    @JoinColumn(name="user_identity")
     @JsonIgnore
     private User entity;
 
     @CreatedDate
+    @Column(name="created_at")
     private Long createdAt;
 
     @LastModifiedDate
+    @Column(name="last_modified")
     private Long lastModified;
 
-    public AccountEvent() {
-    }
+    public AccountEvent() {}
 
     public AccountEvent(AccountEventType type) {
         this.type = type;
@@ -52,6 +55,8 @@ public class AccountEvent extends Event<User, AccountEventType, Long> {
         this.type = type;
         this.entity = entity;
     }
+    
+    
 
     @Override
     public Long getEventId() {
@@ -59,10 +64,10 @@ public class AccountEvent extends Event<User, AccountEventType, Long> {
     }
 
     @Override
-    public void setEventId(Long id) {
-        eventId = id;
+    public void setEventId(Long eventId) {
+        this.eventId = eventId;
     }
-
+    
     @Override
     public AccountEventType getType() {
         return type;
@@ -106,13 +111,13 @@ public class AccountEvent extends Event<User, AccountEventType, Long> {
     @Override
     public Link getId() {
         return linkTo(UserController.class).slash("accounts").slash(getEntity().getIdentity()).slash("events")
-                .slash(getEventId()).withSelfRel();
+                .slash(getId()).withSelfRel();
     }
     
     @Override
     public String toString() {
         return "AccountEvent{" +
-                "eventId=" + eventId +
+                "id=" + eventId +
                 ", type=" + type +
                 ", entity=" + entity +
                 ", createdAt=" + createdAt +

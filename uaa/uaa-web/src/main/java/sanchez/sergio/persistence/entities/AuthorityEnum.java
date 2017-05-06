@@ -1,4 +1,4 @@
-package sanchez.sergio.domain;
+package sanchez.sergio.persistence.entities;
 
 /**
  *

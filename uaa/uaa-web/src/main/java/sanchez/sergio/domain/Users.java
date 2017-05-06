@@ -1,5 +1,6 @@
 package sanchez.sergio.domain;
 
+import sanchez.sergio.persistence.entities.User;
 import org.springframework.data.domain.Page;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.Resources;

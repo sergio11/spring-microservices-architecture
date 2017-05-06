@@ -1,9 +1,9 @@
 package sanchez.sergio.service;
 
-import sanchez.sergio.domain.User;
+import sanchez.sergio.persistence.entities.User;
 import sanchez.sergio.domain.Module;
 import sanchez.sergio.event.EventService;
-import sanchez.sergio.events.AccountEvent;
+import sanchez.sergio.persistence.entities.AccountEvent;
 
 /**
  * @author sergio

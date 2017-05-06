@@ -1,5 +1,6 @@
-package sanchez.sergio.domain;
+package sanchez.sergio.persistence.entities;
 
+import sanchez.sergio.persistence.entities.User;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;

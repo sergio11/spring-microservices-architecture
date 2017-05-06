@@ -6,12 +6,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.util.Assert;
-import sanchez.sergio.domain.User;
+import sanchez.sergio.persistence.entities.User;
 import sanchez.sergio.domain.Service;
 import java.util.List;
-import sanchez.sergio.domain.AccountStatus;
-import sanchez.sergio.events.AccountEvent;
-import sanchez.sergio.events.AccountEventType;
+import sanchez.sergio.persistence.entities.AccountStatus;
+import sanchez.sergio.persistence.entities.AccountEvent;
+import sanchez.sergio.persistence.entities.AccountEventType;
 import sanchez.sergio.exceptions.EmailAlredyExistsException;
 import sanchez.sergio.exceptions.UsernameAlredyExistsException;
 import sanchez.sergio.persistence.repositories.UserRepository;
@@ -38,20 +38,16 @@ public class UserService extends Service<User, Long> {
      * @throws IllegalStateException if the event flow fails
      */
     public User registerAccount(final User account) throws IllegalStateException {
-         // Assert for uniqueness constraint
-        Assert.isNull(userRepository.findAccountByEmail(account.getEmail()),
-                "An account with the supplied email already exists");
-
         // Save the account to the repository
-        return (User) userRepository.findAccountByEmail(account.getEmail().toLowerCase())
-                .map(user -> { throw new UsernameAlredyExistsException(); })
+        return (User) userRepository.findByUsername(account.getUsername().toLowerCase())
+                .map(user -> { throw new UsernameAlredyExistsException(user); })
                 .orElseGet(() -> userRepository.findAccountByEmail(account.getEmail())
-                        .map(user -> { throw new EmailAlredyExistsException(); })
+                        .map(user -> { throw new EmailAlredyExistsException(user); })
                         .orElseGet(() -> {
                             User accountSaved = create(account);
                             try {
                                 // Handle a synchronous event flow
-                                account.sendAsyncEvent(new AccountEvent(AccountEventType.ACCOUNT_CREATED, accountSaved));
+                                //account.sendAsyncEvent(new AccountEvent(AccountEventType.ACCOUNT_CREATED, accountSaved));
                             } catch (Exception ex) {
                                 log.error("Account registration failed", ex);
                                 // Rollback the account creation
@@ -70,11 +66,6 @@ public class UserService extends Service<User, Long> {
      * @return the newly created {@link User}
      */
     public User create(User user) {
-
-        // Assert for uniqueness constraint
-        Assert.isNull(userRepository.findAccountByEmail(user.getEmail()),
-                "An User with the supplied email already exists");
-
         // Save the account to the repository
         user = userRepository.saveAndFlush(user);
 

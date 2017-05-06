@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
 import java.util.stream.Collectors;
-import sanchez.sergio.domain.User;
+import sanchez.sergio.persistence.entities.User;
 import sanchez.sergio.exceptions.UserNotActivatedException;
 import sanchez.sergio.persistence.repositories.UserRepository;
 
