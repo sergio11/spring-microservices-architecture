@@ -37,14 +37,14 @@ public class OAuthConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 //Allow access to all static resources without authentication
-                .antMatchers("/", "/**/*.html").permitAll()
+                .antMatchers("/uaa/**", "/**/*.html").permitAll()
                 .anyRequest().authenticated()
-                .antMatchers(HttpMethod.GET, "/api/accounts/**").access("#oauth2.hasScope('read')")
-                .antMatchers(HttpMethod.OPTIONS, "/api/accounts/**").access("#oauth2.hasScope('read')")
-                .antMatchers(HttpMethod.POST, "/api/accounts/**").access("#oauth2.hasScope('write')")
-                .antMatchers(HttpMethod.PUT, "/api/accounts/**").access("#oauth2.hasScope('write')")
-                .antMatchers(HttpMethod.PATCH, "/api/accounts/**").access("#oauth2.hasScope('write')")
-                .antMatchers(HttpMethod.DELETE, "/api/accounts/**").access("#oauth2.hasScope('write')")
+                .antMatchers(HttpMethod.GET, "/accounts/**").access("#oauth2.hasScope('read')")
+                .antMatchers(HttpMethod.OPTIONS, "/accounts/**").access("#oauth2.hasScope('read')")
+                .antMatchers(HttpMethod.POST, "/accounts/**").access("#oauth2.hasScope('write')")
+                .antMatchers(HttpMethod.PUT, "/accounts/**").access("#oauth2.hasScope('write')")
+                .antMatchers(HttpMethod.PATCH, "/accounts/**").access("#oauth2.hasScope('write')")
+                .antMatchers(HttpMethod.DELETE, "/accounts/**").access("#oauth2.hasScope('write')")
                 .and().csrf().csrfTokenRepository(provideCSRFTokenRepository())
                 .and().addFilterAfter(createCSRFHeaderFilter(), CsrfFilter.class);
     }

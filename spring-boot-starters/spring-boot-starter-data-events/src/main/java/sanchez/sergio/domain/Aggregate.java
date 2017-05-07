@@ -105,7 +105,7 @@ public abstract class Aggregate<E extends Event, ID extends Serializable> extend
     @SuppressWarnings("unchecked")
     public E appendEvent(E event) {
         event.setEntity(this);
-        getEventService().save(event);
+        //getEventService().save(event);
         getEvents().add(event);
         getEntityService().update(this);
         return event;

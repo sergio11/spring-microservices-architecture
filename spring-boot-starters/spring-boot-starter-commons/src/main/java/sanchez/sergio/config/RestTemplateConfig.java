@@ -45,5 +45,5 @@ public class RestTemplateConfig extends WebMvcConfigurerAdapter {
         restTemplate.setInterceptors(interceptors);
         return restTemplate;
     }
-    
+   
 }
