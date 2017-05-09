@@ -38,7 +38,7 @@ import sanchez.sergio.service.UserService;
  */
 @Api
 @RestController
-@RequestMapping("/v1")
+@RequestMapping("/api/v1/")
 public class UserController {
 
     private final UserService accountService;

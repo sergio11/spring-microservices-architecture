@@ -1,2 +1,3 @@
 identity;username;password;enabled;first_name;last_name;email;status
 1;sergio11;$2a$10$0eCQpFRdw8i6jJzjj/IuNuKpJYnLaO5Yp9xSJ3itcfPmQNXVhmNyu;true;Sergio;Sánchez Sánchez;sss4esob@gmail.com;ACCOUNT_ACTIVE
+2;marcos22;$2a$10$0eCQpFRdw8i6jJzjj/IuNuKpJYnLaO5Yp9xSJ3itcfPmQNXVhmNyu;true;Marcos;Martín Pérez;marcos22@gmail.com;ACCOUNT_ACTIVE

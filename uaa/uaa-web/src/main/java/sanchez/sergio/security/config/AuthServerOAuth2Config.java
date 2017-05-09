@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -25,6 +24,7 @@ import sanchez.sergio.security.CustomTokenEnhancer;
 import sanchez.sergio.service.DomainUserDetailsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 
 /**
  *
@@ -53,9 +53,6 @@ public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter
     @Qualifier("tokenStore")
     private TokenStore tokenStore;
     
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-    
     /**
      * Supplies an AccessTokenConverter implementation to be used by this endpoint
      * @return an access token converter configured with the authorization server's public/private keys
@@ -83,6 +80,11 @@ public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter
                 .authenticationManager(authenticationManager)
                 .userDetailsService(userDetailsService);
     }
+    
+    @Override
+    public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
+        oauthServer.allowFormAuthenticationForClients();
+    }
 
     @Bean
     public TokenEnhancer tokenEnhancer() {
@@ -92,12 +94,11 @@ public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.jdbc(dataSource)
-                .passwordEncoder(passwordEncoder)
                 .withClient("client")
                 .authorizedGrantTypes("authorization_code", "client_credentials",
                         "refresh_token", "password", "implicit")
                 .authorities("ROLE_CLIENT")
-                .resourceIds("apis")
+                .resourceIds("account")
                 .scopes("read")
                 .secret("secret")
                 .accessTokenValiditySeconds(300);
