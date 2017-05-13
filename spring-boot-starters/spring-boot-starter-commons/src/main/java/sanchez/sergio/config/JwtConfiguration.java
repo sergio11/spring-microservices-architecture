@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.security.oauth2.provider.token.TokenStore;
@@ -17,6 +19,7 @@ import org.springframework.util.FileCopyUtils;
  * @author sergio
  */
 @Configuration
+@Order(Ordered.HIGHEST_PRECEDENCE)
 public class JwtConfiguration {
     
     @Autowired
