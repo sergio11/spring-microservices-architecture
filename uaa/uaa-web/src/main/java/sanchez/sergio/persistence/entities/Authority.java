@@ -15,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import org.springframework.security.core.GrantedAuthority;
 
 /**
  *
@@ -22,7 +23,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "AUTHORITIES")
-public class Authority implements Serializable {
+public class Authority implements GrantedAuthority, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -79,6 +80,11 @@ public class Authority implements Serializable {
             this.users.add(user);
             user.addAuthority(this);
         }
+    }
+    
+    @Override
+    public String getAuthority() {
+        return type.name();
     }
 
     @Override

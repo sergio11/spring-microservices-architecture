@@ -4,8 +4,11 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import java.lang.reflect.Method;
+import java.security.Principal;
 import java.util.Optional;
 import javax.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.hateoas.Link;
@@ -18,6 +21,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +35,7 @@ import sanchez.sergio.persistence.entities.User;
 import sanchez.sergio.domain.Users;
 import sanchez.sergio.event.EventService;
 import sanchez.sergio.persistence.entities.AccountEvent;
+import sanchez.sergio.security.CommonUserDetailsAware;
 import sanchez.sergio.service.UserService;
 
 /**
@@ -40,6 +45,8 @@ import sanchez.sergio.service.UserService;
 @RestController
 @RequestMapping("/api/v1/")
 public class UserController {
+    
+    private static Logger logger = LoggerFactory.getLogger(UserController.class);
 
     private final UserService accountService;
     private final EventService<AccountEvent, Long> eventService;
@@ -51,7 +58,11 @@ public class UserController {
     
     @GetMapping(path = "/accounts")
     @ApiOperation(value = "getAccounts", nickname = "getAccounts", notes="Get accounts resources", response = ResponseEntity.class)
-    public ResponseEntity getAccounts(@ApiParam(value = "pageRequest", required = false) @RequestBody(required = false) PageRequest pageRequest) {
+    public ResponseEntity getAccounts(
+            @ApiParam(value = "pageRequest", required = false) @RequestBody(required = false) PageRequest pageRequest,
+            @AuthenticationPrincipal CommonUserDetailsAware<Long> principal) {
+        if(principal != null)
+            logger.info("Principal FirstName: " + principal.getFirstName());
         return new ResponseEntity<>(getAccountsResource(pageRequest), HttpStatus.OK);
     }
     

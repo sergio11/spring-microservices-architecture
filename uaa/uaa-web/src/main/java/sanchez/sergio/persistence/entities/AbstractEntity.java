@@ -47,6 +47,12 @@ public abstract class AbstractEntity<E extends Event, T extends Serializable> ex
     public AbstractEntity() {
     }
 
+    public AbstractEntity(T identity) {
+        this.identity = identity;
+    }
+    
+    
+
     public Long getCreatedAt() {
         return createdAt;
     }

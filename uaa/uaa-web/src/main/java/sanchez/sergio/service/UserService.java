@@ -10,8 +10,6 @@ import sanchez.sergio.persistence.entities.User;
 import sanchez.sergio.domain.Service;
 import java.util.List;
 import sanchez.sergio.persistence.entities.AccountStatus;
-import sanchez.sergio.persistence.entities.AccountEvent;
-import sanchez.sergio.persistence.entities.AccountEventType;
 import sanchez.sergio.exceptions.EmailAlredyExistsException;
 import sanchez.sergio.exceptions.UsernameAlredyExistsException;
 import sanchez.sergio.persistence.repositories.UserRepository;

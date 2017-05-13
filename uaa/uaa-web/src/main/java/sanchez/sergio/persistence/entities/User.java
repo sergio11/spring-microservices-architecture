@@ -43,7 +43,8 @@ import sanchez.sergio.service.UserModule;
 @Table(name = "USERS")
 @FieldMatch(first = "passwordClear", second = "confirmPassword", message = "{user.pass.not.match}", groups = {UserCreation.class, UserChangePassword.class})
 @FieldNotMatch(first = "currentClearPassword", second = "passwordClear", message = "{user.current.pass.not.match}", groups = {UserChangePassword.class})
-public class User extends AbstractEntity<AccountEvent, Long> {
+public class User extends AbstractEntity<AccountEvent, Long>  {
+
 
     /* Marker interface for grouping validations to be applied at the time of creating a (new) user. */
     public interface UserCreation {
@@ -88,7 +89,7 @@ public class User extends AbstractEntity<AccountEvent, Long> {
     private Date lastLoginAccess;
 
     @NotNull(message = "{user.enabled.notnull}", groups = {UserStatusUpdate.class})
-    private Boolean enabled = true;
+    protected Boolean enabled = true;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
     @JoinTable(
@@ -119,6 +120,13 @@ public class User extends AbstractEntity<AccountEvent, Long> {
         this.email = email;
     }
 
+    public User(String username, String firstName, String lastName, Long identity, Set<Authority> grantedAuthorities) {
+        super(identity);
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.authorities = grantedAuthorities;
+    }
     public String getUsername() {
         return username;
     }

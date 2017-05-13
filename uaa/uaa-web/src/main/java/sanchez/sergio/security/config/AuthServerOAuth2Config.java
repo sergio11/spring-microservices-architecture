@@ -31,8 +31,8 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
  * @author sergio
  */
 @Configuration
-@Import({ JwtConfiguration.class })
 @EnableAuthorizationServer
+@Import({ JwtConfiguration.class })
 public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter {
     
     private final Logger log = LoggerFactory.getLogger(AuthServerOAuth2Config.class);
@@ -99,7 +99,7 @@ public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter
                         "refresh_token", "password", "implicit")
                 .authorities("ROLE_CLIENT")
                 .resourceIds("account")
-                .scopes("read")
+                .scopes("accounts")
                 .secret("secret")
                 .accessTokenValiditySeconds(300);
     }

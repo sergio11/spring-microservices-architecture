@@ -6,39 +6,27 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import sanchez.sergio.exceptions.UsernameAlredyExistsException;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import sanchez.sergio.exceptions.EmailAlredyExistsException;
+import sanchez.sergio.rest.ApiErrorEnum;
+import sanchez.sergio.rest.BaseErrorRestController;
 
 /**
  * @author sergio
  */
 @ControllerAdvice
-public class ErrorController {
+public class ErrorController extends BaseErrorRestController {
     
     private static Logger logger = LoggerFactory.getLogger(ErrorController.class);
     
     @ExceptionHandler(UsernameAlredyExistsException.class)
     public ResponseEntity  usernameAlredyExists(final UsernameAlredyExistsException exception){
-        HttpHeaders textPlainHeaders = new HttpHeaders();
-        textPlainHeaders.setContentType(MediaType.TEXT_PLAIN);
-        return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
-                .headers(textPlainHeaders)
-                .body(exception.getUser().getUsername() + " alredy exists");
-                
+        return createAndSendResponse(HttpStatus.BAD_REQUEST, ApiErrorEnum.BAD_REQUEST, exception.getMessage());
     }
     
     @ExceptionHandler(EmailAlredyExistsException.class)
     public ResponseEntity emailAlredyExists(final EmailAlredyExistsException exception){
-        HttpHeaders textPlainHeaders = new HttpHeaders();
-        textPlainHeaders.setContentType(MediaType.TEXT_PLAIN);
-        return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
-                .headers(textPlainHeaders)
-                .body("User with email " + exception.getUser().getEmail() + " alredy exists");
-                
+        return createAndSendResponse(HttpStatus.BAD_REQUEST, ApiErrorEnum.BAD_REQUEST, exception.getMessage());
     }
     
 }
