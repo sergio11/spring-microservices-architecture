@@ -1,7 +1,6 @@
 package sanchez.sergio.config;
 
 import java.io.IOException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,8 +21,6 @@ import org.springframework.util.FileCopyUtils;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class JwtConfiguration {
     
-    @Autowired
-    private JwtAccessTokenConverter jwtAccessTokenConverter;
     
     /**
      * Apply the token converter (and enhander) for token store.
@@ -31,7 +28,7 @@ public class JwtConfiguration {
     @Bean
     @Qualifier("tokenStore")
     public TokenStore tokenStore() {
-        return new JwtTokenStore(jwtAccessTokenConverter);
+        return new JwtTokenStore(jwtTokenEnhancer());
     }
 
     @Bean
