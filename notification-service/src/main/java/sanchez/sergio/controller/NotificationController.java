@@ -18,7 +18,7 @@ import sanchez.sergio.persistence.repositories.NotificationRepository;
  */
 @Api
 @RestController
-@RequestMapping("/v1")
+@RequestMapping("/v1/api/")
 public class NotificationController {
     
     @Autowired

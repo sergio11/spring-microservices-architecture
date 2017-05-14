@@ -33,6 +33,6 @@ public class DeviceGroupsServiceImpl implements IDeviceGroupsService {
 
     @Override
     public List<Device> getDevicesFromGroup(String groupName) {
-        return deviceRepository.findByNotificationKeyName(groupName);
+        return deviceRepository.findByDeviceGroupNotificationKeyName(groupName);
     }
 }

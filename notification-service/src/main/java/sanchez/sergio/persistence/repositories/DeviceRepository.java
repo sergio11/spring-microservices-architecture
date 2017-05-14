@@ -8,5 +8,5 @@ import sanchez.sergio.persistence.entities.Device;
  * @author sergio
  */
 public interface DeviceRepository extends JpaRepository<Device, Long>{
-    List<Device> findByNotificationKeyName(String groupName);
+    List<Device> findByDeviceGroupNotificationKeyName(String groupName);
 }
