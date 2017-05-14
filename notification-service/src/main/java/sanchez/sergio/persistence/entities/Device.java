@@ -29,7 +29,7 @@ public class Device implements Serializable {
     
     @Column(name="device_type", nullable = false, length = 10)
     @Enumerated(EnumType.STRING)
-    private DeviceTypeEnum deviceTypeEnum;
+    private DeviceTypeEnum deviceTypeEnum = DeviceTypeEnum.MOBILE;
     
     @ManyToOne(optional=false, fetch = FetchType.EAGER)
     private DeviceGroup deviceGroup;

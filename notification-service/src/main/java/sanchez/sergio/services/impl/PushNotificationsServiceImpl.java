@@ -46,4 +46,9 @@ public class PushNotificationsServiceImpl implements IPushNotificationsService {
     public CompletableFuture<String> removeDevicesFromGroup(String notificationGroupName, String notificationGroupKey, List<String> deviceTokens) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public CompletableFuture<String> addDeviceToGroup(String notificationGroupName, String notificationGroupKey, String deviceToken ) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
