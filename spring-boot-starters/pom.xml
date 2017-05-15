@@ -12,7 +12,6 @@
     </parent>
     <modules>
         <module>spring-boot-starter-data-events</module>
-        <module>spring-boot-stater-h2-dev</module>
         <module>spring-boot-starter-metrics</module>
         <module>spring-boot-starter-commons</module>
     </modules>

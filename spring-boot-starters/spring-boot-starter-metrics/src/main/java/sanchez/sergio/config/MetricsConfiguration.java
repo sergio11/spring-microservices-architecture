@@ -70,6 +70,6 @@ public class MetricsConfiguration extends MetricsConfigurerAdapter {
                 .convertRatesTo(TimeUnit.SECONDS)
                 .convertDurationsTo(TimeUnit.MILLISECONDS)
                 .build();
-        reporter.start(5, TimeUnit.SECONDS);
+        reporter.start(50000, TimeUnit.SECONDS);
     }
 }
