@@ -1,6 +1,9 @@
-package sanchez.sergio.config;
+package sanchez.sergio.config.security;
 
 import java.io.IOException;
+import javax.annotation.PostConstruct;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,6 +24,7 @@ import org.springframework.util.FileCopyUtils;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class JwtConfiguration {
     
+    private Logger logger = LoggerFactory.getLogger(JwtConfiguration.class);
     
     /**
      * Apply the token converter (and enhander) for token store.
@@ -43,5 +47,10 @@ public class JwtConfiguration {
         }
         converter.setVerifierKey(publicKey);
         return converter;
+    }
+    
+    @PostConstruct
+    protected void init() {
+        logger.info("init JwtConfiguration ...");
     }
 }
