@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import sanchez.sergio.persistence.repositories.NotificationRepository;
 import sanchez.sergio.security.CommonUserDetailsAware;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author sergio
@@ -22,6 +24,8 @@ import sanchez.sergio.security.CommonUserDetailsAware;
 @RestController
 @RequestMapping("/v1/api/")
 public class NotificationController {
+    
+    private static Logger logger = LoggerFactory.getLogger(NotificationController.class);
     
     @Autowired
     private NotificationRepository notificationRepository;
@@ -37,6 +41,7 @@ public class NotificationController {
     @GetMapping(path = "/notifications/self")
     @ApiOperation(value = "getSelfNotifications", nickname = "getSelfNotifications", notes="Get Self Notifications", response = ResponseEntity.class)
     public ResponseEntity getNotifications(@AuthenticationPrincipal CommonUserDetailsAware<Long> principal) {
+        logger.debug("username -> " + principal.getUsername());
         return Optional.ofNullable(notificationRepository.findByUserId(principal.getUserId()))
                 .map(e -> new ResponseEntity<>(e, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));

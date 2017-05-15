@@ -32,7 +32,7 @@ import sanchez.sergio.utils.Unthrow;
 @RequestMapping("/v1/device-groups")
 public class DeviceGroupsController {
     
-     private static Logger logger = LoggerFactory.getLogger(DeviceGroupsController.class);
+    private static Logger logger = LoggerFactory.getLogger(DeviceGroupsController.class);
     
     @Autowired
     private IDeviceGroupsService deviceGroupsService;
