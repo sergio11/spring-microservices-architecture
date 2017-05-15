@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 public interface CommonUserDetailsAware<T> extends UserDetails {
     T getUserId();
     String getUsername();
+    String getPassword();
     String getFirstName();
     String getLastName();
     String getEmail();
