@@ -93,11 +93,6 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>spring-boot-stater-h2-dev</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>spring-boot-starter-metrics</artifactId>
             <version>${project.version}</version>
         </dependency>

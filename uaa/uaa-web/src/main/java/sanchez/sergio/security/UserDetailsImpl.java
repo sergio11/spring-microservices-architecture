@@ -9,8 +9,8 @@ import sanchez.sergio.persistence.entities.Authority;
  */
 public class UserDetailsImpl extends User implements CommonUserDetailsAware<Long> {
 
-    public UserDetailsImpl(String username, String firstName, String lastName, Long identity, Set<Authority> grantedAuthorities) {
-        super(username, firstName, lastName, identity, grantedAuthorities);
+    public UserDetailsImpl(String username, String password, String firstName, String lastName, Long identity, Set<Authority> grantedAuthorities) {
+        super(username, password, firstName, lastName, identity, grantedAuthorities);
     }
 
     @Override

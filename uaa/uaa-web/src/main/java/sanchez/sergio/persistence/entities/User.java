@@ -120,13 +120,16 @@ public class User extends AbstractEntity<AccountEvent, Long>  {
         this.email = email;
     }
 
-    public User(String username, String firstName, String lastName, Long identity, Set<Authority> grantedAuthorities) {
+    public User(String username, String password, String firstName, String lastName, Long identity, Set<Authority> grantedAuthorities) {
         super(identity);
         this.username = username;
+        this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.authorities = grantedAuthorities;
     }
+    
+    
     public String getUsername() {
         return username;
     }

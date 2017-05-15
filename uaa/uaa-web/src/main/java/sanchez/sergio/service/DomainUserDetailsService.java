@@ -16,7 +16,7 @@ import sanchez.sergio.security.UserDetailsImpl;
 /**
  * Authenticate a user from the database.
  */
-@Component("userDetailsService")
+@Component
 public class DomainUserDetailsService implements UserDetailsService {
 
     private final Logger log = LoggerFactory.getLogger(DomainUserDetailsService.class);
@@ -37,7 +37,7 @@ public class DomainUserDetailsService implements UserDetailsService {
             if (!user.getEnabled()) {
                 throw new UserNotActivatedException("User " + lowercaseLogin + " was not activated");
             }
-            return new UserDetailsImpl(lowercaseLogin, user.getFirstName(), user.getLastName(), user.getIdentity(),
+            return new UserDetailsImpl(lowercaseLogin, user.getPassword(), user.getFirstName(), user.getLastName(), user.getIdentity(),
                 user.getAuthorities());
         }).orElseThrow(() -> new UsernameNotFoundException("User " + lowercaseLogin + " was not found in the " +
         "database"));
