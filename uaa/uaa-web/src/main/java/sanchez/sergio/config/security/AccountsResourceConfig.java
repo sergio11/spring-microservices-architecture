@@ -1,4 +1,4 @@
-package sanchez.sergio.security.config;
+package sanchez.sergio.config.security;
 
 import javax.annotation.PostConstruct;
 import org.slf4j.Logger;

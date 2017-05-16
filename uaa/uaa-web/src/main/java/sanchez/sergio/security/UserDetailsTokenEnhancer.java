@@ -2,7 +2,6 @@ package sanchez.sergio.security;
 
 import java.util.HashMap;
 import java.util.Map;
-import static org.apache.commons.lang.RandomStringUtils.randomAlphabetic;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
@@ -12,12 +11,17 @@ import org.springframework.security.oauth2.provider.token.TokenEnhancer;
  *
  * @author sergio
  */
-public class CustomTokenEnhancer implements TokenEnhancer {
+public class UserDetailsTokenEnhancer implements TokenEnhancer {
 
     @Override
     public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
+        CommonUserDetailsAware<Long> principal = (CommonUserDetailsAware<Long>) authentication.getPrincipal();
         Map<String, Object> additionalInfo = new HashMap<>();
-        additionalInfo.put("organization", authentication.getName() + randomAlphabetic(4));
+        additionalInfo.put(CommonUserDetailsAware.ID, principal.getUserId());
+        additionalInfo.put(CommonUserDetailsAware.USERNAME, principal.getUsername());
+        additionalInfo.put(CommonUserDetailsAware.FIRST_NAME, principal.getFirstName());
+        additionalInfo.put(CommonUserDetailsAware.LAST_NAME, principal.getLastName());
+        additionalInfo.put(CommonUserDetailsAware.EMAIL, principal.getEmail());
         ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInfo);
         return accessToken;
     }

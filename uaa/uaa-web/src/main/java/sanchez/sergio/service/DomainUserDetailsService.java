@@ -8,6 +8,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
+import java.util.stream.Collectors;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import sanchez.sergio.persistence.entities.User;
 import sanchez.sergio.exceptions.UserNotActivatedException;
 import sanchez.sergio.persistence.repositories.UserRepository;
@@ -37,8 +40,13 @@ public class DomainUserDetailsService implements UserDetailsService {
             if (!user.getEnabled()) {
                 throw new UserNotActivatedException("User " + lowercaseLogin + " was not activated");
             }
-            return new UserDetailsImpl(lowercaseLogin, user.getPassword(), user.getFirstName(), user.getLastName(), user.getIdentity(),
-                user.getAuthorities());
+            Set<GrantedAuthority> grantedAuthorities = user.getAuthorities().stream()
+                    .map(authority -> new SimpleGrantedAuthority(authority.getAuthority()))
+                .collect(Collectors.toSet());
+            
+            return new UserDetailsImpl(user.getIdentity(), user.getUsername(),
+                    user.getPassword(), user.getFirstName(), user.getLastName(), user.getEmail(), grantedAuthorities);
+
         }).orElseThrow(() -> new UsernameNotFoundException("User " + lowercaseLogin + " was not found in the " +
         "database"));
     }

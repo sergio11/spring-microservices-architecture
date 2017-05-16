@@ -1,4 +1,4 @@
-package sanchez.sergio.security.config;
+package sanchez.sergio.config.security;
 
 import java.util.ArrayList;
 import java.util.List;

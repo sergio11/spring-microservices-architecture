@@ -1,4 +1,4 @@
-package sanchez.sergio.security.config;
+package sanchez.sergio.config.security;
 
 
 import java.util.Arrays;
@@ -19,7 +19,7 @@ import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
-import sanchez.sergio.security.CustomTokenEnhancer;
+import sanchez.sergio.security.UserDetailsTokenEnhancer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -86,7 +86,7 @@ public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter
 
     @Bean
     public TokenEnhancer tokenEnhancer() {
-        return new CustomTokenEnhancer();
+        return new UserDetailsTokenEnhancer();
     }
     
     @Override
@@ -98,7 +98,7 @@ public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter
                         "refresh_token", "password", "implicit")
                 .authorities("ROLE_CLIENT")
                 .resourceIds("account", "notification")
-                .scopes("accounts")
+                .scopes("accounts", "notifications")
                 .secret("secret")
                 .accessTokenValiditySeconds(300);
     }
