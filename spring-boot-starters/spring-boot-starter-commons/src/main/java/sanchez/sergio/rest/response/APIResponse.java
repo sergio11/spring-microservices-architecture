@@ -14,6 +14,17 @@ public class APIResponse<T> {
     private String infoUrl;
     private T data;
 
+    public APIResponse(IResponseCodeTypes code, T data) {
+        this.code = code;
+        this.data = data;
+    }
+    
+    public APIResponse(IResponseCodeTypes code, T data, HttpStatus httpStatusCode) {
+        this.code = code;
+        this.data = data;
+        this.httpStatusCode = httpStatusCode;
+    }
+
     public APIResponse(IResponseCodeTypes code, T data, String infoUrl) {
         this.code = code;
         this.data = data;

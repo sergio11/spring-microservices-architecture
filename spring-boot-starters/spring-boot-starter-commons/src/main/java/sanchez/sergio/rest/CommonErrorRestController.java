@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import sanchez.sergio.exceptions.UserNotFoundException;
 import sanchez.sergio.rest.exceptions.ResourceNotFoundException;
 import sanchez.sergio.rest.response.APIResponse;
 import sanchez.sergio.rest.response.CommonResponseCode;
@@ -41,5 +42,11 @@ public class CommonErrorRestController extends BaseErrorRestController {
     protected @ResponseBody
     ResponseEntity<APIResponse<String>> handleException(Exception exception, HttpServletRequest request, HttpServletResponse response) {
         return createAndSendResponse(HttpStatus.BAD_REQUEST, CommonResponseCode.GENERIC_ERROR, exception.getMessage());
+    }
+    
+    @ExceptionHandler(UserNotFoundException.class)
+    protected @ResponseBody
+    ResponseEntity<APIResponse<String>> handleException(UserNotFoundException exception, HttpServletRequest request, HttpServletResponse response) {
+        return createAndSendResponse(HttpStatus.BAD_REQUEST, CommonResponseCode.USER_NOT_FOUND, exception.getMessage());
     }
 }

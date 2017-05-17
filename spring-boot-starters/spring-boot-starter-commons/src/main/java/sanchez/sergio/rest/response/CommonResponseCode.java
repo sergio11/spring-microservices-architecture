@@ -6,7 +6,9 @@ package sanchez.sergio.rest.response;
  */
 public enum CommonResponseCode implements IResponseCodeTypes {
     
-    ACCESS_DENIED(500L), SECURITY_ERROR(501L), GENERIC_ERROR(502L), RESOURCE_NOT_FOUND(503L);
+    ACCESS_DENIED(500L), SECURITY_ERROR(501L), 
+    GENERIC_ERROR(502L), RESOURCE_NOT_FOUND(503L),
+    USER_NOT_FOUND(504L);
     
     private Long code;
 
