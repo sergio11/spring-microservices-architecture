@@ -21,25 +21,25 @@ public class CommonErrorRestController extends BaseErrorRestController {
 
     @ExceptionHandler(ResourceNotFoundException.class)
     protected @ResponseBody
-    ResponseEntity<APIResponse> handleNoteNotFoundException(ResourceNotFoundException resourceNotFound, HttpServletRequest request, HttpServletResponse response) {
+    ResponseEntity<APIResponse<String>> handleNoteNotFoundException(ResourceNotFoundException resourceNotFound, HttpServletRequest request, HttpServletResponse response) {
         return createAndSendResponse(HttpStatus.NOT_FOUND, CommonResponseCode.RESOURCE_NOT_FOUND, resourceNotFound.getMessage());
     }
 
     @ExceptionHandler(AccessDeniedException.class)
     protected @ResponseBody
-    ResponseEntity<APIResponse> handleAccessDeniedException(AccessDeniedException accessDeniedException, HttpServletRequest request, HttpServletResponse response) {
+    ResponseEntity<APIResponse<String>> handleAccessDeniedException(AccessDeniedException accessDeniedException, HttpServletRequest request, HttpServletResponse response) {
         return createAndSendResponse(HttpStatus.UNAUTHORIZED, CommonResponseCode.ACCESS_DENIED, accessDeniedException.getMessage());
     }
 
     @ExceptionHandler(SecurityException.class)
     protected @ResponseBody
-    ResponseEntity<APIResponse> handleSecurityException(SecurityException exception, HttpServletRequest request, HttpServletResponse response) {
+    ResponseEntity<APIResponse<String>> handleSecurityException(SecurityException exception, HttpServletRequest request, HttpServletResponse response) {
         return createAndSendResponse(HttpStatus.UNAUTHORIZED, CommonResponseCode.SECURITY_ERROR, exception.getMessage());
     }
 
     @ExceptionHandler(Exception.class)
     protected @ResponseBody
-    ResponseEntity<APIResponse> handleException(Exception exception, HttpServletRequest request, HttpServletResponse response) {
+    ResponseEntity<APIResponse<String>> handleException(Exception exception, HttpServletRequest request, HttpServletResponse response) {
         return createAndSendResponse(HttpStatus.BAD_REQUEST, CommonResponseCode.GENERIC_ERROR, exception.getMessage());
     }
 }

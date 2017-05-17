@@ -17,9 +17,9 @@ import sanchez.sergio.rest.response.ResponseStatus;
  */
 public abstract class BaseErrorRestController {
     
-    protected ResponseEntity<APIResponse> createAndSendResponse(HttpStatus status, IResponseCodeTypes responseCode, String message){
-        APIResponse restApiError = new APIResponse(responseCode, ResponseStatus.ERROR, message, status, this.getInfoUrl(responseCode));
-        return ApiHelper.createAndSendResponse(restApiError);
+    protected ResponseEntity<APIResponse<String>> createAndSendResponse(HttpStatus status, IResponseCodeTypes responseCode, String message){
+        APIResponse restApiError = new APIResponse(responseCode, ResponseStatus.ERROR, status, this.getInfoUrl(responseCode), message);
+        return ApiHelper.<String>createAndSendResponse(restApiError);
     }
     
     protected String getInfoUrl(IResponseCodeTypes responseCode){

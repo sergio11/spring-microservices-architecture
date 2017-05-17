@@ -11,12 +11,12 @@ import sanchez.sergio.rest.response.APIResponse;
  */
 public class ApiHelper {
 
-    public static ResponseEntity<APIResponse> createAndSendResponse(APIResponse response) {
+    public static <T> ResponseEntity<APIResponse<T>> createAndSendResponse(APIResponse<T> response) {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Cache-Control", "no-store");
         headers.set("Pragma", "no-cache");
         headers.setContentType(MediaType.APPLICATION_JSON);
-        ResponseEntity<APIResponse> responseEntity = new ResponseEntity<APIResponse>(response, headers, response.getHttpStatusCode());
+        ResponseEntity<APIResponse<T>> responseEntity = new ResponseEntity<APIResponse<T>>(response, headers, response.getHttpStatusCode());
         return responseEntity;
     }
 }
