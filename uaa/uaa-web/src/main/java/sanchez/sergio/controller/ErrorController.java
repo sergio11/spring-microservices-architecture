@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import sanchez.sergio.exceptions.UsernameAlredyExistsException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import sanchez.sergio.exceptions.EmailAlredyExistsException;
-import sanchez.sergio.rest.ApiErrorEnum;
 import sanchez.sergio.rest.BaseErrorRestController;
+import sanchez.sergio.util.UaaResponseCode;
 
 /**
  * @author sergio
@@ -21,12 +21,12 @@ public class ErrorController extends BaseErrorRestController {
     
     @ExceptionHandler(UsernameAlredyExistsException.class)
     public ResponseEntity  usernameAlredyExists(final UsernameAlredyExistsException exception){
-        return createAndSendResponse(HttpStatus.BAD_REQUEST, ApiErrorEnum.BAD_REQUEST, exception.getMessage());
+        return createAndSendResponse(HttpStatus.BAD_REQUEST, UaaResponseCode.USERNAME_ALREDY_EXISTS, exception.getMessage());
     }
     
     @ExceptionHandler(EmailAlredyExistsException.class)
     public ResponseEntity emailAlredyExists(final EmailAlredyExistsException exception){
-        return createAndSendResponse(HttpStatus.BAD_REQUEST, ApiErrorEnum.BAD_REQUEST, exception.getMessage());
+        return createAndSendResponse(HttpStatus.BAD_REQUEST, UaaResponseCode.EMAIL_ALREDY_EXISTS, exception.getMessage());
     }
     
 }
