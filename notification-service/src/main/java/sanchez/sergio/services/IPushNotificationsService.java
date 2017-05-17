@@ -13,4 +13,5 @@ public interface IPushNotificationsService {
     CompletableFuture<String> addDevicesToGroup(String notificationGroupName, String notificationGroupKey, List<String> deviceTokens);
     CompletableFuture<String> addDeviceToGroup(String notificationGroupName, String notificationGroupKey, String deviceToken);
     CompletableFuture<String> removeDevicesFromGroup(String notificationGroupName, String notificationGroupKey, List<String> deviceTokens);
+    CompletableFuture<String> removeDeviceFromGroup(String notificationGroupName, String notificationGroupKey, String deviceToken);
 }

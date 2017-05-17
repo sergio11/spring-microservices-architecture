@@ -9,6 +9,8 @@ import sanchez.sergio.persistence.entities.DeviceGroup;
 import sanchez.sergio.persistence.repositories.DeviceGroupRepository;
 import sanchez.sergio.services.IDeviceGroupsService;
 import java.util.Set;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import sanchez.sergio.persistence.repositories.DeviceRepository;
 
 /**
@@ -51,6 +53,14 @@ public class DeviceGroupsServiceImpl implements IDeviceGroupsService {
     @Override
     public Device addDeviceToGroup(String registrationToken, DeviceGroup deviceGroup) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Boolean removeDeviceFromGroup(String registrationToken, DeviceGroup deviceGroup) {
+        boolean result = deviceGroup.getDevices().removeIf(device -> device.getRegistrationToken().equals(registrationToken));
+        if(result)
+            deviceGroupRepository.saveAndFlush(deviceGroup);
+        return result;
     }
     
     

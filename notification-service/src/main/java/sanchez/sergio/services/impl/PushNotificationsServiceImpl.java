@@ -1,5 +1,6 @@
 package sanchez.sergio.services.impl;
 
+import com.google.common.collect.Lists;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import sanchez.sergio.config.properties.FCMCustomProperties;
 import sanchez.sergio.domain.DevicesGroupOperation;
+import sanchez.sergio.domain.DevicesGroupOperationType;
 import sanchez.sergio.services.IPushNotificationsService;
 
 
@@ -38,17 +40,28 @@ public class PushNotificationsServiceImpl implements IPushNotificationsService {
     @Async
     @Override
     public CompletableFuture<String> addDevicesToGroup(String notificationGroupName, String notificationGroupKey, List<String> deviceTokens) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return CompletableFuture.completedFuture(restTemplate.postForObject(firebaseCustomProperties.getNotificationGroupsUrl(),
+                new DevicesGroupOperation(DevicesGroupOperationType.ADD, notificationGroupName, notificationGroupKey, deviceTokens), String.class));
     }
 
     @Async
     @Override
     public CompletableFuture<String> removeDevicesFromGroup(String notificationGroupName, String notificationGroupKey, List<String> deviceTokens) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return CompletableFuture.completedFuture(restTemplate.postForObject(firebaseCustomProperties.getNotificationGroupsUrl(),
+                new DevicesGroupOperation(DevicesGroupOperationType.REMOVE, notificationGroupName, notificationGroupKey, deviceTokens), String.class));
     }
 
+    @Async
     @Override
     public CompletableFuture<String> addDeviceToGroup(String notificationGroupName, String notificationGroupKey, String deviceToken ) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return CompletableFuture.completedFuture(restTemplate.postForObject(firebaseCustomProperties.getNotificationGroupsUrl(),
+                new DevicesGroupOperation(DevicesGroupOperationType.ADD, notificationGroupName, notificationGroupKey, Lists.newArrayList(deviceToken)), String.class));
+    }
+
+    @Async
+    @Override
+    public CompletableFuture<String> removeDeviceFromGroup(String notificationGroupName, String notificationGroupKey, String deviceToken) {
+        return CompletableFuture.completedFuture(restTemplate.postForObject(firebaseCustomProperties.getNotificationGroupsUrl(),
+                new DevicesGroupOperation(DevicesGroupOperationType.REMOVE, notificationGroupName, notificationGroupKey, Lists.newArrayList(deviceToken)), String.class));
     }
 }

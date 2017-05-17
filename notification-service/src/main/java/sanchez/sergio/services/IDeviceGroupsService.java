@@ -15,6 +15,7 @@ public interface IDeviceGroupsService {
     DeviceGroup createDeviceGroup(String name, String key, Long userId);
     DeviceGroup createDeviceGroup(String name, String key, Long userId, Set<Device> devices);
     Device addDeviceToGroup(String registrationToken, DeviceGroup deviceGroup);
+    Boolean removeDeviceFromGroup(String registrationToken, DeviceGroup deviceGroup);
     List<Device> getDevicesFromGroup(String groupName);
     String getNotificationKey(String groupName);
     

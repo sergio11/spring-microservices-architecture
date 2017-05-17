@@ -3,6 +3,7 @@ package sanchez.sergio.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,8 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 import sanchez.sergio.persistence.repositories.NotificationRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import sanchez.sergio.exceptions.UserNotFoundException;
+import sanchez.sergio.persistence.entities.Notification;
+import sanchez.sergio.rest.ApiHelper;
+import sanchez.sergio.rest.response.APIResponse;
 import sanchez.sergio.security.CommonUserDetailsAware;
 import sanchez.sergio.service.IAuthenticationService;
+import sanchez.sergio.util.NotificationResponseCode;
 
 /**
  * @author sergio
@@ -35,20 +41,20 @@ public class NotificationController {
    
     @GetMapping(path = "/notifications/{userId}")
     @ApiOperation(value = "getNotifications", nickname = "getNotifications", notes="Get Notifications", response = ResponseEntity.class)
-    public ResponseEntity getNotifications(@ApiParam(value = "userId", required = true) @PathVariable Long userId) {
+    public ResponseEntity<APIResponse<List<Notification>>> getNotifications(@ApiParam(value = "userId", required = true) @PathVariable Long userId) throws Throwable {
         return Optional.ofNullable(notificationRepository.findByUserId(userId))
-                .map(e -> new ResponseEntity<>(e, HttpStatus.OK))
-                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+                .map(notifications -> ApiHelper.<List<Notification>>createAndSendResponse(NotificationResponseCode.ALL_NOTIFICATIONS, notifications, HttpStatus.OK))
+                .orElseThrow(() -> {throw new UserNotFoundException(); });
     }
     
     @GetMapping(path = "/notifications/self")
     @ApiOperation(value = "getSelfNotifications", nickname = "getSelfNotifications", notes="Get Self Notifications", response = ResponseEntity.class)
-    public ResponseEntity getNotifications() {
+    public ResponseEntity<APIResponse<List<Notification>>> getNotifications() throws Throwable {
         CommonUserDetailsAware<Long> principal = authenticationService.getPrincipal();
         logger.debug("username -> " + principal.getUsername());
         return Optional.ofNullable(notificationRepository.findByUserId(principal.getUserId()))
-                .map(e -> new ResponseEntity<>(e, HttpStatus.OK))
-                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+                .map(notifications -> ApiHelper.<List<Notification>>createAndSendResponse(NotificationResponseCode.SELF_NOTIFICATIONS, notifications, HttpStatus.OK))
+                .orElseThrow(() -> {throw new UserNotFoundException(); });
     }
     
 }
