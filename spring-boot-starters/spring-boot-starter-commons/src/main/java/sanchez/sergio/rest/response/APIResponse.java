@@ -1,5 +1,6 @@
 package sanchez.sergio.rest.response;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.http.HttpStatus;
 
 /**
@@ -8,10 +9,15 @@ import org.springframework.http.HttpStatus;
  */
 public class APIResponse<T> {
     
+    @JsonProperty("response_code_name")
     private IResponseCodeTypes code;
+    @JsonProperty("response_status")
     private ResponseStatus status = ResponseStatus.SUCCESS;
+    @JsonProperty("response_http_status")
     private HttpStatus httpStatusCode = HttpStatus.OK;
+    @JsonProperty("response_info_url")
     private String infoUrl;
+    @JsonProperty("response_data")
     private T data;
 
     public APIResponse(IResponseCodeTypes code, T data) {
@@ -41,6 +47,11 @@ public class APIResponse<T> {
 
     public IResponseCodeTypes getCode() {
         return code;
+    }
+    
+    @JsonProperty("response_code")
+    public Long getCodeNumber() {
+        return code.getResponseCode();
     }
 
     public void setCode(IResponseCodeTypes code) {
