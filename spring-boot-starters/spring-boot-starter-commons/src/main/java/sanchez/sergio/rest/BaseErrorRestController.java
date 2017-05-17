@@ -7,6 +7,9 @@ package sanchez.sergio.rest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import sanchez.sergio.rest.response.APIResponse;
+import sanchez.sergio.rest.response.IResponseCodeTypes;
+import sanchez.sergio.rest.response.ResponseStatus;
 
 /**
  *
@@ -14,13 +17,12 @@ import org.springframework.http.ResponseEntity;
  */
 public abstract class BaseErrorRestController {
     
-    
-    protected ResponseEntity<RestApiError> createAndSendResponse(HttpStatus status, ApiErrorEnum apiError, String message){
-        RestApiError restApiError = new RestApiError(status, apiError, message, message, this.getInfoUrl(apiError));
+    protected ResponseEntity<APIResponse> createAndSendResponse(HttpStatus status, IResponseCodeTypes responseCode, String message){
+        APIResponse restApiError = new APIResponse(responseCode, ResponseStatus.ERROR, message, status, this.getInfoUrl(responseCode));
         return ApiHelper.createAndSendResponse(restApiError);
     }
     
-    protected String getInfoUrl(ApiErrorEnum code){
-        return "http://yourAppUrlToDocumentedApiCodes.com/api/support/" + code.ordinal();
+    protected String getInfoUrl(IResponseCodeTypes responseCode){
+        return "http://yourAppUrlToDocumentedApiCodes.com/api/support/" + responseCode.getResponseCode();
     }
 }

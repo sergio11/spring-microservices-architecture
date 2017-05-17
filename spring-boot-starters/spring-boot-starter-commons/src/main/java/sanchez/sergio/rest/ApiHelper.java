@@ -3,6 +3,7 @@ package sanchez.sergio.rest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import sanchez.sergio.rest.response.APIResponse;
 
 /**
  *
@@ -10,12 +11,12 @@ import org.springframework.http.ResponseEntity;
  */
 public class ApiHelper {
 
-    public static ResponseEntity<RestApiError> createAndSendResponse(RestApiError restApiError) {
+    public static ResponseEntity<APIResponse> createAndSendResponse(APIResponse response) {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Cache-Control", "no-store");
         headers.set("Pragma", "no-cache");
         headers.setContentType(MediaType.APPLICATION_JSON);
-        ResponseEntity<RestApiError> responseEntity = new ResponseEntity<RestApiError>(restApiError, headers, restApiError.getHttpStatusCode());
+        ResponseEntity<APIResponse> responseEntity = new ResponseEntity<APIResponse>(response, headers, response.getHttpStatusCode());
         return responseEntity;
     }
 }

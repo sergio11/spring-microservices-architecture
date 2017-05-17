@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import sanchez.sergio.rest.exceptions.ResourceNotFoundException;
+import sanchez.sergio.rest.response.APIResponse;
+import sanchez.sergio.rest.response.CommonResponseCode;
 
 /**
  *
@@ -19,25 +21,25 @@ public class CommonErrorRestController extends BaseErrorRestController {
 
     @ExceptionHandler(ResourceNotFoundException.class)
     protected @ResponseBody
-    ResponseEntity<RestApiError> handleNoteNotFoundException(ResourceNotFoundException resourceNotFound, HttpServletRequest request, HttpServletResponse response) {
-        return createAndSendResponse(HttpStatus.NOT_FOUND, ApiErrorEnum.RESOURCE_NOT_FOUND, resourceNotFound.getMessage());
+    ResponseEntity<APIResponse> handleNoteNotFoundException(ResourceNotFoundException resourceNotFound, HttpServletRequest request, HttpServletResponse response) {
+        return createAndSendResponse(HttpStatus.NOT_FOUND, CommonResponseCode.RESOURCE_NOT_FOUND, resourceNotFound.getMessage());
     }
 
     @ExceptionHandler(AccessDeniedException.class)
     protected @ResponseBody
-    ResponseEntity<RestApiError> handleAccessDeniedException(AccessDeniedException accessDeniedException, HttpServletRequest request, HttpServletResponse response) {
-        return createAndSendResponse(HttpStatus.UNAUTHORIZED, ApiErrorEnum.ACCESS_DENIED, accessDeniedException.getMessage());
+    ResponseEntity<APIResponse> handleAccessDeniedException(AccessDeniedException accessDeniedException, HttpServletRequest request, HttpServletResponse response) {
+        return createAndSendResponse(HttpStatus.UNAUTHORIZED, CommonResponseCode.ACCESS_DENIED, accessDeniedException.getMessage());
     }
 
     @ExceptionHandler(SecurityException.class)
     protected @ResponseBody
-    ResponseEntity<RestApiError> handleSecurityException(SecurityException exception, HttpServletRequest request, HttpServletResponse response) {
-        return createAndSendResponse(HttpStatus.UNAUTHORIZED, ApiErrorEnum.SECURITY, exception.getMessage());
+    ResponseEntity<APIResponse> handleSecurityException(SecurityException exception, HttpServletRequest request, HttpServletResponse response) {
+        return createAndSendResponse(HttpStatus.UNAUTHORIZED, CommonResponseCode.SECURITY_ERROR, exception.getMessage());
     }
 
     @ExceptionHandler(Exception.class)
     protected @ResponseBody
-    ResponseEntity<RestApiError> handleException(Exception exception, HttpServletRequest request, HttpServletResponse response) {
-        return createAndSendResponse(HttpStatus.BAD_REQUEST, ApiErrorEnum.GENERIC, exception.getMessage());
+    ResponseEntity<APIResponse> handleException(Exception exception, HttpServletRequest request, HttpServletResponse response) {
+        return createAndSendResponse(HttpStatus.BAD_REQUEST, CommonResponseCode.GENERIC_ERROR, exception.getMessage());
     }
 }
