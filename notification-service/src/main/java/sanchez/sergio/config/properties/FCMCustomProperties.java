@@ -3,12 +3,14 @@ package sanchez.sergio.config.properties;
 import java.io.Serializable;
 import org.springframework.stereotype.Component;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 
 /**
  * @author sergio
  */
 @Component
 @ConfigurationProperties(prefix="fcm")
+@RefreshScope
 public class FCMCustomProperties implements Serializable {
     
     private String appServerKey;

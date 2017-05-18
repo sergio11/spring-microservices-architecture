@@ -6,6 +6,9 @@ spring:
     cloud:
         config:
             server:
+                monitor:
+                    github:
+                        enabled: true
                 git:
                     uri: https://github.com/sergio11/spring-microservices-architecture-config.git
 security:
