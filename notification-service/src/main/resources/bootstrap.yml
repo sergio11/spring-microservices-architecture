@@ -1,14 +1,24 @@
-spring:
-  application:
-    name: notification-service
-  cloud:
-    config:
-      uri: http://localhost:8888
+server:
+    hostname: ${NOTIFICATION_SERVICE_HOSTNAME:localhost}
+    port: ${NOTIFICATION_SERVICE_PORT:8763}
 
----
 spring:
-  profiles: docker
-  cloud:
-    config:
-      failFast: true
-      uri: http://config-service:8888  
+    application:
+        name: notification-service
+    profiles:
+        active: dev
+    cloud:
+        config:
+            failFast: true
+            discovery:
+                enabled: true
+                serviceId: config-server
+
+    
+# eureka service registry client
+eureka: 
+    client:
+        serviceUrl:
+            defaultZone: http://${SERVICE_REGISTRY_HOST:localhost}:${SERVICE_REGISTRY_PORT:8761}/eureka/
+    instance:
+        preferIpAddress: true

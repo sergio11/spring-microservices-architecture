@@ -1,14 +1,28 @@
+server:
+    hostname: ${UAA_WEB_SERVICE_HOSTNAME:localhost}
+    port: ${UAA_WEB_SERVICE_PORT:8183}
+    contextPath: /uaa 
+  
 spring:
-  application:
-    name: uaa-web-service
-  cloud:
-    config:
-      uri: http://localhost:8888
+    application:
+        name: uaa-web-service
+    profiles:
+        active: dev
+    cloud:
+        config:
+            discovery:
+                enabled: true
+                serviceId: config-server
+    
+    
+# eureka service registry client
 
----
-spring:
-  profiles: docker
-  cloud:
-    config:
-      failFast: true
-      uri: http://config-service:8888  
+eureka: 
+    client:
+        serviceUrl:
+            defaultZone: http://${SERVICE_REGISTRY_HOST:localhost}:${SERVICE_REGISTRY_PORT:8761}/eureka/
+    instance:
+        preferIpAddress: true
+        statusPageUrlPath: ${server.contextPath}/info
+        healthCheckUrlPath: ${server.contextPath}/health
+        

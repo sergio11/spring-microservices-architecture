@@ -1,5 +1,5 @@
 server:  
-  port: 8888
+  port: ${CONFIG_SERVICE_PORT:8888}
 spring:  
     application:
         name: config-server
@@ -11,10 +11,10 @@ spring:
                         enabled: true
                 git:
                     uri: https://github.com/sergio11/spring-microservices-architecture-config.git
-security:
-    user:
-        name: root
-        password: '{cipher}AgAUqoQiNGO19cnacRNijDQz5M/7ZrCT4OBpDuawjbnzV4p3oQupUzPEhoaOhE2kvSl841WrKuwBNoUxadgsdCKeURpVtnIZUnoaC7Z9xMHzWfxQgqvJ7w894M5yh6hi+6ELQNiNd/jgmvHQ2cvDrkt2iroFv4Ud/nJYxpNDsmOVg1+7tsS5l1WdE9tA3aoEbyicDmlK3RGlFnQoYqE6IfMN8o7i+wVmhYBQjWfcNZodW1dHozWo5KdhgeDspmniRoAoF6YtZ8rUVHP6fZ0kIICjWkPqgPTP6JJa29i2wRQDvU2t/ouZpBBoUkWlXPW6uRaVlimqiGVoHHjRoyjAeosnE37JZ2ejNh5Re1GKtHx/7YBOxqlLSiSvr52B2vE8C4+fPX9tC/2kUlOmd8pFqe1RdT/1YhdbL5mapCVC0kK1/aMe98jdj/mbFXAzlc6yyemg46fisaTYNRUEK6EyGPaw2F+otUFW1IxAFc5OKJKGo4BhtY175KEcji/8XgWCdUHQBruoEi1wJjLCwZO2C7tQsOp7Nz1o/oCH4OioPMClM/0KtwYNmm1KMUzz8mpFF7iknjFTZHPEhuy1G05MGeDRQU4o/Wkw3CGL4hbsG+82i5IqjdJibErZCqPIfwYpusaL08SqiVS7rReRWbYhW4BKqn4w+oEuV/JXD8qMmUlAgEL0/RHr5gRq1E9mbYUYl4yhsi5ppJ7zzaLOAuaFmvoz'
+# security:
+##    user:
+##        name: root
+ ##       password: '{cipher}AgAUqoQiNGO19cnacRNijDQz5M/7ZrCT4OBpDuawjbnzV4p3oQupUzPEhoaOhE2kvSl841WrKuwBNoUxadgsdCKeURpVtnIZUnoaC7Z9xMHzWfxQgqvJ7w894M5yh6hi+6ELQNiNd/jgmvHQ2cvDrkt2iroFv4Ud/nJYxpNDsmOVg1+7tsS5l1WdE9tA3aoEbyicDmlK3RGlFnQoYqE6IfMN8o7i+wVmhYBQjWfcNZodW1dHozWo5KdhgeDspmniRoAoF6YtZ8rUVHP6fZ0kIICjWkPqgPTP6JJa29i2wRQDvU2t/ouZpBBoUkWlXPW6uRaVlimqiGVoHHjRoyjAeosnE37JZ2ejNh5Re1GKtHx/7YBOxqlLSiSvr52B2vE8C4+fPX9tC/2kUlOmd8pFqe1RdT/1YhdbL5mapCVC0kK1/aMe98jdj/mbFXAzlc6yyemg46fisaTYNRUEK6EyGPaw2F+otUFW1IxAFc5OKJKGo4BhtY175KEcji/8XgWCdUHQBruoEi1wJjLCwZO2C7tQsOp7Nz1o/oCH4OioPMClM/0KtwYNmm1KMUzz8mpFF7iknjFTZHPEhuy1G05MGeDRQU4o/Wkw3CGL4hbsG+82i5IqjdJibErZCqPIfwYpusaL08SqiVS7rReRWbYhW4BKqn4w+oEuV/JXD8qMmUlAgEL0/RHr5gRq1E9mbYUYl4yhsi5ppJ7zzaLOAuaFmvoz'
         
 encrypt:
   keyStore:
@@ -22,6 +22,15 @@ encrypt:
     password: my-s70r3-s3cr3t
     alias: config-server-key
     secret: my-k34-s3cr3t
+    
+# eureka service registry client
+
+eureka: 
+    client:
+        serviceUrl:
+            defaultZone: http://${SERVICE_REGISTRY_HOST:localhost}:${SERVICE_REGISTRY_PORT:8761}/eureka/
+    instance:
+        preferIpAddress: true
 
 logging:  
   file: logs/${spring.application.name}.log

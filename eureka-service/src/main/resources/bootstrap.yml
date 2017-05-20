@@ -1,16 +1,11 @@
-spring:  
-  application:
-    name: eureka-service
-  cloud:
-    config:
-      failFast: true
-      uri: http://localhost:8888
-      
----
-spring:
-  profiles: docker
-  cloud:
-    config:
-      failFast: true
-      uri: http://config-service:8888  
+server:
+    port: ${PORT:8761}
+eureka:
+    dashboard:
+        path: /eureka-dashboard
+    client:
+        registerWithEureka: false
+        fetchRegistry: false
+    server:
+        waitTimeInMsWhenSyncEmpty: 0 
       

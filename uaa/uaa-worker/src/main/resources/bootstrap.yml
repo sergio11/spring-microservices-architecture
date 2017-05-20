@@ -1,14 +1,24 @@
+server:
+    hostname: ${UAA_WORKER_SERVICE_HOSTNAME:localhost}
+    port: ${UAA_WORKER_SERVICE_PORT:8762}
+  
 spring:
-  application:
-    name: uaa-worker-service
-  cloud:
-    config:
-      uri: http://localhost:8888
+    application:
+        name: uaa-worker-service
+    profiles:
+        active: dev
+    cloud:
+        config:
+            discovery:
+                enabled: true
+                serviceId: config-server
+    
+    
+# eureka service registry client
 
----
-spring:
-  profiles: docker
-  cloud:
-    config:
-      failFast: true
-      uri: http://config-service:8888  
+eureka: 
+    client:
+        serviceUrl:
+            defaultZone: http://${SERVICE_REGISTRY_HOST:localhost}:${SERVICE_REGISTRY_PORT:8761}/eureka/
+    instance:
+        preferIpAddress: true 
