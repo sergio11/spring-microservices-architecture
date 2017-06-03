@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Profile;
  * @author sergio
  */
 @Configuration
-@Profile("default")
+@Profile("dev")
 public class H2Configuration {
     
     private static Logger logger = LoggerFactory.getLogger(H2Configuration.class);

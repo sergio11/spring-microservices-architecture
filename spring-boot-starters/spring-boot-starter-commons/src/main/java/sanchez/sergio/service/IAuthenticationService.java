@@ -5,12 +5,12 @@
  */
 package sanchez.sergio.service;
 
-import sanchez.sergio.security.CommonUserDetailsAware;
+import sanchez.sergio.security.userdetails.CommonUserDetailsAware;
 
 /**
  *
  * @author sergio
  */
-public interface IAuthenticationService {
-    CommonUserDetailsAware<Long> getPrincipal();
+public interface IAuthenticationService<T> {
+    CommonUserDetailsAware<T> getPrincipal();
 }

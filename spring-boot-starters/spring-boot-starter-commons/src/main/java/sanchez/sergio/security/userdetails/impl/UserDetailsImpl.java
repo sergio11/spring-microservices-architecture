@@ -1,36 +1,34 @@
-package sanchez.sergio.security;
+package sanchez.sergio.security.userdetails.impl;
 import java.util.Collection;
 import java.util.Set;
 import org.springframework.security.core.GrantedAuthority;
-import sanchez.sergio.security.CommonUserDetailsAware;
+import sanchez.sergio.security.userdetails.CommonUserDetailsAware;
 
 /**
  *
  * @author sergio
  */
-public class UserDetailsImpl implements CommonUserDetailsAware<Long> {
+public class UserDetailsImpl<T> implements CommonUserDetailsAware<T> {
     
-    private Long id;
+    private T id;
     private String username;
     private String password;
-    private String firstName;
-    private String lastName;
+    private String fullName;
     private String email;
     private Set<GrantedAuthority> grantedAuthorities;
     
     public UserDetailsImpl(){}
 
-    public UserDetailsImpl(Long id, String username, String password, String firstName, String lastName, String email, Set<GrantedAuthority> grantedAuthorities) {
+    public UserDetailsImpl(T id, String username, String password, String fullName, String email, Set<GrantedAuthority> grantedAuthorities) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.fullName = fullName;
         this.email = email;
         this.grantedAuthorities = grantedAuthorities;
     }
 
-    public void setId(Long id) {
+    public void setId(T id) {
         this.id = id;
     }
 
@@ -42,14 +40,14 @@ public class UserDetailsImpl implements CommonUserDetailsAware<Long> {
         this.password = password;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
-
+    
     public void setEmail(String email) {
         this.email = email;
     }
@@ -59,7 +57,7 @@ public class UserDetailsImpl implements CommonUserDetailsAware<Long> {
     }
     
     @Override
-    public Long getUserId() {
+    public T getUserId() {
         return id;
     }
 
@@ -72,16 +70,7 @@ public class UserDetailsImpl implements CommonUserDetailsAware<Long> {
     public String getPassword() {
         return password;
     }
-
-    @Override
-    public String getFirstName() {
-        return firstName;
-    }
-
-    @Override
-    public String getLastName() {
-        return lastName;
-    }
+    
 
     @Override
     public String getEmail() {
