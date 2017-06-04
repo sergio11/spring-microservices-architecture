@@ -19,7 +19,7 @@ import sanchez.sergio.exceptions.UserNotFoundException;
 import sanchez.sergio.persistence.entities.Notification;
 import sanchez.sergio.rest.ApiHelper;
 import sanchez.sergio.rest.response.APIResponse;
-import sanchez.sergio.security.CommonUserDetailsAware;
+import sanchez.sergio.security.userdetails.CommonUserDetailsAware;
 import sanchez.sergio.service.IAuthenticationService;
 import sanchez.sergio.util.NotificationResponseCode;
 

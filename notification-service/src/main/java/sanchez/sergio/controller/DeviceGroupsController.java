@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import sanchez.sergio.persistence.entities.Device;
 import sanchez.sergio.persistence.entities.DeviceGroup;
-import sanchez.sergio.security.CommonUserDetailsAware;
+import sanchez.sergio.security.userdetails.CommonUserDetailsAware;
 import sanchez.sergio.services.IDeviceGroupsService;
 import sanchez.sergio.services.IPushNotificationsService;
 import org.slf4j.Logger;
