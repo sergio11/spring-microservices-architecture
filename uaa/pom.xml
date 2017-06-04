@@ -17,6 +17,20 @@
     <modules>
         <module>uaa-worker</module>
         <module>uaa-web</module>
+        <module>uaa-user-manadgement-dev</module>
+        <module>uaa-user-manadgement-prod</module>
     </modules>
+    
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-hateoas</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>spring-boot-starter-commons</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
     
 </project>
