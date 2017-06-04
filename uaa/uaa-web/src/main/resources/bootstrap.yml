@@ -13,10 +13,8 @@ spring:
             discovery:
                 enabled: true
                 serviceId: config-server
-    
-    
+      
 # eureka service registry client
-
 eureka: 
     client:
         serviceUrl:

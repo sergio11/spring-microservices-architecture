@@ -1,21 +1,14 @@
 package sanchez.sergio;
 
-import java.util.Date;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.stream.annotation.EnableBinding;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.hateoas.config.EnableHypermediaSupport;
-import org.springframework.integration.annotation.InboundChannelAdapter;
-import org.springframework.integration.annotation.Poller;
-import org.springframework.integration.support.MessageBuilder;
 import org.apache.log4j.Logger;
 import org.springframework.cloud.stream.messaging.Source;
-import org.springframework.integration.core.MessageSource;
 import sanchez.sergio.bindings.UserNotificationBinding;
-import sanchez.sergio.domain.Notification;
 
 @SpringBootApplication
 @EnableJpaAuditing
