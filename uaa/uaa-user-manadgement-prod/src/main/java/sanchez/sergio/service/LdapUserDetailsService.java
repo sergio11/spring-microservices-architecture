@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
 import javax.naming.Name;
-import org.springframework.context.annotation.Profile;
 import org.springframework.ldap.core.DirContextAdapter;
 import org.springframework.ldap.core.DirContextOperations;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,7 +18,6 @@ import sanchez.sergio.security.userdetails.impl.UserDetailsImpl;
  * @author sergio
  */
 @Component
-@Profile("prod")
 public class LdapUserDetailsService implements UserDetailsContextMapper {
 
     @Override
@@ -32,7 +30,8 @@ public class LdapUserDetailsService implements UserDetailsContextMapper {
                 dco.getDn(),
                 dco.getStringAttribute("uid"),
                 dco.getStringAttribute("userPassword"),
-                dco.getStringAttribute("gecos"),
+                dco.getStringAttribute("cn"),
+                dco.getStringAttribute("sn"),
                 dco.getStringAttribute("mail"),
                 grantedAuthorities
         );

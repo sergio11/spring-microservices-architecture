@@ -35,8 +35,11 @@ public class User implements Serializable  {
     @Attribute(name="userPassword")
     private String password;
     
-    @Attribute(name="gecos")
-    private String fullName;
+    @Attribute(name="cn")
+    private String name;
+    
+    @Attribute(name="sn")
+    private String lastname;
 
     @Attribute(name="mail")
     private String email;
@@ -103,12 +106,20 @@ public class User implements Serializable  {
         this.password = password;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getName() {
+        return name;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getEmail() {
