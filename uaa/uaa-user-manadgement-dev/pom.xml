@@ -40,11 +40,6 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
@@ -54,7 +49,11 @@
             <artifactId>spring-boot-starter-data-events</artifactId>
             <version>${project.version}</version>
         </dependency>
-        
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>uaa-commons</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

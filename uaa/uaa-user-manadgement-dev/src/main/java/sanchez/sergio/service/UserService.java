@@ -38,9 +38,9 @@ public class UserService extends Service<User, Long> {
     public User registerAccount(final User account) throws IllegalStateException {
         // Save the account to the repository
         return (User) userRepository.findByUsername(account.getUsername().toLowerCase())
-                .map(user -> { throw new UsernameAlredyExistsException(user); })
+                .map(user -> { throw new UsernameAlredyExistsException(user.getFirstName(), user.getLastName(), user.getUsername()); })
                 .orElseGet(() -> userRepository.findAccountByEmail(account.getEmail())
-                        .map(user -> { throw new EmailAlredyExistsException(user); })
+                        .map(user -> { throw new EmailAlredyExistsException(user.getFirstName(), user.getLastName(), user.getEmail()); })
                         .orElseGet(() -> {
                             User accountSaved = create(account);
                             try {
@@ -95,7 +95,8 @@ public class UserService extends Service<User, Long> {
 
         User currentAccount = get(account.getIdentity());
         currentAccount.setEmail(account.getEmail());
-        currentAccount.setFullName(account.getFullName());
+        currentAccount.setFirstName(account.getFirstName());
+        currentAccount.setLastName(account.getLastName());
         currentAccount.setStatus(account.getStatus());
 
         return userRepository.save(currentAccount);

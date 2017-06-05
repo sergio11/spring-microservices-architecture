@@ -90,8 +90,11 @@ public class User extends AbstractEntity<AccountEvent, Long>  {
     @Column(length = 60)
     private String password;
     
-    @Column(name="full_name", unique = false, nullable = false, length = 60)
-    private String fullName;
+    @Column(name="first_name", unique = false, nullable = false, length = 30)
+    private String firstName;
+    
+    @Column(name="last_name", unique = false, nullable = false, length = 30)
+    private String lastName;
     
     @Column(unique = true, nullable = false, length = 90)
     private String email;
@@ -199,12 +202,20 @@ public class User extends AbstractEntity<AccountEvent, Long>  {
         this.displayName = displayName;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getTitle() {

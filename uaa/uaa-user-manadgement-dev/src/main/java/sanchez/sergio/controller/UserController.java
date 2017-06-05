@@ -4,7 +4,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import java.lang.reflect.Method;
-import java.security.Principal;
 import java.util.Optional;
 import javax.validation.Valid;
 import org.slf4j.Logger;
@@ -62,7 +61,7 @@ public class UserController {
             @ApiParam(value = "pageRequest", required = false) @RequestBody(required = false) PageRequest pageRequest,
             @AuthenticationPrincipal CommonUserDetailsAware<Long> principal) {
         if(principal != null)
-            logger.info("Principal FirstName: " + principal.getFullName());
+            logger.info("Principal FirstName: " + principal.getFirstName());
         return new ResponseEntity<>(getAccountsResource(pageRequest), HttpStatus.OK);
     }
     
@@ -244,7 +243,7 @@ public class UserController {
     private Resource<User> createAccountResource(User account) {
         Assert.notNull(account, "Account body must not be null");
         Assert.notNull(account.getEmail(), "Email is required");
-        Assert.notNull(account.getFullName(), "Full name is required");
+        Assert.notNull(account.getFirstName(), "First name is required");
         // Create the new account
         account = accountService.registerAccount(account);
 

@@ -43,7 +43,7 @@ public class DomainUserDetailsService implements UserDetailsService {
                 .collect(Collectors.toSet());
             
             return new UserDetailsImpl<Long>(user.getIdentity(), user.getUsername(),
-                    user.getPassword(), user.getFullName(), user.getEmail(), grantedAuthorities);
+                    user.getPassword(), user.getFirstName(), user.getLastName(), user.getEmail(), grantedAuthorities);
 
         }).orElseThrow(() -> new UsernameNotFoundException("User " + lowercaseLogin + " was not found in the " +
         "database"));
