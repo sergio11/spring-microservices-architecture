@@ -20,7 +20,8 @@ public class UserDetailsTokenEnhancer implements TokenEnhancer {
         Map<String, Object> additionalInfo = new HashMap<>();
         additionalInfo.put(CommonUserDetailsAware.ID, principal.getUserId());
         additionalInfo.put(CommonUserDetailsAware.USERNAME, principal.getUsername());
-        additionalInfo.put(CommonUserDetailsAware.FULL_NAME, principal.getFullName());
+        additionalInfo.put(CommonUserDetailsAware.FIRST_NAME, principal.getFirstName());
+        additionalInfo.put(CommonUserDetailsAware.LAST_NAME, principal.getLastName());
         additionalInfo.put(CommonUserDetailsAware.EMAIL, principal.getEmail());
         ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInfo);
         return accessToken;

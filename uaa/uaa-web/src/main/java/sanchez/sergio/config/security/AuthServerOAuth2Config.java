@@ -22,8 +22,10 @@ import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFacto
 import sanchez.sergio.security.UserDetailsTokenEnhancer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.util.Assert;
 
 /**
  *
@@ -79,7 +81,8 @@ public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter
         tokenEnhancerChain.setTokenEnhancers(
                 Arrays.asList(tokenEnhancer(), jwtAccessTokenConverter()));
 
-        endpoints.tokenStore(tokenStore)
+        endpoints.allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST)
+                .tokenStore(tokenStore)
                 .tokenEnhancer(tokenEnhancerChain)
                 .authenticationManager(authenticationManager);
     }
@@ -106,5 +109,9 @@ public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter
     @PostConstruct
     public void init(){
         logger.info("Init Auth Server OAuth2 Configuration ...");
+        Assert.state(dataSource != null, "A DataSource for ClientDetails must be provided");
+        Assert.state(passwordEncoder != null, "A PasswordEncoder for ClientDetails must be provided");
+        Assert.state(authenticationManager != null, "AuthenticationManager must be provided");
+        Assert.state(tokenStore != null, "TokenStore must be provided");
     }
 }

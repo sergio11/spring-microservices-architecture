@@ -3,18 +3,12 @@ package sanchez.sergio;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.stream.annotation.EnableBinding;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.hateoas.config.EnableHypermediaSupport;
 import org.apache.log4j.Logger;
-import org.springframework.cloud.stream.messaging.Source;
-import sanchez.sergio.bindings.UserNotificationBinding;
 
 @SpringBootApplication
-@EnableJpaAuditing
 @EnableDiscoveryClient
 @EnableHypermediaSupport(type = {EnableHypermediaSupport.HypermediaType.HAL})
-@EnableBinding({ UserNotificationBinding.class, Source.class })
 public class Application {
     
     private final Logger logger = Logger.getLogger(Application.class);
