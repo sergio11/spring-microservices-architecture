@@ -3,7 +3,6 @@ package sanchez.sergio.config.properties;
 import java.io.Serializable;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 /**
@@ -16,7 +15,7 @@ import org.springframework.stereotype.Component;
 public class LdapCustomProperties implements Serializable {
     
     private String uri;
-    private String adminDN;
+    private String adminDn;
     private String adminPassword;
     private String searchBase; //ou=organization;
     private String searchFilter; //uid={0}
@@ -33,12 +32,12 @@ public class LdapCustomProperties implements Serializable {
         this.uri = uri;
     }
 
-    public String getAdminDN() {
-        return adminDN;
+    public String getAdminDn() {
+        return adminDn;
     }
 
-    public void setAdminDN(String adminDN) {
-        this.adminDN = adminDN;
+    public void setAdminDn(String adminDn) {
+        this.adminDn = adminDn;
     }
 
     public String getAdminPassword() {

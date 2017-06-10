@@ -1,5 +1,8 @@
 package sanchez.sergio.config.security;
 
+import javax.annotation.PostConstruct;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +16,7 @@ import org.springframework.security.ldap.search.FilterBasedLdapUserSearch;
 import org.springframework.security.ldap.search.LdapUserSearch;
 import org.springframework.security.ldap.userdetails.DefaultLdapAuthoritiesPopulator;
 import org.springframework.security.ldap.userdetails.LdapAuthoritiesPopulator;
+import org.springframework.util.Assert;
 import sanchez.sergio.config.properties.LdapCustomProperties;
 import sanchez.sergio.service.LdapUserDetailsService;
 
@@ -23,6 +27,8 @@ import sanchez.sergio.service.LdapUserDetailsService;
 @Configuration
 public class LdapAuthenticationConfig {
     
+    private final Logger logger = LoggerFactory.getLogger(LdapAuthenticationConfig.class);
+    
     @Autowired
     private LdapCustomProperties ldapCustomProperties;
     
@@ -32,8 +38,11 @@ public class LdapAuthenticationConfig {
     @Bean
     public LdapContextSource contextSource(){
         DefaultSpringSecurityContextSource contextSource = new DefaultSpringSecurityContextSource(ldapCustomProperties.getUri());
-        contextSource.setUserDn(ldapCustomProperties.getAdminDN());
+        contextSource.setUserDn(ldapCustomProperties.getAdminDn());
+        logger.debug("Admin DN for DefaultSpringSecurityContextSource " + ldapCustomProperties.getAdminDn());
         contextSource.setPassword(ldapCustomProperties.getAdminPassword());
+        logger.debug("Admin Password DN for DefaultSpringSecurityContextSource " + ldapCustomProperties.getAdminPassword());
+        contextSource.afterPropertiesSet();
         return contextSource;
     }
     
@@ -43,6 +52,7 @@ public class LdapAuthenticationConfig {
      */
     @Bean
     public LdapUserSearch ldapUserSearch(LdapContextSource contextSource) {
+         Assert.state(contextSource != null, "LdapContextSource must be provided");
         return new FilterBasedLdapUserSearch(ldapCustomProperties.getSearchBase(), ldapCustomProperties.getSearchFilter(), contextSource );
     }
     
@@ -52,6 +62,8 @@ public class LdapAuthenticationConfig {
      */
     @Bean
     public LdapAuthenticator ldapAuthenticator(LdapContextSource contextSource, LdapUserSearch ldapUserSearch){
+        Assert.state(contextSource != null, "LdapContextSource must be provided");
+        Assert.state(ldapUserSearch != null, "LdapUserSearch must be provided");
         BindAuthenticator ldapAuthenticator = new BindAuthenticator(contextSource);
         ldapAuthenticator.setUserSearch(ldapUserSearch);
         return ldapAuthenticator;
@@ -65,6 +77,7 @@ public class LdapAuthenticationConfig {
      */
     @Bean
     public LdapAuthoritiesPopulator LdapAuthoritiesPopulator(LdapContextSource contextSource){
+        Assert.state(contextSource != null, "LdapContextSource must be provided");
         DefaultLdapAuthoritiesPopulator  ldapAuthoritiesPopulator = new DefaultLdapAuthoritiesPopulator(contextSource, ldapCustomProperties.getGroupSearchBase());
         ldapAuthoritiesPopulator.setGroupSearchFilter(ldapCustomProperties.getGroupSearchFilter());
         ldapAuthoritiesPopulator.setGroupRoleAttribute(ldapCustomProperties.getGroupRoleAttribute());
@@ -78,8 +91,17 @@ public class LdapAuthenticationConfig {
      */
     @Bean
     public AuthenticationProvider authenticationProvider(LdapAuthenticator ldapAuthenticator, LdapAuthoritiesPopulator ldapAuthoritiesPopulator){
+        Assert.state(ldapAuthenticator != null, "LdapAuthenticator must be provided");
+        Assert.state(ldapAuthoritiesPopulator != null, "LdapAuthoritiesPopulator must be provided");
         LdapAuthenticationProvider authenticationProvider =  new LdapAuthenticationProvider(ldapAuthenticator, ldapAuthoritiesPopulator);
         authenticationProvider.setUserDetailsContextMapper(userDetailsService);
         return authenticationProvider;
+    }
+    
+    @PostConstruct
+    public void init(){
+        logger.info("Init Ldap Authentication Configuration ...");
+        Assert.state(ldapCustomProperties != null, "LDAP Custom Properties must be provided");
+        Assert.state(userDetailsService != null, "A LDAP User Details Service must be provided");
     }
 }

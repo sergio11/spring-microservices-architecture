@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
 import javax.naming.Name;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.ldap.core.DirContextAdapter;
 import org.springframework.ldap.core.DirContextOperations;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,9 +21,13 @@ import sanchez.sergio.security.userdetails.impl.UserDetailsImpl;
  */
 @Component
 public class LdapUserDetailsService implements UserDetailsContextMapper {
+    
+    private final Logger logger = LoggerFactory.getLogger(LdapUserDetailsService.class);
 
     @Override
     public UserDetails mapUserFromContext(DirContextOperations dco, String username, Collection<? extends GrantedAuthority> clctn) {
+        
+        logger.info("mapUserFromContext: " + username);
         
         Set<GrantedAuthority> grantedAuthorities = clctn.stream().map(authority -> new SimpleGrantedAuthority(authority.getAuthority()))
                 .collect(Collectors.toSet());

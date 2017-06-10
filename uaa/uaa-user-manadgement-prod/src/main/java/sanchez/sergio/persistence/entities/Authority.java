@@ -1,6 +1,7 @@
 package sanchez.sergio.persistence.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 import javax.naming.Name;
 import org.springframework.ldap.odm.annotations.Attribute;
@@ -23,7 +24,7 @@ public class Authority implements GrantedAuthority, Serializable {
     private String name;
 
     @Attribute(name="uniqueMember")
-    private Set<Name> members;
+    private Set<Name> members = new HashSet<Name>();
 
     public Name getDn() {
         return dn;
