@@ -17,6 +17,8 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import sanchez.sergio.security.filter.OAuth2ServerAuthenticationFilter;
 
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
@@ -26,6 +28,9 @@ public class UaaWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     
     @Autowired
     private AuthenticationProvider authenticationProvider;
+    
+    @Autowired
+    private OAuth2ServerAuthenticationFilter authenticationFilter;
 
     @Override
     @Bean
@@ -44,6 +49,7 @@ public class UaaWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         
         http
+                .addFilterBefore(authenticationFilter, BasicAuthenticationFilter.class)
                 .exceptionHandling()
                     .authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))
                 .and()

@@ -2,7 +2,6 @@ package sanchez.sergio.config.security;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
