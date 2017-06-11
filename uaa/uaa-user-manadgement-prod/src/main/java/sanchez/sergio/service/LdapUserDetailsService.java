@@ -32,10 +32,16 @@ public class LdapUserDetailsService implements UserDetailsContextMapper {
         Set<GrantedAuthority> grantedAuthorities = clctn.stream().map(authority -> new SimpleGrantedAuthority(authority.getAuthority()))
                 .collect(Collectors.toSet());
         
+        Object o = dco.getObjectAttribute("userPassword");
+        byte[] bytes = (byte[]) o;
+        String hashPassword = new String(bytes);
+        
+        logger.debug("Hash Password: " + hashPassword);
+        
         return new UserDetailsImpl<Name>(
                 dco.getDn(),
                 dco.getStringAttribute("uid"),
-                dco.getStringAttribute("userPassword"),
+                hashPassword,
                 dco.getStringAttribute("cn"),
                 dco.getStringAttribute("sn"),
                 dco.getStringAttribute("mail"),

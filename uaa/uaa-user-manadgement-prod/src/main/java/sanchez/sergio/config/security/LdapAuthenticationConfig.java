@@ -6,6 +6,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.ldap.core.support.DirContextAuthenticationStrategy;
+import org.springframework.ldap.core.support.ExternalTlsDirContextAuthenticationStrategy;
 import org.springframework.ldap.core.support.LdapContextSource;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.ldap.DefaultSpringSecurityContextSource;
@@ -29,6 +31,16 @@ public class LdapAuthenticationConfig {
     
     private final Logger logger = LoggerFactory.getLogger(LdapAuthenticationConfig.class);
     
+    static {
+        System.setProperty("javax.net.debug", "ssl,keymanager");
+        System.setProperty("javax.net.ssl.keyStore", "classpath:keystore.jks");
+        System.setProperty("javax.net.ssl.keyStorePassword", "bisite00");
+        System.setProperty("javax.net.ssl.keyStoreType", "JKS");
+        System.setProperty("javax.net.ssl.trustStore", "classpath:truststore.jks");
+        System.setProperty("javax.net.ssl.trustStorePassword", "bisite00");
+        System.setProperty("javax.net.ssl.trustStoreType", "JKS");
+    }
+    
     @Autowired
     private LdapCustomProperties ldapCustomProperties;
     
@@ -36,12 +48,21 @@ public class LdapAuthenticationConfig {
     private LdapUserDetailsService userDetailsService;
     
     @Bean
-    public LdapContextSource contextSource(){
+    public DirContextAuthenticationStrategy authenticationStrategy(){
+        ExternalTlsDirContextAuthenticationStrategy authStra = new ExternalTlsDirContextAuthenticationStrategy();
+        authStra.setShutdownTlsGracefully(true);
+        return authStra;
+    }
+    
+    @Bean
+    public LdapContextSource contextSource(DirContextAuthenticationStrategy authenticationStrategy){
+        Assert.state(authenticationStrategy != null, "DirContextAuthenticationStrategy must be provided");
         DefaultSpringSecurityContextSource contextSource = new DefaultSpringSecurityContextSource(ldapCustomProperties.getUri());
         contextSource.setUserDn(ldapCustomProperties.getAdminDn());
         logger.debug("Admin DN for DefaultSpringSecurityContextSource " + ldapCustomProperties.getAdminDn());
         contextSource.setPassword(ldapCustomProperties.getAdminPassword());
         logger.debug("Admin Password DN for DefaultSpringSecurityContextSource " + ldapCustomProperties.getAdminPassword());
+        //contextSource.setAuthenticationStrategy(authenticationStrategy);
         contextSource.afterPropertiesSet();
         return contextSource;
     }
