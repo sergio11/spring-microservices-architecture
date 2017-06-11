@@ -7,9 +7,10 @@ spring:
     application:
         name: uaa-web-service
     profiles:
-        active: dev
+        active: dev,ldap
     cloud:
         config:
+            name: uaa-web-service,stream-cloud-notification
             discovery:
                 enabled: true
                 serviceId: config-server
