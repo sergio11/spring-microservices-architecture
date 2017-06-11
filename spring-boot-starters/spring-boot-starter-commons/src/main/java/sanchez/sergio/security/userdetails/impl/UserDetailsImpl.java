@@ -13,17 +13,19 @@ public class UserDetailsImpl<T> implements CommonUserDetailsAware<T> {
     private T id;
     private String username;
     private String password;
-    private String fullName;
+    private String firstName;
+    private String lastName;
     private String email;
     private Set<GrantedAuthority> grantedAuthorities;
     
     public UserDetailsImpl(){}
 
-    public UserDetailsImpl(T id, String username, String password, String fullName, String email, Set<GrantedAuthority> grantedAuthorities) {
+    public UserDetailsImpl(T id, String username, String password, String firstName, String lastName, String email, Set<GrantedAuthority> grantedAuthorities) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.fullName = fullName;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.grantedAuthorities = grantedAuthorities;
     }
@@ -36,16 +38,16 @@ public class UserDetailsImpl<T> implements CommonUserDetailsAware<T> {
         this.username = username;
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+    
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
     }
     
     public void setEmail(String email) {
@@ -65,13 +67,22 @@ public class UserDetailsImpl<T> implements CommonUserDetailsAware<T> {
     public String getUsername() {
         return username;
     }
+    
+    @Override
+    public String getFirstName() {
+        return firstName;
+    }
+
+    @Override
+    public String getLastName() {
+        return lastName;
+    }
 
     @Override
     public String getPassword() {
         return password;
     }
-    
-
+   
     @Override
     public String getEmail() {
         return email;

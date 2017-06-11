@@ -19,7 +19,7 @@ public class AuthenticationServiceImpl extends BaseAuthenticationService<Long> {
         Map<String, Object> userDetailsInfo = getTenantInformation();
         UserDetailsImpl<Long> userDetails = new UserDetailsImpl<Long>();
         userDetails.setId(new Long( (Integer) userDetailsInfo.get(CommonUserDetailsAware.ID)));
-        userDetails.setFullName((String) userDetailsInfo.get(CommonUserDetailsAware.FULL_NAME));
+        userDetails.setFirstName((String) userDetailsInfo.get(CommonUserDetailsAware.FIRST_NAME));
         userDetails.setUsername((String) userDetailsInfo.get(CommonUserDetailsAware.USERNAME));
         userDetails.setEmail((String) userDetailsInfo.get(CommonUserDetailsAware.EMAIL));
         userDetails.setPassword((String) userDetailsInfo.get(CommonUserDetailsAware.PASSWORD));
