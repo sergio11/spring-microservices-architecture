@@ -8,13 +8,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserHolder {
 
-    private static final ThreadLocal<Long> user = new ThreadLocal<Long>();
+    private static final ThreadLocal<String> user = new ThreadLocal<String>();
 
-    public static void setUser(Long userId) {
-        user.set(userId);
+    public static void setUser(String username) {
+        user.set(username);
     }
 
-    public static Long getUser() {
+    public static String getUser() {
         return user.get();
     }
 
