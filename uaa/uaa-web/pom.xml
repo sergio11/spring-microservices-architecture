@@ -88,16 +88,11 @@
     <profiles>
         <!-- Dev Profile -->
         <profile>
-            <id>dev</id>
+            <id>DEV</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <dependencies>
-                <dependency>
-                    <groupId>${project.groupId}</groupId>
-                    <artifactId>uaa-user-manadgement-dev</artifactId>
-                    <version>${project.version}</version>
-                </dependency>
                 <dependency>  
                     <groupId>io.springfox</groupId>
                     <artifactId>springfox-swagger2</artifactId>
@@ -110,15 +105,35 @@
                 </dependency>
             </dependencies>
         </profile>
-        <!-- Prod Profile -->
+        <!-- User Manadgement DB Profile -->
         <profile>
-            <id>prod</id>
+            <id>UMDB</id>
             <dependencies>
                 <dependency>
                     <groupId>${project.groupId}</groupId>
-                    <artifactId>uaa-user-manadgement-prod</artifactId>
+                    <artifactId>uaa-user-manadgement-orm</artifactId>
                     <version>${project.version}</version>
                 </dependency>
+            </dependencies>
+        </profile>
+        <!-- User Manadgement LDAP Profile -->
+        <profile>
+            <id>UMLDAP</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>${project.groupId}</groupId>
+                    <artifactId>uaa-user-manadgement-odm</artifactId>
+                    <version>${project.version}</version>
+                </dependency>
+            </dependencies>
+        </profile>
+        <!-- Prod Profile -->
+        <profile>
+            <id>PROD</id>
+            <dependencies>
             </dependencies>
         </profile>
     </profiles>

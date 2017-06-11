@@ -28,5 +28,5 @@ public class ErrorController extends BaseErrorRestController {
     public ResponseEntity emailAlredyExists(final EmailAlredyExistsException exception){
         return createAndSendResponse(HttpStatus.BAD_REQUEST, UaaResponseCode.EMAIL_ALREDY_EXISTS, exception.getMessage());
     }
-    
+   
 }

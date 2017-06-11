@@ -17,8 +17,9 @@
     <modules>
         <module>uaa-worker</module>
         <module>uaa-web</module>
-        <module>uaa-user-manadgement-dev</module>
-        <module>uaa-user-manadgement-prod</module>
+        <module>uaa-commons</module>
+        <module>uaa-user-manadgement-ldap</module>
+        <module>uaa-user-manadgement-orm</module>
     </modules>
     
     <dependencies>
