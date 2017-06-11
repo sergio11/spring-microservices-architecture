@@ -14,6 +14,7 @@ import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
+import sanchez.sergio.service.IUserNotificationService;
 
 /**
  * @author Sergio Sánchez
@@ -27,6 +28,9 @@ public class OAuth2ServerAuthenticationFilterImpl extends OAuth2ServerAuthentica
     
     @Autowired
     private TokenStore tokenStore;
+    
+    @Autowired
+    private IUserNotificationService userNotificationService;
 
     public OAuth2ServerAuthenticationFilterImpl(DefaultTokenServices tokenServices) {
         super(tokenServices);
@@ -44,8 +48,8 @@ public class OAuth2ServerAuthenticationFilterImpl extends OAuth2ServerAuthentica
 
             Authentication userAuthentication = (Authentication) userOAuth2Authentication.getUserAuthentication();
             if(userAuthentication != null) {
-                
                 logger.debug("on Successful User Authentication- " + userAuthentication.getName());
+                userNotificationService.notifyUserConnected(userAuthentication.getName());
             }
         }
     }
