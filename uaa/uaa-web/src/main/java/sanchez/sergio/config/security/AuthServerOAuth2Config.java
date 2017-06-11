@@ -1,7 +1,9 @@
 package sanchez.sergio.config.security;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,6 @@ import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
-import sanchez.sergio.security.UserDetailsTokenEnhancer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpMethod;
@@ -54,12 +55,15 @@ public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter
     @Autowired
     private PasswordEncoder passwordEncoder;
     
+    @Autowired
+    private List<TokenEnhancer> tokenEnhancers = new ArrayList<TokenEnhancer>();
+    
     /**
      * Supplies an AccessTokenConverter implementation to be used by this endpoint
      * @return an access token converter configured with the authorization server's public/private keys
      */
     @Bean
-    public JwtAccessTokenConverter jwtAccessTokenConverter() {
+    public TokenEnhancer jwtAccessTokenConverter() {
         KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("jwt.jks"), "bisite00".toCharArray());
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
         converter.setKeyPair(keyStoreKeyFactory.getKeyPair("jwt"));
@@ -77,19 +81,15 @@ public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         logger.debug("init AuthorizationServerEndpointsConfigurer");
+        logger.debug("Count TokenEnhancer: " + tokenEnhancers.size());
+        tokenEnhancers.add(jwtAccessTokenConverter());
         TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
-        tokenEnhancerChain.setTokenEnhancers(
-                Arrays.asList(tokenEnhancer(), jwtAccessTokenConverter()));
+        tokenEnhancerChain.setTokenEnhancers(tokenEnhancers);
 
         endpoints.allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST)
                 .tokenStore(tokenStore)
                 .tokenEnhancer(tokenEnhancerChain)
                 .authenticationManager(authenticationManager);
-    }
-
-    @Bean
-    public TokenEnhancer tokenEnhancer() {
-        return new UserDetailsTokenEnhancer();
     }
     
     @Override
