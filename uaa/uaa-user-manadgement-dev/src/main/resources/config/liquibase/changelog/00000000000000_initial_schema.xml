@@ -151,33 +151,7 @@
                 referencedColumnNames="identity"
                 referencedTableName="USERS" />
         
-        <!-- Table For OAUTH Client Details  -->
-        <createTable tableName="OAUTH_CLIENT_DETAILS">
-            <!-- Client Id -->
-            <column name="client_id" type="varchar(255)">
-                <constraints primaryKey="true" nullable="false"/>
-            </column> 
-            <!-- Resource Ids -->
-            <column name="resource_ids" type="varchar(255)"></column>
-            <!-- Client Secret -->
-            <column name="client_secret" type="varchar(255)"></column>
-            <!-- Scopes -->
-            <column name="scope" type="varchar(255)"></column>
-            <!-- Authorized grant types -->
-            <column name="authorized_grant_types" type="varchar(255)"></column>
-            <!-- Web Server Redirect Uri -->
-            <column name="web_server_redirect_uri" type="varchar(255)"></column>
-            <!-- authorities -->
-            <column name="authorities" type="varchar(255)"></column>
-            <!-- access_token_validity -->
-            <column name="access_token_validity" type="int"></column>
-            <!-- refresh_token_validity -->
-            <column name="refresh_token_validity" type="int"></column>
-            <!-- additional_information -->
-            <column name="additional_information" type="varchar(4096)"></column>
-            <!-- autoapprove -->
-            <column name="autoapprove" type="varchar(255)"></column>
-        </createTable>
+        
         
         <!-- Load Initial Data -->
         <loadData encoding="UTF-8"
