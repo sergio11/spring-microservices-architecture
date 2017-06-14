@@ -63,10 +63,10 @@ public class DeviceGroupsController {
     public ResponseEntity<APIResponse<DeviceGroup>> createDevicesGroup(
             @ApiParam(value = "name", required = true) @PathVariable String name
     ) throws InterruptedException, ExecutionException, Throwable {
-        CommonUserDetailsAware<Long> principal = authenticationService.getPrincipal();
+        CommonUserDetailsAware principal = authenticationService.getPrincipal();
         return pushNotificationsService.createNotificationGroup(name)
                 .handle((groupKey, ex) -> 
-                    Optional.ofNullable(deviceGroupsService.createDeviceGroup(name, groupKey, principal.getUserId()))
+                    Optional.ofNullable(deviceGroupsService.createDeviceGroup(name, groupKey, principal.getUsername()))
                             .map(deviceGroup -> ApiHelper.<DeviceGroup>createAndSendResponse(NotificationResponseCode.DEVICES_GROUP_CREATED, deviceGroup, HttpStatus.OK))
                             .<DeviceGroupCreateFailedException>orElseThrow(() -> { throw new DeviceGroupCreateFailedException(); })).get();
     }

@@ -39,10 +39,10 @@ public class NotificationController {
     @Autowired
     private IAuthenticationService authenticationService;
    
-    @GetMapping(path = "/notifications/{userId}")
+    @GetMapping(path = "/notifications/{username}")
     @ApiOperation(value = "getNotifications", nickname = "getNotifications", notes="Get Notifications", response = ResponseEntity.class)
-    public ResponseEntity<APIResponse<List<Notification>>> getNotifications(@ApiParam(value = "userId", required = true) @PathVariable Long userId) throws Throwable {
-        return Optional.ofNullable(notificationRepository.findByUserId(userId))
+    public ResponseEntity<APIResponse<List<Notification>>> getNotifications(@ApiParam(value = "userId", required = true) @PathVariable String username) throws Throwable {
+        return Optional.ofNullable(notificationRepository.findByUsername(username))
                 .map(notifications -> ApiHelper.<List<Notification>>createAndSendResponse(NotificationResponseCode.ALL_NOTIFICATIONS, notifications, HttpStatus.OK))
                 .orElseThrow(() -> {throw new UserNotFoundException(); });
     }
@@ -50,9 +50,9 @@ public class NotificationController {
     @GetMapping(path = "/notifications/self")
     @ApiOperation(value = "getSelfNotifications", nickname = "getSelfNotifications", notes="Get Self Notifications", response = ResponseEntity.class)
     public ResponseEntity<APIResponse<List<Notification>>> getNotifications() throws Throwable {
-        CommonUserDetailsAware<Long> principal = authenticationService.getPrincipal();
+        CommonUserDetailsAware principal = authenticationService.getPrincipal();
         logger.debug("username -> " + principal.getUsername());
-        return Optional.ofNullable(notificationRepository.findByUserId(principal.getUserId()))
+        return Optional.ofNullable(notificationRepository.findByUsername(principal.getUsername()))
                 .map(notifications -> ApiHelper.<List<Notification>>createAndSendResponse(NotificationResponseCode.SELF_NOTIFICATIONS, notifications, HttpStatus.OK))
                 .orElseThrow(() -> {throw new UserNotFoundException(); });
     }

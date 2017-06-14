@@ -32,8 +32,8 @@ public class DeviceGroup implements Serializable {
     @Column(name="notification_key", nullable = false, unique = true, length = 120)
     private String notificationKey;
     
-    @Column(name="user_id", nullable = false, unique = true)
-    private Long userId;
+    @Column(name="username", nullable = false, unique = true)
+    private String username;
     
     @Column(name="create_at", nullable = true)
     private Date createAt = new Date();
@@ -43,17 +43,17 @@ public class DeviceGroup implements Serializable {
     
     public DeviceGroup(){}
 
-    public DeviceGroup(String notificationKeyName, String notificationKey, Long userId) {
+    public DeviceGroup(String notificationKeyName, String notificationKey, String username) {
         this.notificationKeyName = notificationKeyName;
         this.notificationKey = notificationKey;
-        this.userId = userId;
+        this.username = username;
     }
     
     
-    public DeviceGroup(String notificationKeyName, String notificationKey, Long userId, Set<Device> devices) {
+    public DeviceGroup(String notificationKeyName, String notificationKey, String username, Set<Device> devices) {
         this.notificationKeyName = notificationKeyName;
         this.notificationKey = notificationKey;
-        this.userId = userId;
+        this.username = username;
         this.setDevices(devices);
     }
     
@@ -81,12 +81,12 @@ public class DeviceGroup implements Serializable {
         this.notificationKey = notificationKey;
     }
 
-    public Long getUserId() {
-        return userId;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Date getCreateAt() {
@@ -110,6 +110,6 @@ public class DeviceGroup implements Serializable {
 
     @Override
     public String toString() {
-        return "DeviceGroup{" + "id=" + id + ", notificationKeyName=" + notificationKeyName + ", notificationKey=" + notificationKey + ", userId=" + userId + ", createAt=" + createAt + '}';
+        return "DeviceGroup{" + "id=" + id + ", notificationKeyName=" + notificationKeyName + ", notificationKey=" + notificationKey + ", username=" + username + ", createAt=" + createAt + '}';
     }
 }

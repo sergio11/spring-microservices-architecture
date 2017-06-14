@@ -8,5 +8,5 @@ import sanchez.sergio.persistence.entities.Notification;
  * @author sergio
  */
 public interface NotificationRepository extends JpaRepository<Notification, Long>{
-    List<Notification> findByUserId(Long userId);
+    List<Notification> findByUsername(String username);
 }

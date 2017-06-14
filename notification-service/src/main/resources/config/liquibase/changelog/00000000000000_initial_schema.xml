@@ -25,8 +25,8 @@
             <column name="payload" type="varchar(90)">
                 <constraints unique="false" nullable="false"/>
             </column>
-            <!-- Notification user id -->
-            <column name="user_id" type="bigint">
+            <!-- Notification username -->
+            <column name="username" type="varchar(30)">
                 <constraints unique="false" nullable="false"/>
             </column>
             <!-- Notification timestamp -->
@@ -47,7 +47,7 @@
                 <constraints unique="true" nullable="false"/>
             </column>
             <!-- Device Group Owner -->
-            <column name="user_id" type="bigint">
+            <column name="username" type="varchar(30)">
                 <constraints unique="true" nullable="false"/>
             </column>
             <!-- Device Group createAt -->
@@ -68,11 +68,11 @@
             <column name="notification_key" type="varchar(120)"/>
         </createIndex>
         
-        <!-- User Id Idx -->
-        <createIndex indexName="idx_user_id"
+        <!-- User Username -->
+        <createIndex indexName="idx_username"
             tableName="DEVICE_GROUPS"
             unique="true">
-            <column name="user_id" />
+            <column name="username" />
         </createIndex>
         
         <createTable tableName="DEVICES">

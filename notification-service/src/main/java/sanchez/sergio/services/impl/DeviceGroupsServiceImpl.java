@@ -9,8 +9,6 @@ import sanchez.sergio.persistence.entities.DeviceGroup;
 import sanchez.sergio.persistence.repositories.DeviceGroupRepository;
 import sanchez.sergio.services.IDeviceGroupsService;
 import java.util.Set;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import sanchez.sergio.persistence.repositories.DeviceRepository;
 
 /**
@@ -26,13 +24,13 @@ public class DeviceGroupsServiceImpl implements IDeviceGroupsService {
     private DeviceRepository deviceRepository;
 
     @Override
-    public DeviceGroup createDeviceGroup(String name, String key, Long userId) {
-        return deviceGroupRepository.saveAndFlush(new DeviceGroup(name, key, userId));
+    public DeviceGroup createDeviceGroup(String name, String key, String username) {
+        return deviceGroupRepository.saveAndFlush(new DeviceGroup(name, key, username));
     }
 
     @Override
-    public DeviceGroup createDeviceGroup(String name, String key, Long userId, Set<Device> devices) {
-       return deviceGroupRepository.saveAndFlush(new DeviceGroup(name, key, userId, devices));
+    public DeviceGroup createDeviceGroup(String name, String key, String username, Set<Device> devices) {
+       return deviceGroupRepository.saveAndFlush(new DeviceGroup(name, key, username, devices));
     }
 
     @Override

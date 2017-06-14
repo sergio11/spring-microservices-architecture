@@ -45,7 +45,7 @@ public class AdminHandler implements UsersManadgementVisitor {
             handlers.put(username, userHandler);
         }
     }
-
+    
     @Override
     public void visitUserDisconnected(String username) {
         logger.info("Remove queue for user: " + username );
