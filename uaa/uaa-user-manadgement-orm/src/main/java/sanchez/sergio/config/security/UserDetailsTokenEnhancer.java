@@ -18,7 +18,7 @@ public class UserDetailsTokenEnhancer implements TokenEnhancer {
 
     @Override
     public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
-        CommonUserDetailsAware<Long> principal = (CommonUserDetailsAware<Long>) authentication.getPrincipal();
+        CommonUserDetailsAware principal = (CommonUserDetailsAware) authentication.getPrincipal();
         Map<String, Object> additionalInfo = new HashMap<>();
         additionalInfo.put(CommonUserDetailsAware.USERNAME, principal.getUsername());
         additionalInfo.put(CommonUserDetailsAware.FIRST_NAME, principal.getFirstName());

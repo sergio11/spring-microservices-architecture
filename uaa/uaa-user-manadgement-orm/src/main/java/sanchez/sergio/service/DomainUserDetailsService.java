@@ -20,7 +20,6 @@ import sanchez.sergio.security.userdetails.impl.UserDetailsImpl;
  * Authenticate a user from the database.
  */
 @Component
-@Profile("dev")
 public class DomainUserDetailsService implements UserDetailsService {
 
     private final Logger log = LoggerFactory.getLogger(DomainUserDetailsService.class);
@@ -42,7 +41,7 @@ public class DomainUserDetailsService implements UserDetailsService {
                     .map(authority -> new SimpleGrantedAuthority(authority.getAuthority()))
                 .collect(Collectors.toSet());
             
-            return new UserDetailsImpl<Long>(user.getIdentity(), user.getUsername(),
+            return new UserDetailsImpl(user.getUsername(),
                     user.getPassword(), user.getFirstName(), user.getLastName(), user.getEmail(), grantedAuthorities);
 
         }).orElseThrow(() -> new UsernameNotFoundException("User " + lowercaseLogin + " was not found in the " +

@@ -59,7 +59,7 @@ public class UserController {
     @ApiOperation(value = "getAccounts", nickname = "getAccounts", notes="Get accounts resources", response = ResponseEntity.class)
     public ResponseEntity getAccounts(
             @ApiParam(value = "pageRequest", required = false) @RequestBody(required = false) PageRequest pageRequest,
-            @AuthenticationPrincipal CommonUserDetailsAware<Long> principal) {
+            @AuthenticationPrincipal CommonUserDetailsAware principal) {
         if(principal != null)
             logger.info("Principal FirstName: " + principal.getFirstName());
         return new ResponseEntity<>(getAccountsResource(pageRequest), HttpStatus.OK);
