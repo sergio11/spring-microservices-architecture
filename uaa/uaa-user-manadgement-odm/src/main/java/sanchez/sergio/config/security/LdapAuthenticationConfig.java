@@ -34,10 +34,10 @@ public class LdapAuthenticationConfig {
     static {
         System.setProperty("javax.net.debug", "ssl,keymanager");
         System.setProperty("javax.net.ssl.keyStore", "classpath:keystore.jks");
-        System.setProperty("javax.net.ssl.keyStorePassword", "bisite00");
+        System.setProperty("javax.net.ssl.keyStorePassword", "dreamsoftware00");
         System.setProperty("javax.net.ssl.keyStoreType", "JKS");
         System.setProperty("javax.net.ssl.trustStore", "classpath:truststore.jks");
-        System.setProperty("javax.net.ssl.trustStorePassword", "bisite00");
+        System.setProperty("javax.net.ssl.trustStorePassword", "dreamsoftware00");
         System.setProperty("javax.net.ssl.trustStoreType", "JKS");
     }
     
